@@ -1,0 +1,112 @@
+---
+import type { Form as Props } from '~/types';
+import Button from '~/components/ui/Button.astro';
+
+type InputType = 'button' | 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio' | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
+
+const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+---
+
+<form method="POST" action="/api/contact" enctype="multipart/form-data">
+  {
+    inputs &&
+      inputs.map(
+        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '', accept = '' }) =>
+          name && (
+            <div class="mb-6">
+              {label && (
+                <label for={name} class="block text-sm font-medium">
+                  {label}
+                </label>
+              )}
+              <input
+                type={type as InputType}
+                name={name}
+                id={name}
+                autocomplete={autocomplete}
+                placeholder={placeholder}
+                accept={accept}
+                class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+              />
+            </div>
+          )
+      )
+  }
+
+  {
+    textarea && (
+      <div class="mb-6">
+        <label for="textarea" class="block text-sm font-medium">
+          {textarea.label}
+        </label>
+        <textarea
+          id="textarea"
+          name={textarea.name ? textarea.name : 'message'}
+          rows={textarea.rows ? textarea.rows : 4}
+          placeholder={textarea.placeholder}
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+        />
+      </div>
+    )
+  }
+
+  {disclaimer && (
+    <div class="mb-6">
+      <p class="text-sm text-gray-500 dark:text-gray-400">{disclaimer.label}</p>
+    </div>
+  )}
+
+  <!-- Drag & Drop PDF dentro del formulario -->
+  <div id="drop-area" style="border: 2px dashed #007bff; border-radius: 8px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; background: #f8fafc;">
+    <label style="font-weight: bold; display: block; margin-bottom: 0.5rem;">Hoja de Vida (PDF)</label>
+    <p style="font-size: 0.95rem; color: #555;">Arrastra tu hoja de vida aquí o haz clic para seleccionar un archivo PDF (máx 20 MB)</p>
+    <input
+      type="file"
+      id="cv"
+      name="cv"
+      accept=".pdf"
+      style="display: none;"
+    />
+    <button type="button" id="select-btn" style="margin-top: 1rem; background: #007bff; color: #fff; border: none; border-radius: 4px; padding: 0.5rem 1.2rem; cursor: pointer;">Seleccionar archivo</button>
+    <div id="file-info" style="margin-top: 1rem; color: #333;"></div>
+    <div id="file-error" style="margin-top: 0.5rem; color: red;"></div>
+  </div>
+
+  <div class="flex justify-center">
+    <Button type="submit" variant="primary">
+      {button}
+    </Button>
+  </div>
+
+  {description && (
+    <div class="mt-6">
+      <p class="text-sm text-gray-500 dark:text-gray-400">{description}</p>
+    </div>
+  )}
+</form>
+
+<script>
+  const form = document.querySelector('form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (response.ok) {
+        alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.');
+        form.reset();
+      } else {
+        throw new Error('Error al enviar el mensaje');
+      }
+    } catch (error) {
+      alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
+      console.error('Error:', error);
+    }
+  });
+</script>

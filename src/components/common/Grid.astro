@@ -1,0 +1,20 @@
+---
+import Item from '~/components/common/GridItem.astro';
+
+export interface IItem {
+  image?: string;
+  title?: string;
+  description?: string;
+}
+
+export interface Props {
+  items: Array<IItem>;
+}
+
+const { items } = Astro.props;
+
+---
+
+<div class="grid gap-6 row-gap-5 md:grid-cols-2 lg:grid-cols-4 -mb-6">
+  {items.map((item) => <Item {...item} />)}
+</div>

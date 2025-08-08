@@ -1,0 +1,49 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/widgets/Header.astro';
+import Footer from '~/components/widgets/Footer.astro';
+
+import { headerData, footerData } from '~/navigation';
+
+import type { MetaData } from '~/types';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <slot name="header">
+    <Header {...headerData} showToggleTheme isSticky />
+  </slot>
+  <main>
+    <slot />
+  </main>
+  <slot name="footer">
+    <Footer {...footerData} />
+  </slot>
+  <script is:inline>
+    const initHoverAnimations = () => {
+      const main = document.querySelector('main');
+      if (!main) return;
+
+      const candidates = main.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,a,blockquote,figcaption,span,em,strong');
+      candidates.forEach((el) => {
+        if (el.closest('nav,header,footer')) return;
+        // Remove render animation attributes/classes
+        el.removeAttribute('data-animate');
+        el.removeAttribute('data-animate-delay');
+        el.classList.remove('animate-fade-in-up', 'animate-fade-in-down');
+        // Keep only hover animation
+        if (!el.classList.contains('animate-text-hover')) {
+          el.classList.add('animate-text-hover');
+        }
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', initHoverAnimations);
+    document.addEventListener('astro:after-swap', initHoverAnimations);
+  </script>
+</Layout>
