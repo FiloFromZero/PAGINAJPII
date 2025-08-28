@@ -32,25 +32,25 @@ const metadata = {
     information="En el Instituto Psicopedagógico Juan Pablo II, ofrecemos un entorno de aprendizaje enriquecedor con aulas especialmente diseñadas para fomentar el desarrollo integral de nuestros estudiantes. A través del juego, la interacción y la exploración, cultivamos sus habilidades en diversas áreas, brindándoles una educación completa y personalizada."
     items={[
       {
-        image: '~/assets/images/servicios_biblioteca.jpg',
+        image: '~/assets/images/BIBLIOTECA.webp',
         title: 'Biblioteca',
         description:
           'Nuestra biblioteca cuenta con una amplia variedad de libros y recursos educativos para fomentar la lectura y el aprendizaje en nuestros estudiantes.',
       },
       {
-        image: '~/assets/images/servicios_laboratorio.jpg',
+        image: '~/assets/images/LABORATORIO.webp',
         title: 'Laboratorio',
         description:
           'Nuestro laboratorio está equipado con herramientas y materiales especializados para que los estudiantes puedan realizar experimentos y explorar conceptos científicos de forma práctica.',
       },
       {
-        image: '~/assets/images/servicios_ludoteca.jpg',
+        image: '~/assets/images/LUDOTECA.webp',
         title: 'Ludoteca',
         description:
           'En nuestra ludoteca, los estudiantes pueden disfrutar de juegos y actividades lúdicas que fomentan el aprendizaje, la creatividad y el desarrollo de habilidades sociales.',
       },
       {
-        image: '~/assets/images/servicios_sistemas.jpg',
+        image: '~/assets/images/SISTEMAS.webp',
         title: 'Sala de sistemas',
         description:
           'Nuestra sala de sistemas está equipada con computadoras y software especializado para que los estudiantes puedan desarrollar habilidades digitales y explorar el mundo de la tecnología.',
@@ -94,7 +94,7 @@ const metadata = {
 
   <Content
     classes={{
-      container: 'mt-[-120px]',
+      container: 'mt-0',
     }}
     isReversed
     items={[
@@ -130,8 +130,9 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      src: './src/assets/images/SERVICIOS1.webp',
       alt: 'Asignaturas 1',
+      class: 'w-3/4 mx-auto',
     }}
   />
 
@@ -139,7 +140,7 @@ const metadata = {
 
   <Content
     classes={{
-      container: 'mt-[-60px]',
+      container: 'mt-0',
     }}
     isAfterContent
     items={[
@@ -175,41 +176,12 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+      src: './src/assets/images/SERVICIOS2.webp',
       alt: 'Asignaturas 2',
     }}
   />
 
   <!-- Content Widget **************** -->
 
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Docentes con destacada experiencia laboral.',
-      },
-      {
-        title: 'Egresados Juanpablinos.',
-      },
-      {
-        title: 'Alto sentido humano.',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/inicio_docentes.jpeg',
-      alt: 'Docentes',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Nuestros Docentes</h3>
-      Nuestro cuerpo directivo y docente siempre atento a acompañar los procesos institucionales, son profesionales con altos
-      conocimientos y sentido humano que nos permiten promover en nuestros educandos. Educación de calidad y con visión de
-      servicio al municipio de Soacha y al país.
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
   <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
 </Layout>

@@ -1,4 +1,6 @@
 ---
+import Image from '~/components/common/Image.astro';
+
 export interface Props {
   images: { src: string; alt: string }[];
 }
@@ -6,17 +8,28 @@ export interface Props {
 const { images } = Astro.props;
 ---
 
-<div id="carousel" class="relative w-full overflow-hidden rounded-xl shadow-2xl my-12 group">
-  <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-[350px]">
+<div id="carousel" class="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden my-8 group">
+  <div id="carousel-inner" class="flex transition-transform duration-700 ease-in-out h-[260px] md:h-[320px] lg:h-[380px]">
     {images.map(({ src, alt }) => (
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={1280}
+        height={380}
+        layout="cover"
+        loading="eager"
+        sizes="100vw"
+        widths={[640, 768, 1024, 1280, 1536, 1920, 2560, 3840]}
+        aspectRatio="3.2:1"
+        fetchpriority="high"
         class="flex-shrink-0 w-full h-full object-cover object-center transform transition-transform duration-500 hover:scale-105"
         data-animate="animate-fade-in-up"
       />
     ))}
   </div>
+
+  <div class="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-white/90 to-transparent dark:from-gray-900/90"></div>
+  <div class="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-white/90 to-transparent dark:from-gray-900/90"></div>
 
   <button
     id="prevBtn"

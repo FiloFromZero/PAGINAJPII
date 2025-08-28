@@ -1,0 +1,88 @@
+/* Optimizaciones avanzadas para imágenes */
+
+/* Mejora la calidad de renderizado de imágenes */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Optimización específica para imágenes WebP y AVIF */
+img[src*=".webp"],
+img[src*=".avif"] {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Mejora la calidad en pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Optimización para el carrusel */
+#carousel img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-quality;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Mejora la calidad durante las transiciones */
+.animate-card-hover {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Optimización para imágenes responsivas */
+img[sizes] {
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mejora la calidad en dispositivos móviles */
+@media (max-width: 768px) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-quality;
+  }
+}
+
+/* Optimización para imágenes con aspect-ratio */
+img[style*="aspect-ratio"] {
+  object-fit: cover;
+  object-position: center;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Mejora la calidad durante el hover */
+img:hover {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-quality;
+}
+
+/* Optimización específica para navegadores Webkit */
+@supports (-webkit-appearance: none) {
+  img {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Optimización para Firefox */
+@-moz-document url-prefix() {
+  img {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}

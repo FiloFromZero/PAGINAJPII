@@ -14,10 +14,10 @@ import WhatsAppButton from '~/components/WhatsAppButton.astro';
 
 // --- Importaciones de Imágenes Locales (desde src/assets/images/) ---
 import imgPagoEnLinea from '~/assets/images/pagoEnLinea.png';
-import imgCalidad from '~/assets/images/Externado.jpg';
-import imgValores from '~/assets/images/ISAIAS.jpeg';
-import imgDocentes from '~/assets/images/IZADABANDERA.jpeg';
-import imgVirtualidad from '~/assets/images/inicio_virtualidad.png';
+import imgCalidad from '~/assets/images/Calidad.webp';
+import imgValores from '~/assets/images/valores.webp';
+import imgDocentes from '~/assets/images/Profesores.png';
+import imgVirtualidad from '~/assets/images/virtualidad.webp';
 import FeriaU1 from '~/assets/images/FeriaUniversitaria.jpeg';
 import FeriaU2 from '~/assets/images/FeriaUniversitaria2.jpeg';
 import Regional from '~/assets/images/Regional.jpg';
@@ -34,14 +34,21 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Carousel
-    images={[
-      { src: FeriaU1.src, alt: 'Calidad Educativa' },
-      { src: FeriaU2.src, alt: 'Valores Institucionales' },
-      { src: Memoria.src, alt: 'Docentes' },
-      { src: Regional.src, alt: 'Virtualidad' },
-    ]}
-  />
+  <div class="relative">
+    <Carousel
+      images={[
+        { src: FeriaU1.src, alt: 'Calidad Educativa' },
+        { src: FeriaU2.src, alt: 'Valores Institucionales' },
+        { src: Memoria.src, alt: 'Docentes' },
+        { src: Regional.src, alt: 'Virtualidad' },
+      ]}
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <a href="/admisiones" class="text-white text-4xl md:text-6xl font-bold text-center drop-shadow-lg animate-pulse"
+        >¡Matrículas Abiertas 2026!</a
+      >
+    </div>
+  </div>
   <Hero2
     tagline="Nueva Web!!"
     actions={[
@@ -49,9 +56,17 @@ const metadata = {
       { text: 'Nuestros servicios', href: getPermalink('/servicios') },
     ]}
     image={{
-      class: 'cursor-pointer md:pl-20 hover:scale-[0.95] transition-transform duration-300',
+      class: 'cursor-pointer mx-auto hover:scale-[0.95] transition-transform duration-300 object-contain',
       src: imgPagoEnLinea,
       alt: 'Pago en Linea',
+      width: 720,
+      height: 432,
+      layout: 'contained',
+      loading: 'eager',
+      sizes: '(max-width: 768px) 96vw, (max-width: 1200px) 60vw, 1440px',
+      widths: [360, 480, 600, 720, 900, 1440],
+      aspectRatio: '5:3',
+      fetchpriority: 'high',
       onclick:
         'window.open("https://www.mipagoamigo.com/MPA_WebSite/ServicePayments/StartPayment?id=4672&searchedCategoryId=&searchedAgreementName=INSTITUTO%20PSICOPEDAGOGICO%20JUAN%20PABLO%20II")',
     }}
@@ -117,7 +132,18 @@ const metadata = {
       { title: 'Estamos dentro de los mejores colegios privados del municipio de Soacha.' },
       { title: 'Altos indicadores en las pruebas SABER.' },
     ]}
-    image={{ src: imgCalidad, alt: 'Calidad Educativa' }}
+    image={{
+      class: 'object-contain',
+      src: imgCalidad,
+      alt: 'Calidad Educativa',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      aspectRatio: '7:5',
+    }}
     data-animate="animate-fade-in-up"
   >
     <Fragment slot="content">
@@ -140,7 +166,18 @@ const metadata = {
       { title: 'Solidaridad' },
       { title: 'Servicio a la comunidad' },
     ]}
-    image={{ src: imgValores, alt: 'Valores Institucionales' }}
+    image={{
+      class: 'object-contain',
+      src: imgValores,
+      alt: 'Valores Institucionales',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      aspectRatio: '7:5',
+    }}
     data-animate="animate-fade-in-up"
   >
     <Fragment slot="content">
@@ -162,7 +199,18 @@ const metadata = {
       { title: 'Egresados Juanpablinos.' },
       { title: 'Alto sentido humano.' },
     ]}
-    image={{ src: imgDocentes, alt: 'Docentes' }}
+    image={{
+      class: 'object-contain',
+      src: imgDocentes,
+      alt: 'Docentes',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      aspectRatio: '7:5',
+    }}
     data-animate="animate-fade-in-up"
   >
     <Fragment slot="content">
@@ -190,7 +238,18 @@ const metadata = {
   <Content
     id="about"
     columns={3}
-    image={{ src: imgVirtualidad, alt: 'Virtualidad', loading: 'eager' }}
+    image={{
+      class: 'object-contain',
+      src: imgVirtualidad,
+      alt: 'Virtualidad',
+      width: 800,
+      height: 600,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1600px',
+      widths: [320, 480, 640, 800, 1200, 1600, 2000],
+      aspectRatio: '4:3',
+    }}
     data-animate="animate-fade-in-up"
   >
     <Fragment slot="content">

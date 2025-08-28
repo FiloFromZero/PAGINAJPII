@@ -85,6 +85,10 @@ export default defineConfig({
   image: {
     service: squooshImageService(),
     domains: ['cdn.pixabay.com'],
+    remotePatterns: [{ protocol: "https" }],
+    formats: ['avif', 'webp', 'jpeg'],
+    quality: 95,
+    densities: [1, 1.5, 2, 3],
   },
 
   markdown: {

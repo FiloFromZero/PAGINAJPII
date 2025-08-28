@@ -63,7 +63,8 @@ if (typeof _image === 'string') {
       src={image.src} 
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" 
-      class={`rounded-lg shadow-lg ${props.class?.includes('h-20') ? '' : 'animate-card-hover'} ${props.class || ''}`} 
+      class={`rounded-lg shadow-lg ${(props.class?.includes('h-20') || props.class?.includes('max-h-12')) ? '' : 'animate-card-hover'} ${props.class || ''}`}
+      style={`image-rendering: -webkit-optimize-contrast; image-rendering: optimize-quality; ${image.attributes?.style || ''}`}
       {...image.attributes} 
     />
   )
