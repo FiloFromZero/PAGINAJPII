@@ -10,7 +10,7 @@ metadata:
   title:
     default: Colegio Juan Pablo II
     template: '%s — Colegio Juan Pablo II'
-  description: "Educación con calidad"
+  description: 'Educación con calidad'
   robots:
     index: true
     follow: true
@@ -37,7 +37,7 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/blog/%slug%' # Recomiendo mantener '/blog/' para mejor organización
       robots:
         index: true
 
