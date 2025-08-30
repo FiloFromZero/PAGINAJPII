@@ -1,0 +1,288 @@
+---
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+const metadata = {
+  title: 'Nosotros',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Nosotros">
+    <Fragment slot="title">
+      Instituto Psicopedagógico <br />
+      <span class="text-green-800 dark:text-white highlight"> Juan Pablo II</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      En nuestra Institución Educativa se busca la promoción y desarrollo de la vida humana a través de la educación en
+      valores. El eje teológico sobre el cual gira el sistema doctrinal es la soberanía de Dios, de la que dependen
+      directamente los lineamientos filosóficos y éticos que nos caracterizan.
+    </Fragment>
+
+    <Fragment slot="content">
+      <div class="mx-auto max-w-5xl px-6 mt-8 flex justify-center">
+        <iframe
+          width="800"
+          height="450"
+          src="https://www.youtube.com/embed/x4eKikklqRc?start=2&autoplay=1&mute=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Misión Institucional</span>
+    </Fragment>
+
+    <Fragment slot="content">
+      <div
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+      >
+        <p>
+          El <span class="font-bold">Instituto Psicopedagógico Juan Pablo II</span>, es una institución de educación de
+          carácter privado, que tiene como objetivo principal la formación de seres humanos íntegros, capaces de
+          desarrollar su personalidad dentro de los principios de libertad, responsabilidad, prudencia y autonomía.
+        </p>
+        <p>
+          El Instituto para el cumplimiento de nuestra misión recurre al uso de pedagogías que facilitan los diferentes
+          aprendizajes y el desarrollo de las competencias necesarias de nuestros estudiantes para continuar con su
+          formación profesional y laboral con alto sentido de calidad y cumplimiento. Estas pedagogías facilitan los
+          procesos de formación en la buena lectura, la buena escritura y el entendimiento crítico situacional de los
+          hechos científicos, sociales, culturales y espirituales.
+        </p>
+        <p>
+          El Instituto desde hace 33 años, forma estudiantes con sensibilidad social, emocional, intelectual y personal;
+          respetando la diferencia: partiendo de la práctica de los derechos humanos, la identidad nacional, cultural y
+          el adecuado uso de las tecnologías actuales.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Visión Institucional</span>
+    </Fragment>
+
+    <Fragment slot="content">
+      <div
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+      >
+        <p>
+          Para la próxima década, la Institución Educativa continuará siendo lider en el municipio prestando servicios
+          educativos de calidad, con contenido social y humanístico, en los niveles de preescolar, básica primaria,
+          básica secundaria y media academica; haciendo uso de todos los medios educativos actuales; recurriendo a la
+          tecnología como herramienta necesaria para la comprensión holística y responsable de los hechos naturales y
+          espirituales.
+        </p>
+        <p>
+          Nuestra formación hará énfasis en el respeto por lo humano, lo natural y lo espiritual, permitiendo el
+          desarrollo de principios axiológicos morales, teológicos, intelectuales, culturales y científicos; que
+          permitan la construcción de una sociedad local y nacional responsable, incluyente y tolerante.
+        </p>
+        <p>
+          Educaremos para que nuestros estudiantes obtengan resultados exitosos en las pruebas internas y externas y
+          elaboren proyectos de vida que mejoren sus condiciones de vida a nivel personal, familiar y social y ayuden a
+          la construcción de una Colombia en paz, justa y equitativa.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Nosotros"
+    subtitle="Jóvenes vosotros sois la sal y la luz del mundo. Juan pablo II"
+    class="!pt-4 !pb-8"
+  >
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Metodología Implementada</span>
+    </Fragment>
+
+    <Fragment slot="content">
+      <div
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+      >
+        <p>
+          En el <span class="font-bold">INSTITUTO PSICOPEDAGÓGICO JUAN PABLO II</span>, nuestra metodología está
+          centrada en los principios del modelo constructivista donde no solo se prioriza lo cognitivo sino también lo
+          emocional y lo espiritual, además centramos la acción didáctica en el aprendizaje significativo, resaltando
+          los saberes de los estudiantes. Es importante para nosotros propiciar ambientes de aprendizaje que estimulen,
+          valoren y potencien, el desarrollo de, competencias y desempeños en todos nuestros estudiantes, integrando lo
+          cognitivo, lo procedimental y lo actitudinal buscando la formación integral de la persona para que aprenda a
+          pensar y a vivir en comunidad las dos competencias más necesarias del profesional del futuro.
+        </p>
+        <p>
+          Nuestra metodología también fortalece la inteligencia emocional como componente transversal, de todas las
+          áreas y asignaturas de nuestro diseño curricular, para fortalecer la formación integral de los niños, niñas y
+          adolescentes. En la actualidad y en atención a la declaratoria de emergencia sanitaria, nuestra institución
+          está empleando el recurso y la metodología virtual, propiciando espacios para la construcción de saberes
+          significativos en las diferentes disciplinas del conocimiento. Contamos con: nuestra página institucional, la
+          plataforma g-suite, plataforma classroom y correos corporativos a través de los cuales, logramos fortalecer el
+          proyecto de vida de nuestros educandos, preparándolos para enfrentar de manera competitiva los retos de
+          nuestra sociedad.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Filosofía Institucional</span>
+    </Fragment>
+
+    <Fragment slot="content">
+      <div
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+      >
+        <p>
+          Está concebida desde la perspectiva humanista de San Juan Pablo II, quien expresó: <span
+            class="font-bold italic"
+            >“la persona no solamente es el centro de la historia sino que constituye la meta de todas las actividades
+            para el bien del otro”.</span
+          >
+        </p>
+        <p>
+          Nuestra institución materializa esta perspectiva mediante la vivencia de valores como el respeto, la
+          tolerancia, el compromiso y la solidaridad; al igual que en los principios de la espiritualidad antropotélica,
+          como también el emprendimiento, la organización y el trabajo en equipo para servir y responder a las
+          necesidades de la comunidad educativa Juanpablina, en beneficio de una mejor calidad de vida. Preparando a
+          nuestros estudiantes para la sana convivencia y la democracia, mediante el ejercicio crítico del pensamiento
+          con la formación de competencias que nos preparan para una vida profesional y responsable, mediante el uso
+          adecuado de los elementos que han facilitado el aprendizaje holístico, sistémico y espiritual.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Features Widget ******************* -->
+
+  <Features3
+    tagline="Nosotros"
+    columns={3}
+    defaultIcon="tabler:flag-check"
+    class="!pt-4 !pb-8"
+    items={[
+      {
+        description: 'Mantener e incrementar los índices históricos de cobertura institucional.',
+      },
+      {
+        description: 'Satisfacer la mayor cantidad posible de demanda del servicio educativo.',
+      },
+      {
+        description: 'Disminuir paulatinamente los índices de repitencia y deserción escolar.',
+      },
+      {
+        description: 'Mejoramiento continuo de desempeños en las Pruebas SABER.',
+      },
+      {
+        description: 'Acoger a los educandos con barreras o falencias de aprendizaje.',
+      },
+      {
+        description:
+          'Implementar progresivamente el uso de las Tecnologías de la Información y la Comunicación – TIC, en todas las gestiones escolares.',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Metas Institucionales</span>
+    </Fragment>
+  </Features3>
+
+  <!-- Features Widget ******************* -->
+
+  <Features3
+    tagline="Nosotros"
+    subtitle="Los principios son leyes naturales, reglas o normas de conductas exógenas o externas a nosotros, que orientan nuestras acciones, controlan las consecuencias de nuestros actos, rigen nuestras decisiones y son la base para la convivencia de toda la comunidad educativa del Instituto Psicopedagógico Juan Pablo II."
+    columns={3}
+    defaultIcon="tabler:rosette-discount-check"
+    class="!pt-4 !pb-8"
+    items={[
+      {
+        title: 'Espiritualidad',
+        description:
+          'como dualidad de dimensiones materiales y espirituales que engrandecen al ser y lo hace transcendente en su proyecto de vida.',
+      },
+      {
+        title: 'Pedagogía',
+        description:
+          'de la concertación como solución liberadora de los males de la opresión (la ignorancia) y estrategia de cambio positivo.',
+      },
+      {
+        title: 'Emprendimiento',
+        description:
+          'como desarrollo de las competencias básicas y laborales generales y potencial creativo para el progreso municipal y nacional.',
+      },
+      {
+        title: 'Trabajo',
+        description: 'en equipo como estrategia para fortalecer las cualidades individuales y vencer las dificultades.',
+      },
+      {
+        title: 'Paz y Dignidad',
+        description:
+          'para institucionalizar la semana Juanpablina por la paz y la dignidad, con el fin de fortalecer en los actores de la comunidad educativa, sentimientos vivos de fe, esperanza y caridad.',
+      },
+      {
+        title: 'Mejoramiento',
+        description:
+          'continúo representando el motor del avance continuo de la calidad, es responsabilidad de las Directivas.',
+      },
+      {
+        title: 'Respeto',
+        description:
+          'integral al congénere, como base y fundamento de todo modelo de convivencia social. El hombre y la mujer deben aprender a convertir la fuerza de la agresividad en fuerza para el amor y camino para la paz.',
+      },
+      {
+        title: 'Comunicación asertiva',
+        description:
+          'como base de la autoformación personal grupal. La convivencia social requiere aprender a conversar porque a través de conversación es que aprendemos a expresarnos, coincidir, discrepar y comprometernos.',
+      },
+      {
+        title: 'Interacción',
+        description:
+          'para fortalecer los modelos de interacción social, bajo el principio «si me acerco a los otros, reconozco y acepto sus opiniones, aprendo a convivir».',
+      },
+      {
+        title: 'Trabajo',
+        description:
+          'en equipo para tomar decisiones en grupo, aprendiendo a sobrevivir y a proyectarse. Estos propósitos fundamentales del hombre no son posibles si no se aprende a concertar con los otros.',
+      },
+      {
+        title: 'Amor propio',
+        description:
+          'para aprender a cuidar el bienestar físico y psicológico de sí mismo y de los demás, es una forma de expresar amor a la vida. ',
+      },
+      {
+        title: 'Compromiso',
+        description:
+          'para cuidar el entorno, siendo un fundamento de la supervivencia. La convivencia social es posible si aceptamos que somos parte de la naturaleza y del universo, pero que en ningún momento somos superiores no somos los “amos de la naturaleza”.',
+      },
+      {
+        title: 'Conocimiento',
+        description:
+          'para aprender a valorar el saber cultural y académico, sirviendo como base de la evolución social y cultural. El ser humano evoluciona a medida que su cultura.',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="text-green-800 dark:text-white highlight">Fundamentos axiológicos – Principios y valores</span>
+    </Fragment>
+  </Features3>
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
+</Layout>

@@ -1,0 +1,316 @@
+---
+// --- Importaciones de Layout y Widgets ---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Note from '~/components/widgets/Note.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Brands from '~/components/widgets/Brands.astro';
+import { getPermalink } from '~/utils/permalinks';
+// Importación del componente Carousel
+import Carousel from '~/components/Carousel.astro';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+
+// --- Importaciones de Imágenes Locales (desde src/assets/images/) ---
+import imgPagoEnLinea from '~/assets/images/pagoEnLinea.png';
+import imgCalidad from '~/assets/images/Calidad.webp';
+import imgValores from '~/assets/images/valores.webp';
+import imgDocentes from '~/assets/images/Profesores.png';
+import imgVirtualidad from '~/assets/images/virtualidad.webp';
+import FeriaU1 from '~/assets/images/FeriaUniversitaria.jpeg';
+import FeriaU2 from '~/assets/images/FeriaUniversitaria2.jpeg';
+import Regional from '~/assets/images/Regional.jpg';
+import Memoria from '~/assets/images/Memoria.jpeg';
+
+// --- Metadata de la Página ---
+const metadata = {
+  title: 'Colegio Juan Pablo II - Inicio',
+  ignoreTitleTemplate: true,
+};
+
+// --- 2. Define los datos para los slides del carrusel ---
+// Se utilizarán las imágenes importadas para el carrusel.
+
+// Preload critical images for better performance
+const firstImage = FeriaU1.src;
+const heroImage = imgPagoEnLinea.src;
+---
+
+<link rel="preload" as="image" href={firstImage} />
+<link rel="preload" as="image" href={heroImage} />
+
+<Layout metadata={metadata}>
+  <div class="relative">
+    <Carousel
+      images={[
+        { src: FeriaU1.src, alt: 'Calidad Educativa' },
+        { src: FeriaU2.src, alt: 'Valores Institucionales' },
+        { src: Memoria.src, alt: 'Docentes' },
+        { src: Regional.src, alt: 'Virtualidad' },
+      ]}
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <a href="/admisiones" class="text-white text-4xl md:text-6xl font-bold text-center drop-shadow-lg animate-pulse"
+        >¡Matrículas Abiertas 2026!</a
+      >
+    </div>
+  </div>
+  <Hero2
+    tagline="Nueva Web!!"
+    actions={[
+      { variant: 'primary', target: '_blank', text: 'Contacto', href: getPermalink('/contacto') },
+      { variant: 'secondary', text: 'Nuestros servicios', href: getPermalink('/servicios') },
+    ]}
+    image={{
+      class: 'cursor-pointer mx-auto hover:scale-105 transition-all duration-500 object-contain drop-shadow-xl',
+      src: imgPagoEnLinea,
+      alt: 'Pago en Linea',
+      width: 720,
+      height: 432,
+      layout: 'contained',
+      loading: 'eager',
+      sizes: '(max-width: 768px) 96vw, (max-width: 1200px) 60vw, 1440px',
+      widths: [480, 720, 900, 1440],
+      aspectRatio: '5:3',
+      fetchpriority: 'high',
+      onclick:
+        'window.open("https://www.mipagoamigo.com/MPA_WebSite/ServicePayments/StartPayment?id=4672&searchedCategoryId=&searchedAgreementName=INSTITUTO%20PSICOPEDAGOGICO%20JUAN%20PABLO%20II")',
+    }}
+    data-animate="animate-fade-in-up"
+  >
+    <Fragment slot="title" data-animate="animate-fade-in-up">
+      Evolucionamos para ti: <br /> Descubre la nueva web del <span
+        class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">Juan Pablo II</span
+      >.
+    </Fragment>
+    <Fragment slot="subtitle" data-animate="animate-fade-in-up" data-animate-delay="300">
+      <span class="hidden sm:inline">
+        Prepara a tu hijo para el futuro: <span class="font-semibold text-primary"
+          >Juntos para existir, convivir y aprender</span
+        >.
+      </span>
+    </Fragment>
+  </Hero2>
+
+  {/* Note Widget */}
+  <Note data-animate="animate-fade-in-up" />
+
+  {/* Brands Widget (Accesos Rápidos) */}
+  <Brands
+    title="Accesos Rápidos"
+    subtitle="Accede rápidamente a plataformas educativas y recursos digitales. Simplifica tu navegación con estos enlaces a las herramientas más utilizadas."
+    icons={[]}
+    images={[
+      {
+        src: '~/assets/images/Tools_ZigmaDatos.png',
+        alt: 'Zigma Datos',
+        onclick: 'window.open("https://www.iejuanpabloii.zigmadatos.org")',
+      },
+      {
+        src: '~/assets/images/Tools_Biblored.png',
+        alt: 'Biblored',
+        onclick: 'window.open("https://www.biblored.gov.co")',
+      },
+      {
+        src: '~/assets/images/Tools_BibliotecaNacional.png',
+        alt: 'Biblioteca Nacional',
+        onclick: 'window.open("https://bibliotecanacional.gov.co/es-co")',
+      },
+      {
+        src: '~/assets/images/Tools_BancoRepublica.png',
+        alt: 'Red Cultural Banco de la Republica',
+        onclick: 'window.open("https://www.banrepcultural.org/biblioteca-virtual")',
+      },
+      {
+        src: '~/assets/images/Tools_ColombiaAprende.png',
+        alt: 'Colombia Aprende',
+        onclick: 'window.open("https://colombiaaprende.edu.co")',
+      },
+    ]}
+    data-animate="animate-scale-in"
+  />
+
+  {/* Content Widget (Calidad Educativa) */}
+  <Content
+    isReversed
+    tagline="Nuestra Oferta"
+    title="Formación de Alto Nivel para un Futuro Brillante!"
+    items={[
+      { title: 'El mejor colegio privado de la comuna uno.' },
+      { title: 'Estamos dentro de los mejores colegios privados del municipio de Soacha.' },
+      { title: 'Altos indicadores en las pruebas SABER.' },
+    ]}
+    image={{
+      class: 'object-contain rounded-2xl shadow-large',
+      src: imgCalidad,
+      alt: 'Calidad Educativa',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [480, 640, 1000, 1400],
+      aspectRatio: '7:5',
+    }}
+    data-animate="animate-slide-in-right"
+  >
+    <Fragment slot="content">
+      <h3
+        class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+      >
+        Calidad Educativa Desde 1992
+      </h3>
+      <p class="text-lg text-muted leading-relaxed">
+        El Instituto Psicopedagógico Juan Pablo II, se caracteriza por entregar educación de la más alta calidad en los
+        niveles de preescolar, básica primaria, básica secundaria y media técnica.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-subtle"></div>
+    </Fragment>
+  </Content>
+
+  {/* Content Widget (Valores) */}
+  <Content
+    isAfterContent
+    items={[
+      { title: 'Respeto' },
+      { title: 'Tolerancia' },
+      { title: 'Compromiso' },
+      { title: 'Solidaridad' },
+      { title: 'Servicio a la comunidad' },
+    ]}
+    image={{
+      class: 'object-contain',
+      src: imgValores,
+      alt: 'Valores Institucionales',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      aspectRatio: '7:5',
+    }}
+    data-animate="animate-fade-in-up"
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Valores institucionales</h3>
+      El Instituto Psicopedagógico Juan Pablo II, se caracteriza por fomentar en toda la comunidad Juanpablina los siguientes
+      valores que fortalecen y dignificar al ser humano.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  {/* Content Widget (Docentes) */}
+  <Content
+    isReversed
+    isAfterContent
+    items={[
+      { title: 'Docentes con destacada experiencia laboral.' },
+      { title: 'Egresados Juanpablinos.' },
+      { title: 'Alto sentido humano.' },
+    ]}
+    image={{
+      class: 'object-contain',
+      src: imgDocentes,
+      alt: 'Docentes',
+      width: 700,
+      height: 500,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
+      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      aspectRatio: '7:5',
+    }}
+    data-animate="animate-fade-in-up"
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Nuestros Docentes</h3>
+      Nuestro cuerpo directivo y docente siempre atento a acompañar los procesos institucionales, son profesionales con altos
+      conocimientos y sentido humano que nos permiten promover en nuestros educandos. Educación de calidad y con visión de
+      servicio al municipio de Soacha y al país.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  {/* Stats Widget */}
+  <Stats
+    subtitle="Datos históricos de la prestación del servicio Juanpablino:"
+    stats={[
+      { title: 'Graduados', amount: '+1200' },
+      { title: 'Años de experiencia', amount: '33' },
+    ]}
+    data-animate="animate-bounce-in"
+  />
+
+  {/* Content Widget (Virtualidad) */}
+  <Content
+    id="about"
+    columns={3}
+    image={{
+      class: 'object-contain',
+      src: imgVirtualidad,
+      alt: 'Virtualidad',
+      width: 800,
+      height: 600,
+      layout: 'constrained',
+      loading: 'lazy',
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1600px',
+      widths: [480, 800, 1200, 1600],
+      aspectRatio: '4:3',
+    }}
+    data-animate="animate-fade-in-up"
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Virtualidad</h2>
+      <p>
+        Adaptándonos a esta coyuntura que vivimos a nivel mundial, desde el Instituto Psicopedagógico Juan Pablo II,
+        hemos ratificado nuestro compromiso con la transformación de la sociedad a través de la mejor oferta educativa
+        virtual, recibiendo reconocimiento por parte de la secretaría de Educación y Cultura de Soacha.
+      </p>
+      <br />
+      <p>
+        Contamos con equipo humano idóneo y herramientas tecnológicas implementadas desde el año 2006, con la
+        implementación de Zigma datos, página web institucional, Dropbox, redes sociales, WhatsApp Juanpablino,
+        Business, y que fortalecimos durante el 2020 con la implementación de correos institucionales y G Suite For
+        Education, para ofrecer y garantizar formación bajo el esquema de la virtualidad, con los estándares académicos
+        que destacan al Juan Pablo II.
+      </p>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  {/* Testimonials Widget */}
+  <Testimonials
+    title="Testimonios y Experiencias"
+    testimonials={[
+      {
+        testimonial: 'Nixon Andrés Meneses fue uno de los veinte colombianos beneficiados con la Beca Fulbright...',
+        name: '¡Juanpablino de talla internacional!',
+        job: 'Estudiante',
+      },
+      {
+        testimonial: `La marca de Juanpablina se lleva para toda la vida...`,
+        name: '¡Orgullosamente Juanpablina!',
+        job: 'Estudiante',
+      },
+      {
+        testimonial: `El Instituto Psicopedagógico Juan Pablo II, fue mi segundo hogar...`,
+        name: 'Luz Ángela Pérez Castiblanco',
+        job: 'Estudiante',
+      },
+    ]}
+    data-animate="animate-slide-in-left"
+  />
+
+  {/* Chatbot Widget */}
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
+</Layout>

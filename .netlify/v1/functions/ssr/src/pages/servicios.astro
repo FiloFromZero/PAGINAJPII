@@ -1,0 +1,187 @@
+---
+import Classrooms from '~/components/widgets/Classrooms.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+
+const metadata = {
+  title: 'Servicios',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Servicios"
+    title="Servicios para Crecer y Aprender"
+    subtitle="En el Instituto Psicopedagógico Juan Pablo II, contamos con aulas especiales que nos permiten brindar formación integral a nuestros educandos, a través de la lúdica, la interacción y el desarrollo de sus habilidades en diferentes campos."
+    image={{
+      src: '~/assets/images/SERVICIOS.png',
+      alt: 'servicios',
+      layout: 'cover',
+    }}
+  />
+
+  <!-- Classrooms Widget ******************* -->
+
+  <Classrooms
+    title="Más Allá del Aula"
+    information="En el Instituto Psicopedagógico Juan Pablo II, ofrecemos un entorno de aprendizaje enriquecedor con aulas especialmente diseñadas para fomentar el desarrollo integral de nuestros estudiantes. A través del juego, la interacción y la exploración, cultivamos sus habilidades en diversas áreas, brindándoles una educación completa y personalizada."
+    items={[
+      {
+        image: '~/assets/images/BIBLIOTECA.webp',
+        title: 'Biblioteca',
+        description:
+          'Nuestra biblioteca cuenta con una amplia variedad de libros y recursos educativos para fomentar la lectura y el aprendizaje en nuestros estudiantes.',
+      },
+      {
+        image: '~/assets/images/LABORATORIO.webp',
+        title: 'Laboratorio',
+        description:
+          'Nuestro laboratorio está equipado con herramientas y materiales especializados para que los estudiantes puedan realizar experimentos y explorar conceptos científicos de forma práctica.',
+      },
+      {
+        image: '~/assets/images/LUDOTECA.webp',
+        title: 'Ludoteca',
+        description:
+          'En nuestra ludoteca, los estudiantes pueden disfrutar de juegos y actividades lúdicas que fomentan el aprendizaje, la creatividad y el desarrollo de habilidades sociales.',
+      },
+      {
+        image: '~/assets/images/SISTEMAS.webp',
+        title: 'Sala de sistemas',
+        description:
+          'Nuestra sala de sistemas está equipada con computadoras y software especializado para que los estudiantes puedan desarrollar habilidades digitales y explorar el mundo de la tecnología.',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Classrooms>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Grados y Asignaturas"
+    subtitle="En el Instituto Psicopedagógico Juan Pablo II, ofrecemos una formación integral y personalizada para estudiantes con necesidades educativas especiales. Nuestros grados abarcan desde preescolar hasta bachillerato, con un enfoque en el desarrollo de habilidades académicas, socioemocionales y de autonomía."
+    columns={3}
+    items={[
+      {
+        title: 'PRE ESCOLAR',
+        description:
+          'En esta etapa inicial, sentamos las bases para el aprendizaje a través del juego, la exploración y la estimulación temprana. Trabajamos áreas como lenguaje, motricidad, socialización y desarrollo cognitivo, preparando a los niños para los desafíos futuros.',
+        icon: 'tabler:baby-carriage',
+      },
+      {
+        title: 'PRIMARIA (1° - 5°)',
+        description:
+          'Durante la primaria, consolidamos los conocimientos básicos en áreas clave como matemáticas, lectura, escritura, ciencias sociales y naturales. Fomentamos el pensamiento lógico, la creatividad y la curiosidad, preparando a los estudiantes para los siguientes niveles educativos.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'BACHILLERATO (6° - 11°)',
+        description:
+          'En el bachillerato, profundizamos en las áreas académicas, preparando a los estudiantes para la educación superior y el mundo laboral. Impulsamos el pensamiento crítico, la investigación y la resolución de problemas, brindando una formación integral en diversas disciplinas.',
+        icon: 'tabler:school',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    classes={{
+      container: 'mt-0',
+    }}
+    isReversed
+    items={[
+      {
+        title: 'Matemáticas',
+        description:
+          'Desarrollamos habilidades de razonamiento lógico, resolución de problemas y pensamiento abstracto a través del estudio de números, operaciones, geometría y álgebra.',
+        icon: 'tabler:calculator',
+      },
+      {
+        title: 'Lectura',
+        description:
+          'Fomentamos el amor por la lectura y la comprensión de textos, ampliando el vocabulario y desarrollando habilidades de interpretación y análisis crítico.',
+        icon: 'tabler:book-2',
+      },
+      {
+        title: 'Escritura',
+        description:
+          'Cultivamos la expresión escrita, la creatividad y la comunicación efectiva a través de la producción de textos claros, coherentes y persuasivos.',
+        icon: 'tabler:pencil',
+      },
+      {
+        title: 'Inglés',
+        description:
+          'Abrimos las puertas a la comunicación global y el acceso a nuevas culturas y oportunidades a través del aprendizaje del idioma inglés, tanto en su forma oral como escrita.',
+        icon: 'tabler:language',
+      },
+      {
+        title: 'Historia',
+        description:
+          'Exploramos el pasado para comprender el presente y construir el futuro, analizando eventos, personajes y procesos históricos que han moldeado nuestra sociedad.',
+        icon: 'tabler:history',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/SERVICIOS1.webp',
+      alt: 'Asignaturas 1',
+      class: 'w-3/4 mx-auto',
+    }}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    classes={{
+      container: 'mt-0',
+    }}
+    isAfterContent
+    items={[
+      {
+        title: 'Lenguaje',
+        description:
+          'Dominamos las herramientas de la comunicación oral y escrita, desarrollando habilidades de expresión, comprensión y análisis crítico del lenguaje en todas sus formas.',
+        icon: 'tabler:message-2',
+      },
+      {
+        title: 'Artes',
+        description:
+          'Despertamos la creatividad, la sensibilidad y la expresión artística a través de la exploración de diversas disciplinas como la música, la pintura, el teatro y la danza.',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'Biología',
+        description:
+          'Descubrimos los secretos de la vida y la naturaleza, estudiando los seres vivos, sus procesos y su interacción con el entorno.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Química',
+        description:
+          'Analizamos la composición, estructura y propiedades de la materia, comprendiendo las reacciones químicas y su impacto en el mundo que nos rodea.',
+        icon: 'tabler:flask',
+      },
+      {
+        title: 'Ética',
+        description:
+          'Reflexionamos sobre los valores, principios morales y dilemas éticos que guían nuestras acciones, fomentando la toma de decisiones responsables y el respeto hacia los demás.',
+        icon: 'tabler:mood-heart',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/SERVICIOS2.webp',
+      alt: 'Asignaturas 2',
+    }}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
+</Layout>
