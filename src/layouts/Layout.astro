@@ -36,6 +36,11 @@ const { language, textDirection } = I18N;
     <SiteVerification />
     <Analytics />
 
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Comment the line below to disable View Transitions -->
     <ViewTransitions fallback="swap" />
   </head>
@@ -48,6 +53,45 @@ const { language, textDirection } = I18N;
     <style is:global>
       img {
         content-visibility: auto;
+      }
+
+      /* Performance optimizations for layout stability */
+      .image-placeholder {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading-shimmer 1.5s infinite;
+      }
+
+      @keyframes loading-shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      /* Optimize scrolling performance */
+      * {
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Reduce repaints */
+      .optimize-paint {
+        contain: layout style paint;
+      }
+
+      /* Prevent layout shifts for images */
+      img {
+        aspect-ratio: auto;
+      }
+
+      /* Optimize animations */
+      .animate-fade-in-up,
+      .animate-slide-in-left,
+      .animate-slide-in-right,
+      .animate-scale-in {
+        will-change: transform, opacity;
       }
     </style>
   </body>

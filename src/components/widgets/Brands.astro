@@ -21,15 +21,38 @@ const {
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-4 items-center justify-items-center">
-    {icons && icons.map((icon) => <Icon name={icon} class="py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500" />)}
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-6 items-center justify-items-center"
+  >
+    {
+      icons &&
+        icons.map((icon, index) => (
+          <Icon
+            name={icon}
+            class={`py-4 lg:py-6 w-14 h-auto mx-auto sm:mx-0 text-primary hover:text-secondary transition-all duration-300 icon-bounce icon-glow stagger-${(index % 8) + 1} animate-fade-in-up`}
+          />
+        ))
+    }
     {
       images &&
         images.map(
-          (image) =>
+          (image, index) =>
             image.src && (
-              <div class="flex items-center justify-center p-0 rounded-md dark:bg-gray-200 cursor-pointer h-full">
-                <Image src={image.src} alt={image.alt || ''} class="max-h-12" onclick={image.onclick}/>
+              <div
+                class={`card flex items-center justify-center p-4 rounded-xl dark:card-dark cursor-pointer h-full hover-lift hover-glow micro-bounce stagger-${(index % 8) + 1} animate-bounce-in`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt || ''}
+                  width={100}
+                  height={56}
+                  layout="constrained"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 50px, 100px"
+                  widths={[50, 100]}
+                  class="max-h-14 hover:brightness-110 hover:animate-pulse transition-all duration-300"
+                  onclick={image.onclick}
+                />
               </div>
             )
         )

@@ -12,18 +12,24 @@ const metadata = {
 <Layout metadata={metadata}>
   <HeroText tagline="Contacto" title="Trabaja Con Nosotros" />
 
-  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-20 bg-gray-50 dark:bg-slate-900">
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-20 bg-gradient-subtle">
     <div class="max-w-2xl mx-auto">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-gray-900 dark:text-white">
+        <h2
+          class="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+        >
           Estamos a un mensaje de distancia
         </h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">
+        <p class="mt-4 text-lg text-muted">
           En el Instituto Psicopedagógico Juan Pablo II, valoramos la comunicación. ¡No dudes en contactarnos!
         </p>
       </div>
 
-      <form id="contact-form" class="space-y-6 bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg" novalidate>
+      <form
+        id="contact-form"
+        class="space-y-6 bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-soft hover:shadow-large transition-all duration-300"
+        novalidate
+      >
         <div>
           <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Nombre</label>
           <input type="text" name="name" id="name" required class="input-field" />
@@ -81,6 +87,9 @@ const metadata = {
     </div>
   </section>
 
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
   <Features2
     title="¡Estamos aquí para ayudar!"
     columns={3}
@@ -98,11 +107,125 @@ const metadata = {
 </Layout>
 
 <script>
+  // Toast Notification System
+  class ToastNotification {
+    container: HTMLElement;
+    toasts: Array<{ element: HTMLElement; timeoutId: number }>;
+
+    constructor() {
+      this.container = document.getElementById('toast-container') as HTMLElement;
+      this.toasts = [];
+    }
+
+    show(message: string, type: 'success' | 'error' | 'warning' | 'info' = 'success', duration: number = 5000) {
+      const toast = this.createToast(message, type);
+      if (this.container) {
+        this.container.appendChild(toast);
+      }
+
+      // Animate in
+      setTimeout(() => {
+        toast.classList.add('animate-slide-in-right');
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(0)';
+      }, 10);
+
+      // Auto remove
+      const timeoutId = setTimeout(() => {
+        this.remove(toast);
+      }, duration) as unknown as number;
+
+      // Manual close
+      const closeBtn = toast.querySelector('.toast-close') as HTMLElement;
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          clearTimeout(timeoutId);
+          this.remove(toast);
+        });
+      }
+
+      this.toasts.push({ element: toast, timeoutId });
+    }
+
+    createToast(message: string, type: 'success' | 'error' | 'warning' | 'info') {
+      const toast = document.createElement('div');
+      toast.className = `toast-notification toast-${type} max-w-sm w-full bg-white dark:bg-slate-800 shadow-xl rounded-lg border-l-4 p-4 transform translate-x-full opacity-0 transition-all duration-300`;
+
+      const icons: Record<string, string> = {
+        success: `<svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>`,
+        error: `<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        </svg>`,
+        warning: `<svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        </svg>`,
+        info: `<svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>`,
+      };
+
+      const colors: Record<string, string> = {
+        success: 'border-green-500',
+        error: 'border-red-500',
+        warning: 'border-yellow-500',
+        info: 'border-blue-500',
+      };
+
+      toast.classList.add(colors[type]);
+
+      toast.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            ${icons[type]}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 dark:text-white">
+              ${message}
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="toast-close inline-flex text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+
+      return toast;
+    }
+
+    remove(toast: HTMLElement) {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(100%)';
+
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+
+      // Remove from toasts array
+      this.toasts = this.toasts.filter((t) => t.element !== toast);
+    }
+
+    clearAll() {
+      this.toasts.forEach(({ element, timeoutId }) => {
+        clearTimeout(timeoutId);
+        this.remove(element);
+      });
+    }
+  }
+
   function initializeContactForm() {
     const form = document.getElementById('contact-form');
     if (!form || form.dataset.initialized === 'true') return;
     form.dataset.initialized = 'true';
 
+    const toast = new ToastNotification();
     const dropArea = form.querySelector('#drop-area');
     const fileInput = form.querySelector('#cv');
     const selectBtn = form.querySelector('#select-btn');
@@ -112,7 +235,7 @@ const metadata = {
     let isSubmitting = false;
 
     // --- Helper para formatear bytes ---
-    function formatBytes(bytes: number, decimals = 2) {
+    function formatBytes(bytes: number, decimals: number = 2) {
       if (bytes === 0) return '0 Bytes';
       const k = 1024;
       const dm = decimals < 0 ? 0 : decimals;
@@ -133,26 +256,30 @@ const metadata = {
 
       // Validación de tipo
       if (file.type !== 'application/pdf') {
-        if (feedbackContainer)
-          feedbackContainer.innerHTML = `<p class="file-error">❌ Error: Solo se permiten archivos PDF.</p>`;
+        toast.show('Solo se permiten archivos PDF. Por favor, selecciona un archivo válido.', 'error');
         if (fileInput instanceof HTMLInputElement) fileInput.value = '';
         if (dropArea) dropArea.classList.add('is-invalid');
+        if (feedbackContainer) feedbackContainer.innerHTML = '';
         return;
       }
 
       // Validación de tamaño
       if (file.size > MAX_SIZE) {
-        if (feedbackContainer)
-          feedbackContainer.innerHTML = `<p class="file-error">❌ Error: El archivo supera el límite de 20 MB (${formatBytes(file.size)}).</p>`;
+        toast.show(`El archivo supera el límite de 20 MB. Tamaño actual: ${formatBytes(file.size)}`, 'error');
         if (fileInput instanceof HTMLInputElement) fileInput.value = '';
         if (dropArea) dropArea.classList.add('is-invalid');
+        if (feedbackContainer) feedbackContainer.innerHTML = '';
         return;
       }
 
       // Todo correcto: mostrar información del archivo
       if (dropArea) dropArea.classList.remove('is-invalid');
-      if (feedbackContainer)
-        feedbackContainer.innerHTML = `<p class="file-success">✔️ Archivo seleccionado: ${file.name} (${formatBytes(file.size)})</p>`;
+      toast.show(`Archivo seleccionado: ${file.name} (${formatBytes(file.size)})`, 'success', 3000);
+
+      // Mostrar archivo adjunto en el formulario
+      if (feedbackContainer) {
+        feedbackContainer.innerHTML = `<p class="file-success">Archivo adjunto: ${file.name} (${formatBytes(file.size)})</p>`;
+      }
 
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
@@ -190,9 +317,9 @@ const metadata = {
       isSubmitting = true;
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = true;
-        submitButton.textContent = 'Enviando...';
+        submitButton.textContent = 'Enviando mensaje...';
+        submitButton.classList.add('animate-pulse');
       }
-      if (feedbackContainer) feedbackContainer.innerHTML = ''; // Limpiar mensajes al enviar
 
       try {
         const response = await fetch('/api/contact', {
@@ -202,68 +329,174 @@ const metadata = {
         const result = await response.json();
         if (!response.ok) throw new Error(result.message);
 
-        alert('¡Mensaje enviado con éxito! Gracias por contactarnos.');
+        toast.show(
+          '¡Mensaje enviado exitosamente! Gracias por contactarnos. Te responderemos pronto.',
+          'success',
+          6000
+        );
         (form as HTMLFormElement).reset();
         if (feedbackContainer) feedbackContainer.innerHTML = '';
+
+        // Animación de éxito en el botón
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.textContent = '¡Enviado!';
+          submitButton.classList.remove('animate-pulse');
+          submitButton.classList.add('animate-bounce-in');
+          setTimeout(() => {
+            submitButton.classList.remove('animate-bounce-in');
+          }, 1000);
+        }
       } catch (error) {
         console.error('Error al enviar el formulario:', error);
-        let message = 'No se pudo enviar el mensaje.';
+        let message = 'No se pudo enviar el mensaje. Por favor, inténtalo de nuevo.';
         if (error instanceof Error) message = error.message;
-        if (feedbackContainer) feedbackContainer.innerHTML = `<p class="file-error">❌ ${message}</p>`;
+        toast.show(message, 'error', 7000);
+
+        // Animación de error en el botón
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.classList.remove('animate-pulse');
+          submitButton.classList.add('animate-shake');
+          setTimeout(() => {
+            submitButton.classList.remove('animate-shake');
+          }, 500);
+        }
       } finally {
         isSubmitting = false;
         if (submitButton instanceof HTMLButtonElement) {
           submitButton.disabled = false;
-          submitButton.textContent = originalButtonText;
+          setTimeout(() => {
+            submitButton.textContent = originalButtonText;
+          }, 2000);
         }
       }
     });
   }
+
   document.addEventListener('astro:page-load', initializeContactForm);
 </script>
 
 <style>
   .input-field {
-    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out dark:bg-slate-700 dark:border-slate-600 dark:text-white;
+    @apply mt-1 block w-full rounded-xl border border-gray-300 shadow-soft focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition-all duration-300 ease-out dark:bg-slate-700 dark:border-slate-600 dark:text-white;
     height: 2.75rem;
     font-size: 1.1rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
   }
+
+  .input-field:focus {
+    @apply transform scale-[1.02] shadow-medium;
+  }
+
   textarea.input-field {
     min-height: 120px;
     font-size: 1.1rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
   }
+
   #drop-area {
-    @apply relative border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg p-6 text-center cursor-pointer transition-all duration-300 ease-in-out;
+    @apply relative border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ease-out hover:border-primary hover:bg-gray-50 dark:hover:bg-slate-800/50;
   }
+
   #drop-area.is-active {
-    @apply border-blue-500 bg-blue-50 dark:bg-blue-900/30;
+    @apply border-primary bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 scale-105 shadow-medium;
   }
+
   #drop-area.is-invalid {
-    @apply border-red-500 bg-red-50 dark:bg-red-900/30;
+    @apply border-red-500 bg-red-50 dark:bg-red-900/30 scale-105 shadow-medium;
   }
+
   .drop-content {
-    @apply flex flex-col items-center justify-center space-y-2 text-gray-700 dark:text-slate-300;
+    @apply flex flex-col items-center justify-center space-y-3 text-gray-700 dark:text-slate-300;
   }
+
   .upload-icon {
-    @apply w-12 h-12 text-gray-400 dark:text-slate-500 mb-2;
+    @apply w-14 h-14 text-primary dark:text-secondary mb-3 transition-all duration-300;
   }
+
+  #drop-area:hover .upload-icon {
+    @apply animate-bounce scale-110;
+  }
+
   #select-btn {
-    @apply mt-2 inline-block px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors;
+    @apply mt-3 inline-block px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white text-sm font-semibold rounded-xl shadow-soft hover:shadow-medium hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50;
   }
+
   .file-success {
-    @apply text-green-600 dark:text-green-400 font-medium;
+    @apply text-success font-semibold animate-fade-in-up;
   }
+
   .file-error {
-    @apply text-red-600 dark:text-red-400 font-medium;
+    @apply text-error font-semibold animate-shake;
   }
+
   .btn-submit {
-    @apply w-full px-6 py-3 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition-all duration-300;
+    @apply w-full px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl shadow-soft hover:shadow-large hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-all duration-300 text-lg;
   }
+
+  .btn-submit:hover {
+    @apply shadow-lg;
+  }
+
   .btn-submit:disabled {
-    @apply bg-gray-400 cursor-not-allowed;
+    @apply bg-gray-400 cursor-not-allowed scale-100 shadow-none animate-pulse;
+  }
+
+  .btn-submit:disabled:hover {
+    @apply scale-100;
+  }
+
+  /* Toast Notification Styles */
+  .toast-notification {
+    @apply mb-4 backdrop-blur-md;
+    max-width: 400px;
+  }
+
+  .toast-success {
+    @apply border-l-success;
+  }
+
+  .toast-error {
+    @apply border-l-error;
+  }
+
+  .toast-warning {
+    @apply border-l-warning;
+  }
+
+  .toast-info {
+    @apply border-l-primary;
+  }
+
+  .toast-close {
+    @apply hover:rotate-90 transition-transform duration-200;
+  }
+
+  /* Form animations */
+  #contact-form {
+    @apply animate-fade-in-up;
+  }
+
+  #contact-form input,
+  #contact-form textarea,
+  #contact-form button {
+    @apply animate-fade-in-up;
+  }
+
+  #contact-form input:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  #contact-form input:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  #contact-form textarea {
+    animation-delay: 0.3s;
+  }
+  #contact-form #drop-area {
+    animation-delay: 0.4s;
+  }
+  #contact-form .btn-submit {
+    animation-delay: 0.5s;
   }
 </style>

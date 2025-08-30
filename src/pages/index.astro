@@ -31,7 +31,14 @@ const metadata = {
 
 // --- 2. Define los datos para los slides del carrusel ---
 // Se utilizarán las imágenes importadas para el carrusel.
+
+// Preload critical images for better performance
+const firstImage = FeriaU1.src;
+const heroImage = imgPagoEnLinea.src;
 ---
+
+<link rel="preload" as="image" href={firstImage} />
+<link rel="preload" as="image" href={heroImage} />
 
 <Layout metadata={metadata}>
   <div class="relative">
@@ -53,10 +60,10 @@ const metadata = {
     tagline="Nueva Web!!"
     actions={[
       { variant: 'primary', target: '_blank', text: 'Contacto', href: getPermalink('/contacto') },
-      { text: 'Nuestros servicios', href: getPermalink('/servicios') },
+      { variant: 'secondary', text: 'Nuestros servicios', href: getPermalink('/servicios') },
     ]}
     image={{
-      class: 'cursor-pointer mx-auto hover:scale-[0.95] transition-transform duration-300 object-contain',
+      class: 'cursor-pointer mx-auto hover:scale-105 transition-all duration-500 object-contain drop-shadow-xl',
       src: imgPagoEnLinea,
       alt: 'Pago en Linea',
       width: 720,
@@ -64,7 +71,7 @@ const metadata = {
       layout: 'contained',
       loading: 'eager',
       sizes: '(max-width: 768px) 96vw, (max-width: 1200px) 60vw, 1440px',
-      widths: [360, 480, 600, 720, 900, 1440],
+      widths: [480, 720, 900, 1440],
       aspectRatio: '5:3',
       fetchpriority: 'high',
       onclick:
@@ -73,13 +80,15 @@ const metadata = {
     data-animate="animate-fade-in-up"
   >
     <Fragment slot="title" data-animate="animate-fade-in-up">
-      Evolucionamos para ti: <br /> Descubre la nueva web del <span class="text-green-800 dark:text-white highlight"
-        >Juan Pablo II</span
+      Evolucionamos para ti: <br /> Descubre la nueva web del <span
+        class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">Juan Pablo II</span
       >.
     </Fragment>
     <Fragment slot="subtitle" data-animate="animate-fade-in-up" data-animate-delay="300">
       <span class="hidden sm:inline">
-        Prepara a tu hijo para el futuro: <span class="font-semibold">Juntos para existir, convivir y aprender</span>.
+        Prepara a tu hijo para el futuro: <span class="font-semibold text-primary"
+          >Juntos para existir, convivir y aprender</span
+        >.
       </span>
     </Fragment>
   </Hero2>
@@ -119,7 +128,7 @@ const metadata = {
         onclick: 'window.open("https://colombiaaprende.edu.co")',
       },
     ]}
-    data-animate="animate-fade-in-up"
+    data-animate="animate-scale-in"
   />
 
   {/* Content Widget (Calidad Educativa) */}
@@ -133,7 +142,7 @@ const metadata = {
       { title: 'Altos indicadores en las pruebas SABER.' },
     ]}
     image={{
-      class: 'object-contain',
+      class: 'object-contain rounded-2xl shadow-large',
       src: imgCalidad,
       alt: 'Calidad Educativa',
       width: 700,
@@ -141,18 +150,24 @@ const metadata = {
       layout: 'constrained',
       loading: 'lazy',
       sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
-      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      widths: [480, 640, 1000, 1400],
       aspectRatio: '7:5',
     }}
-    data-animate="animate-fade-in-up"
+    data-animate="animate-slide-in-right"
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Calidad Educativa Desde 1992</h3>
-      El Instituto Psicopedagógico Juan Pablo II, se caracteriza por entregar educación de la más alta calidad en los niveles
-      de preescolar, básica primaria, básica secundaria y media técnica.
+      <h3
+        class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+      >
+        Calidad Educativa Desde 1992
+      </h3>
+      <p class="text-lg text-muted leading-relaxed">
+        El Instituto Psicopedagógico Juan Pablo II, se caracteriza por entregar educación de la más alta calidad en los
+        niveles de preescolar, básica primaria, básica secundaria y media técnica.
+      </p>
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-subtle"></div>
     </Fragment>
   </Content>
 
@@ -231,7 +246,7 @@ const metadata = {
       { title: 'Graduados', amount: '+1200' },
       { title: 'Años de experiencia', amount: '33' },
     ]}
-    data-animate="animate-fade-in-up"
+    data-animate="animate-bounce-in"
   />
 
   {/* Content Widget (Virtualidad) */}
@@ -247,7 +262,7 @@ const metadata = {
       layout: 'constrained',
       loading: 'lazy',
       sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1600px',
-      widths: [320, 480, 640, 800, 1200, 1600, 2000],
+      widths: [480, 800, 1200, 1600],
       aspectRatio: '4:3',
     }}
     data-animate="animate-fade-in-up"
@@ -293,7 +308,7 @@ const metadata = {
         job: 'Estudiante',
       },
     ]}
-    data-animate="animate-fade-in-up"
+    data-animate="animate-slide-in-left"
   />
 
   {/* Chatbot Widget */}

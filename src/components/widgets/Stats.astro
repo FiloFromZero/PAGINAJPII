@@ -23,21 +23,19 @@ const {
     {
       stats &&
         stats.map(({ amount, title, icon }) => (
-          <div class="p-0 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r md:last:border-none dark:md:border-slate-500">
+          <div class="p-6 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r md:last:border-none border-gray-200 dark:md:border-slate-600 hover:bg-gradient-subtle transition-all duration-300 rounded-lg mx-2 my-2">
             {icon && (
-              <div class="flex items-center justify-center mx-auto mb-4 text-primary">
-                <Icon name={icon} class="w-10 h-10" />
+              <div class="flex items-center justify-center mx-auto mb-6 text-primary bg-gradient-to-r from-primary to-secondary bg-clip-text">
+                <Icon name={icon} class="w-12 h-12" />
               </div>
             )}
             {amount && (
-              <div class="font-heading text-primary text-[2.6rem] font-bold dark:text-white lg:text-5xl xl:text-6xl">
+              <div class="font-heading bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent text-[3rem] font-bold lg:text-6xl xl:text-7xl animate-bounce-in hover:animate-tada cursor-pointer">
                 {amount}
               </div>
             )}
             {title && (
-              <div class="text-sm font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-base">
-                {title}
-              </div>
+              <div class="text-sm font-semibold uppercase tracking-wider text-muted lg:text-base mt-2">{title}</div>
             )}
           </div>
         ))
