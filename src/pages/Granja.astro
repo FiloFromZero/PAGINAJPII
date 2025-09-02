@@ -1,0 +1,111 @@
+---
+import Features from '~/components/widgets/Features.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+
+const metadata = {
+  title: 'Granja',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero2 Widget ******************* -->
+
+  <Hero2
+    tagline="Granja Escolar"
+    title="Descubre la Naturaleza en Nuestra Granja"
+    subtitle="En el Instituto Psicopedagógico Juan Pablo II, la granja escolar es un espacio vivo de aprendizaje donde los estudiantes exploran la agricultura, el cuidado animal y la sostenibilidad ambiental de manera práctica y divertida."
+    image={{
+      src: '~/assets/images/Granja1.jpg',
+      alt: 'Granja escolar',
+      class: 'w-72',
+      width: 480,
+      height: 480,
+    }}
+  />
+
+  <!-- Features Widget ************** -->
+
+  <Features
+    title="Actividades en la Granja"
+    subtitle="Nuestras actividades están diseñadas para integrar el aprendizaje con la experiencia práctica, fomentando el desarrollo integral de los estudiantes."
+    columns={2}
+    classes={{
+      icon: 'animate-bounce-in-up',
+    }}
+    items={[
+      {
+        title: 'Cultivo Orgánico',
+        description:
+          'Aprende sobre agricultura sostenible cultivando verduras y frutas orgánicas, entendiendo el ciclo de la vida vegetal.',
+        icon: 'tabler:plant',
+      },
+      {
+        title: 'Cuidado de Animales',
+        description:
+          'Interactúa con animales de granja, aprendiendo sobre su alimentación, salud y comportamiento responsable.',
+        icon: 'tabler:paw',
+      },
+      {
+        title: 'Compostaje Natural',
+        description:
+          'Descubre cómo convertir residuos orgánicos en compost, contribuyendo a un medio ambiente más saludable.',
+        icon: 'tabler:recycle',
+      },
+      {
+        title: 'Educación Ambiental',
+        description: 'Actividades que enseñan sobre biodiversidad, conservación y respeto por la naturaleza.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Trabajo en Equipo',
+        description: 'Colabora con compañeros en proyectos grupales que promueven la comunicación y el liderazgo.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Aprendizaje Sensorial',
+        description:
+          'Experiencias que estimulan los sentidos y el desarrollo cognitivo a través del contacto con la naturaleza.',
+        icon: 'tabler:eye',
+      },
+    ]}
+  />
+
+  <!-- Steps Widget ************** -->
+
+  <Steps
+    title="Cómo Participar en la Granja"
+    subtitle="Sigue estos pasos para unirte a las actividades de nuestra granja escolar y disfrutar de una experiencia educativa única."
+    items={[
+      {
+        title: 'Inscríbete',
+        description: 'Regístrate en la actividad de tu interés a través de tu docente o coordinador.',
+        icon: 'tabler:user-plus',
+      },
+      {
+        title: 'Recibe Orientación',
+        description: 'Asiste a la sesión de inducción donde aprenderás sobre seguridad y responsabilidades.',
+        icon: 'tabler:info-circle',
+      },
+      {
+        title: 'Participa Activamente',
+        description: 'Únete a las actividades prácticas en la granja, aplicando lo aprendido en clase.',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'Reflexiona y Comparte',
+        description: 'Discute tus experiencias con el grupo y comparte lo que has aprendido.',
+        icon: 'tabler:message-circle',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/Granja2.jpg',
+      alt: 'Pasos para participar',
+    }}
+  />
+
+  <!-- WhatsApp Button -->
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, quiero saber más sobre las actividades de la granja." />
+</Layout>

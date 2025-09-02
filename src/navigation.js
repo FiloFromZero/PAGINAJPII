@@ -10,6 +10,10 @@ const rootMenu = [
     href: getPermalink('/servicios'),
   },
   {
+    text: 'Granja',
+    href: getPermalink('/Granja'),
+  },
+  {
     text: 'Nosotros',
     href: getPermalink('/nosotros'),
   },
@@ -44,7 +48,11 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ], */
   socialLinks: [
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/institutopsicopedagogicojuanpabloii' },
+    {
+      ariaLabel: 'Facebook',
+      icon: 'tabler:brand-facebook',
+      href: 'https://www.facebook.com/institutopsicopedagogicojuanpabloii',
+    },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/ipjp2' },
     { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://tiktok.com/@ipjuanpabloii' },
   ],

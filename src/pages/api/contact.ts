@@ -243,7 +243,7 @@ Si no desea recibir estos mensajes, puede contactarnos para ser removido de la l
                         Instituto Psicopedagógico Juan Pablo II
                       </h3>
                       <p style="margin: 0 0 20px 0; font-size: 14px; opacity: 0.9;">
-                        Educación con calidad • Formación integral • Valores cristianos
+                        Educación con calidad • Formación integral • Valores católicos
                       </p>
 
                       <div class="contact-grid">
@@ -264,7 +264,6 @@ Si no desea recibir estos mensajes, puede contactarnos para ser removido de la l
                       <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
                         <p style="margin: 0; font-size: 11px; opacity: 0.7; line-height: 1.4;">
                           Este mensaje fue generado automáticamente desde nuestro formulario de contacto web oficial.<br>
-                          Si no desea recibir estas notificaciones, puede contactarnos para ser removido de la lista.
                         </p>
                         <p style="margin: 10px 0 0 0; font-size: 11px; opacity: 0.7;">
                           <a href="https://iejuanpabloiisoacha.edu.co" style="color: #60a5fa; text-decoration: none;">Visite nuestro sitio web</a>
