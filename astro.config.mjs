@@ -30,6 +30,10 @@ const whenExternalScripts = (items = []) =>
 export default defineConfig({
   adapter: netlify(),
   output: 'server',
+  server: {
+    port: 3000, // Cambia este número por el puerto que desees
+    host: true  // Permite conexiones desde cualquier IP
+  },
   integrations: [
     // Agregar la integración de React
     react(),
@@ -87,8 +91,8 @@ export default defineConfig({
     domains: ['cdn.pixabay.com'],
     remotePatterns: [{ protocol: "https" }],
     formats: ['avif', 'webp', 'jpeg'],
-    quality: 95,
-    densities: [1, 1.5, 2, 3],
+    quality: 100,
+    densities: [1, 1.5, 2, 2.5, 3, 4, 5],
   },
 
   markdown: {

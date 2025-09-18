@@ -3,12 +3,27 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import WhatsAppButton from '~/components/WhatsAppButton.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+
 const metadata = {
   title: 'Nosotros',
 };
+
+// Configuración de breadcrumbs
+const breadcrumbItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Nosotros', current: true }
+];
 ---
 
 <Layout metadata={metadata}>
+  <!-- Breadcrumbs Section -->
+  <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
   <!-- Hero Widget ******************* -->
 
   <Hero tagline="Nosotros">
@@ -40,7 +55,7 @@ const metadata = {
 
   <!-- Hero Widget ******************* -->
 
-  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+  <Hero tagline="Nosotros">
     <Fragment slot="title">
       <span class="text-green-800 dark:text-white highlight">Misión Institucional</span>
     </Fragment>
@@ -72,7 +87,7 @@ const metadata = {
 
   <!-- Hero Widget ******************* -->
 
-  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+  <Hero tagline="Nosotros">
     <Fragment slot="title">
       <span class="text-green-800 dark:text-white highlight">Visión Institucional</span>
     </Fragment>
@@ -107,7 +122,6 @@ const metadata = {
   <Hero
     tagline="Nosotros"
     subtitle="Jóvenes vosotros sois la sal y la luz del mundo. Juan pablo II"
-    class="!pt-4 !pb-8"
   >
     <Fragment slot="title">
       <span class="text-green-800 dark:text-white highlight">Metodología Implementada</span>
@@ -142,7 +156,7 @@ const metadata = {
 
   <!-- Hero Widget ******************* -->
 
-  <Hero tagline="Nosotros" class="!pt-4 !pb-8">
+  <Hero tagline="Nosotros">
     <Fragment slot="title">
       <span class="text-green-800 dark:text-white highlight">Filosofía Institucional</span>
     </Fragment>
@@ -177,7 +191,7 @@ const metadata = {
     tagline="Nosotros"
     columns={3}
     defaultIcon="tabler:flag-check"
-    class="!pt-4 !pb-8"
+    classes={{ container: "!pt-4 !pb-8" }}
     items={[
       {
         description: 'Mantener e incrementar los índices históricos de cobertura institucional.',
@@ -212,7 +226,7 @@ const metadata = {
     subtitle="Los principios son leyes naturales, reglas o normas de conductas exógenas o externas a nosotros, que orientan nuestras acciones, controlan las consecuencias de nuestros actos, rigen nuestras decisiones y son la base para la convivencia de toda la comunidad educativa del Instituto Psicopedagógico Juan Pablo II."
     columns={3}
     defaultIcon="tabler:rosette-discount-check"
-    class="!pt-4 !pb-8"
+    classes={{ container: "!pt-4 !pb-8" }}
     items={[
       {
         title: 'Espiritualidad',

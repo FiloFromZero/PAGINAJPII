@@ -92,11 +92,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
                 <>
-                  <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center">
+                  <button 
+                    type="button" 
+                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center w-full justify-between md:justify-start"
+                    data-dropdown-toggle={`dropdown-${text?.replace(/\s+/g, '-').toLowerCase()}`}
+                  >
                     {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
+                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 transition-transform duration-200 dropdown-arrow" />
                   </button>
-                  <ul class="dropdown-menu dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white md:min-w-[200px] drop-shadow-xl">
+                  <ul 
+                    class="dropdown-menu dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 hidden font-medium md:bg-white md:min-w-[200px] drop-shadow-xl"
+                    id={`dropdown-${text?.replace(/\s+/g, '-').toLowerCase()}`}
+                  >
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
@@ -164,3 +171,90 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Manejar dropdowns en móvil
+    const dropdownButtons = document.querySelectorAll('[data-dropdown-toggle]');
+    
+    dropdownButtons.forEach(button => {
+      button.addEventListener('click', function(this: HTMLElement, e: Event) {
+        // Solo aplicar en móvil (pantallas menores a md)
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const targetId = this.getAttribute('data-dropdown-toggle');
+          const dropdown = targetId ? document.getElementById(targetId) : null;
+          const arrow = this.querySelector('.dropdown-arrow');
+          
+          if (dropdown && arrow) {
+            const isHidden = dropdown.classList.contains('hidden');
+            
+            // Cerrar otros dropdowns abiertos
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+              if (menu !== dropdown) {
+                menu.classList.add('hidden');
+              }
+            });
+            
+            // Resetear otras flechas
+            document.querySelectorAll('.dropdown-arrow').forEach(otherArrow => {
+              if (otherArrow !== arrow) {
+                otherArrow.classList.remove('rotate-180');
+              }
+            });
+            
+            // Toggle del dropdown actual
+            if (isHidden) {
+              dropdown.classList.remove('hidden');
+              arrow.classList.add('rotate-180');
+            } else {
+              dropdown.classList.add('hidden');
+              arrow.classList.remove('rotate-180');
+            }
+          }
+        }
+      });
+    });
+    
+    // Cerrar dropdowns al hacer clic fuera
+    document.addEventListener('click', function(e: Event) {
+      if (window.innerWidth < 768) {
+        const target = e.target as Element;
+        const isDropdownButton = target?.closest('[data-dropdown-toggle]');
+        const isDropdownMenu = target?.closest('.dropdown-menu');
+        
+        if (!isDropdownButton && !isDropdownMenu) {
+          document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.classList.add('hidden');
+          });
+          document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
+            arrow.classList.remove('rotate-180');
+          });
+        }
+      }
+    });
+    
+    // Manejar cambios de tamaño de ventana
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) {
+        // En desktop, resetear estados móviles
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('hidden');
+        });
+        document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
+          arrow.classList.remove('rotate-180');
+        });
+      } else {
+        // En móvil, ocultar todos los dropdowns
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.add('hidden');
+        });
+        document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
+          arrow.classList.remove('rotate-180');
+        });
+      }
+    });
+  });
+</script>

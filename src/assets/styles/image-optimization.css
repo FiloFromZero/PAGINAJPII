@@ -9,6 +9,10 @@ img {
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* Mejoras adicionales para nitidez */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  image-orientation: from-image;
 }
 
 /* Optimización específica para imágenes WebP y AVIF */
@@ -16,6 +20,7 @@ img[src*=".webp"],
 img[src*=".avif"] {
   image-rendering: auto;
   image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Mejora la calidad en pantallas de alta densidad */
@@ -23,6 +28,16 @@ img[src*=".avif"] {
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    image-rendering: optimize-quality;
+  }
+}
+
+/* Optimización para pantallas 4K y superiores */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-quality;
   }
 }
 
@@ -46,6 +61,7 @@ img[src*=".avif"] {
 /* Optimización para imágenes responsivas */
 img[sizes] {
   image-rendering: auto;
+  image-rendering: crisp-edges;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -55,6 +71,7 @@ img[sizes] {
   img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: optimize-quality;
+    image-rendering: crisp-edges;
   }
 }
 
@@ -63,12 +80,14 @@ img[style*="aspect-ratio"] {
   object-fit: cover;
   object-position: center;
   image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Mejora la calidad durante el hover */
 img:hover {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: optimize-quality;
+  image-rendering: crisp-edges;
 }
 
 /* Optimización específica para navegadores Webkit */
@@ -76,6 +95,7 @@ img:hover {
   img {
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 

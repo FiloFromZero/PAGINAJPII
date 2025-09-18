@@ -1,0 +1,69 @@
+/* Estilos optimizados para imágenes de alta calidad */
+
+.optimize-image {
+  /* Mejora la calidad de renderizado */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  
+  /* Evita problemas de pixelación */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Mejora la nitidez */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Asegura la orientación correcta */
+  image-orientation: from-image;
+  
+  /* Mejora el contraste y la saturación */
+  filter: contrast(1.15) saturate(1.1) brightness(1.05);
+  
+  /* Transiciones suaves */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  
+  /* Asegura que las imágenes se ajusten correctamente */
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  
+  /* Añade un poco de sombra para mejorar la profundidad */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Mejora para imágenes WebP */
+.optimize-image[src*=".webp"] {
+  filter: contrast(1.2) saturate(1.15) brightness(1.05);
+}
+
+/* Mejora para imágenes JPG */
+.optimize-image[src*=".jpg"],
+.optimize-image[src*=".jpeg"] {
+  filter: contrast(1.25) saturate(1.2) brightness(1.05);
+}
+
+/* Efecto hover para imágenes */
+.optimize-image:hover {
+  transform: scale(1.02);
+  filter: contrast(1.2) saturate(1.15) brightness(1.1);
+}
+
+/* Optimización para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .optimize-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Optimización para dispositivos móviles */
+@media (max-width: 768px) {
+  .optimize-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-quality;
+  }
+}

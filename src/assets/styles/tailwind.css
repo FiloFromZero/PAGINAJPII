@@ -590,6 +590,50 @@
   display: block;
 }
 
+/* Estilos responsive para dropdown en móvil */
+@media (max-width: 767px) {
+  .dropdown-menu {
+    position: static !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    min-width: auto !important;
+    padding-left: 1rem !important;
+    margin-top: 0.5rem;
+  }
+  
+  .dropdown-menu.hidden {
+    display: none !important;
+  }
+  
+  .dropdown-menu:not(.hidden) {
+    display: block !important;
+  }
+  
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    display: none; /* Desactivar hover en móvil */
+  }
+  
+  .dropdown-arrow {
+    display: inline-block !important;
+  }
+}
+
+/* En desktop, mantener comportamiento original */
+@media (min-width: 768px) {
+  .dropdown-menu.hidden {
+    display: none;
+  }
+  
+  .dropdown:focus .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu,
+  .dropdown:hover .dropdown-menu {
+    display: block !important;
+  }
+}
+
 [astro-icon].icon-light > * {
   stroke-width: 1.2;
 }

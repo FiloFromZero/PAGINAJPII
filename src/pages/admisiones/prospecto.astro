@@ -1,0 +1,84 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import { Icon } from 'astro-icon/components';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+
+const breadcrumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Admisiones', href: '/admisiones' },
+  { label: 'Prospecto Institucional', href: '/admisiones/prospecto', current: true }
+];
+---
+
+<PageLayout metadata={{ title: "Prospecto Institucional 2026 - Colegio Juan Pablo II" }}>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <!-- Breadcrumbs -->
+    <div class="bg-gray-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-green-600/10"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="mb-8">
+          <Icon name="tabler:file-text" class="w-20 h-20 mx-auto text-blue-600 mb-6" />
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          Prospecto <span class="text-blue-600">Institucional</span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Conoce nuestra propuesta educativa, programas académicos y servicios institucionales para el año 2026
+        </p>
+      </div>
+    </section>
+
+    <!-- Prospecto Section -->
+    <section class="py-12 sm:py-16 lg:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <!-- Document Card -->
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-6 sm:p-8 hover:shadow-2xl transition-all duration-300">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4">
+                <Icon name="tabler:file-text" class="w-8 h-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Prospecto Institucional 2026</h3>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Información completa sobre nuestra institución</p>
+              </div>
+            </div>
+            
+            <div class="text-center">
+              <a
+                href="/files/PROSPECTO_INSTITUCIONAL_2026.pdf"
+                target="_blank"
+                class="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-sm sm:text-base"
+              >
+                <Icon name="tabler:download" class="w-4 h-4 sm:w-5 sm:h-5" />
+                Descargar Prospecto
+              </a>
+            </div>
+          </div>
+
+          <!-- PDF Viewer -->
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-3 sm:p-4 lg:p-6">
+            <div class="aspect-[4/5] w-full max-h-[600px]">
+              <iframe
+                src="/files/PROSPECTO_INSTITUCIONAL_2026.pdf#toolbar=0&navpanes=0"
+                class="w-full h-full rounded-lg border border-gray-200 dark:border-slate-600"
+                loading="lazy"
+                title="Prospecto Institucional 2026"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en el prospecto institucional." />
+</PageLayout>

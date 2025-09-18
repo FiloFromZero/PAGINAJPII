@@ -1,18 +1,78 @@
 ---
-import Features from '~/components/widgets/Features.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import WhatsAppButton from '~/components/WhatsAppButton.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import GranjaActivity from '~/components/ui/GranjaActivity.astro';
+import '../assets/styles/granja-images.css';
 
 const metadata = {
   title: 'Granja',
 };
+
+// Configuración de breadcrumbs
+const breadcrumbItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Granja', current: true }
+];
+
+// Datos de actividades
+const activities = [
+  {
+    title: 'Cultivo Orgánico',
+    description: 'Aprende sobre agricultura sostenible cultivando verduras y frutas orgánicas, entendiendo el ciclo de la vida vegetal.',
+    icon: 'tabler:plant',
+    imageSrc: '~/assets/images/Granja3.webp',
+    imageAlt: 'Cultivo orgánico en la granja escolar'
+  },
+  {
+    title: 'Cuidado de Animales',
+    description: 'Interactúa con animales de granja, aprendiendo sobre su alimentación, salud y comportamiento responsable.',
+    icon: 'tabler:paw',
+    imageSrc: '~/assets/images/Granja4.webp',
+    imageAlt: 'Cuidado de animales en la granja'
+  },
+  {
+    title: 'Compostaje Natural',
+    description: 'Descubre cómo convertir residuos orgánicos en compost, contribuyendo a un medio ambiente más saludable.',
+    icon: 'tabler:recycle',
+    imageSrc: '~/assets/images/Granja5.jpg',
+    imageAlt: 'Compostaje natural y reciclaje'
+  },
+  {
+    title: 'Educación Ambiental',
+    description: 'Actividades que enseñan sobre biodiversidad, conservación y respeto por la naturaleza.',
+    icon: 'tabler:leaf',
+    imageSrc: '~/assets/images/Granja6.webp',
+    imageAlt: 'Educación ambiental en la naturaleza'
+  },
+  {
+    title: 'Trabajo en Equipo',
+    description: 'Colabora con compañeros en proyectos grupales que promueven la comunicación y el liderazgo.',
+    icon: 'tabler:users',
+    imageSrc: '~/assets/images/Granja7.webp',
+    imageAlt: 'Trabajo en equipo en actividades de granja'
+  },
+  {
+    title: 'Aprendizaje Sensorial',
+    description: 'Experiencias que estimulan los sentidos y el desarrollo cognitivo a través del contacto con la naturaleza.',
+    icon: 'tabler:eye',
+    imageSrc: '~/assets/images/Granja8.webp',
+    imageAlt: 'Aprendizaje sensorial con la naturaleza'
+  }
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero2 Widget ******************* -->
+  <!-- Breadcrumbs Section -->
+  <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
 
+  <!-- Hero2 Widget ******************* -->
   <Hero2
     tagline="Granja Escolar"
     title="Descubre la Naturaleza en Nuestra Granja"
@@ -20,61 +80,35 @@ const metadata = {
     image={{
       src: '~/assets/images/Granja1.jpg',
       alt: 'Granja escolar',
-      class: 'w-72',
-      width: 480,
-      height: 480,
     }}
   />
 
-  <!-- Features Widget ************** -->
-
-  <Features
-    title="Actividades en la Granja"
-    subtitle="Nuestras actividades están diseñadas para integrar el aprendizaje con la experiencia práctica, fomentando el desarrollo integral de los estudiantes."
-    columns={2}
-    classes={{
-      icon: 'animate-bounce-in-up',
-    }}
-    items={[
-      {
-        title: 'Cultivo Orgánico',
-        description:
-          'Aprende sobre agricultura sostenible cultivando verduras y frutas orgánicas, entendiendo el ciclo de la vida vegetal.',
-        icon: 'tabler:plant',
-      },
-      {
-        title: 'Cuidado de Animales',
-        description:
-          'Interactúa con animales de granja, aprendiendo sobre su alimentación, salud y comportamiento responsable.',
-        icon: 'tabler:paw',
-      },
-      {
-        title: 'Compostaje Natural',
-        description:
-          'Descubre cómo convertir residuos orgánicos en compost, contribuyendo a un medio ambiente más saludable.',
-        icon: 'tabler:recycle',
-      },
-      {
-        title: 'Educación Ambiental',
-        description: 'Actividades que enseñan sobre biodiversidad, conservación y respeto por la naturaleza.',
-        icon: 'tabler:leaf',
-      },
-      {
-        title: 'Trabajo en Equipo',
-        description: 'Colabora con compañeros en proyectos grupales que promueven la comunicación y el liderazgo.',
-        icon: 'tabler:users',
-      },
-      {
-        title: 'Aprendizaje Sensorial',
-        description:
-          'Experiencias que estimulan los sentidos y el desarrollo cognitivo a través del contacto con la naturaleza.',
-        icon: 'tabler:eye',
-      },
-    ]}
-  />
+  <!-- Actividades de la Granja -->
+  <section class="py-12 md:py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Actividades en la Granja</h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+          Nuestras actividades están diseñadas para integrar el aprendizaje con la experiencia práctica, fomentando el desarrollo integral de los estudiantes.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {activities.map((activity, index) => (
+          <GranjaActivity 
+            title={activity.title}
+            description={activity.description}
+            icon={activity.icon}
+            imageSrc={activity.imageSrc}
+            imageAlt={activity.imageAlt}
+            index={index}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Steps Widget ************** -->
-
   <Steps
     title="Cómo Participar en la Granja"
     subtitle="Sigue estos pasos para unirte a las actividades de nuestra granja escolar y disfrutar de una experiencia educativa única."

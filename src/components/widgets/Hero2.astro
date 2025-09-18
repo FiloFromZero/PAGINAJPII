@@ -49,7 +49,7 @@ const {
 
           {
             actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 lg:justify-center lg:m-auto lg:max-w-7xl">
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-start gap-4 lg:justify-start lg:m-0 lg:max-w-7xl">
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex w-full sm:w-auto">
@@ -74,11 +74,16 @@ const {
               ) : (
                 <Image
                   class="rounded-md"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                  widths={[400, 600, 800, 1200, 1600, 2000, 2400, 3000]}
+                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 600px, (max-width: 1439px) 800px, 1200px"
                   loading="eager"
-                  width={600}
-                  height={600}
+                  width={2000}
+                  height={2000}
+                  decoding="async"
+                  fetchpriority="high"
+                  layout="constrained"
+                  aspectRatio="1:1"
+                  style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: optimize-quality; transform: translateZ(0); backface-visibility: hidden; filter: contrast(1.15) saturate(1.15) brightness(1.05) sharpen(2px);"
                   {...image}
                   data-animate="animate-fade-in-up"
                 />

@@ -36,13 +36,11 @@ const {
             alt={alt}
             width={1920}
             height={520}
-            layout="cover"
-            loading={index === 0 ? "eager" : "lazy"}
             sizes="100vw"
-            widths={[640, 1024, 1280, 1920]}
+            widths={[640, 768, 1024, 1280, 1536, 1920]}
             aspectRatio="3.7:1"
-            fetchpriority={index === 0 ? "high" : "low"}
-            class="w-full h-full object-cover object-center transform transition-all duration-700 group-hover/slide:scale-105"
+            class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out group-hover/slide:scale-105"
+            data-carousel-index={index}
           />
 
           <!-- Overlay Gradient -->
@@ -113,11 +111,31 @@ const {
     </div>
   )}
 
-  <!-- Loading Animation -->
-  <div id="loading-overlay" class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-100 transition-opacity duration-500 z-40">
-    <div class="flex flex-col items-center space-y-4">
-      <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
-      <p class="text-white/80 text-sm font-medium">Cargando imágenes...</p>
+  <!-- Enhanced Loading Animation -->
+  <div id="loading-overlay" class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40 backdrop-blur-md flex items-center justify-center opacity-100 transition-all duration-700 z-40">
+    <div class="flex flex-col items-center space-y-6 text-center">
+      <!-- Animated Logo/Icon -->
+      <div class="relative">
+        <div class="w-16 h-16 border-4 border-white/20 border-t-white/80 border-r-white/60 rounded-full animate-spin"></div>
+        <div class="absolute inset-2 w-12 h-12 border-2 border-white/10 border-b-white/40 rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+      </div>
+      
+      <!-- Loading Text with Animation -->
+      <div class="space-y-2">
+        <p id="loading-text" class="text-white/90 text-lg font-semibold tracking-wide animate-pulse">Cargando imágenes...</p>
+        <p class="text-white/60 text-sm">Preparando la mejor experiencia visual</p>
+      </div>
+      
+      <!-- Enhanced Progress Bar -->
+      <div class="w-64 space-y-2">
+        <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden shadow-inner">
+          <div id="loading-progress" class="h-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full transition-all duration-500 ease-out shadow-lg" style="width: 0%"></div>
+        </div>
+        <div class="flex justify-between text-white/50 text-xs">
+          <span>Optimizando...</span>
+          <span id="progress-percentage">0%</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -133,6 +151,9 @@ const {
       this.progressBar = document.getElementById('progress-bar');
       this.slideCounter = document.getElementById('slide-counter');
       this.loadingOverlay = document.getElementById('loading-overlay');
+      this.loadingText = document.getElementById('loading-text');
+      this.loadingProgress = document.getElementById('loading-progress');
+      this.progressPercentage = document.getElementById('progress-percentage');
 
       this.dots = this.paginationDotsContainer ? Array.from(this.paginationDotsContainer.children) : [];
       this.slides = Array.from(this.inner.children);
@@ -143,6 +164,15 @@ const {
       this.isTransitioning = false;
       this.touchStartX = 0;
       this.touchEndX = 0;
+      
+      // Métricas de rendimiento
+      this.performanceMetrics = {
+        startTime: performance.now(),
+        firstImageLoaded: null,
+        allCriticalImagesLoaded: null,
+        carouselReady: null,
+        totalLoadTime: null
+      };
 
       this.init();
     }
@@ -150,19 +180,238 @@ const {
     init() {
       this.setupEventListeners();
       this.updateCarousel();
-      this.startAutoSlide();
-      this.hideLoadingOverlay();
+      this.setupIntersectionObserver();
+      this.waitForImagesAndStart();
       this.setupTouchEvents();
+    }
+
+    setupIntersectionObserver() {
+      // Observar cuando el carousel entra en el viewport
+      this.carouselObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Carousel visible, iniciar precarga agresiva
+            this.isCarouselVisible = true;
+            this.preloadVisibleImages();
+          } else {
+            // Carousel no visible, pausar auto-slide para ahorrar recursos
+            this.isCarouselVisible = false;
+            if (this.autoSlideInterval) {
+              clearInterval(this.autoSlideInterval);
+            }
+          }
+        });
+      }, {
+        threshold: 0.1, // Activar cuando 10% del carousel sea visible
+        rootMargin: '50px' // Precargar 50px antes de que sea visible
+      });
+      
+      this.carouselObserver.observe(this.carousel);
+    }
+
+    preloadVisibleImages() {
+      // Precargar imágenes que están cerca del slide actual
+      const preloadRange = 2; // Precargar 2 slides antes y después
+      
+      for (let i = -preloadRange; i <= preloadRange; i++) {
+        const index = (this.current + i + this.totalImages) % this.totalImages;
+        const slide = this.slides[index];
+        
+        if (slide) {
+          const img = slide.querySelector('img');
+          if (img && !img.complete) {
+            this.preloadImage(img);
+          }
+        }
+      }
+    }
+
+    async waitForImagesAndStart() {
+      try {
+        // Precarga inteligente: solo esperar las primeras 2 imágenes críticas
+        const criticalImages = this.carousel.querySelectorAll('img[data-carousel-index="0"], img[data-carousel-index="1"]');
+        const allCriticalLoaded = Array.from(criticalImages).every(img => img.complete && img.naturalHeight !== 0);
+        
+        if (allCriticalLoaded && criticalImages.length > 0) {
+          // Si las críticas están cargadas, iniciar inmediatamente
+          if (this.loadingText) {
+            this.loadingText.textContent = 'Imágenes principales cargadas';
+          }
+          if (this.loadingProgress) {
+            this.loadingProgress.style.width = '100%';
+          }
+          setTimeout(() => {
+            this.hideLoadingOverlay();
+            this.startAutoSlide();
+            // Precargar el resto en segundo plano
+            this.preloadRemainingImages();
+          }, 200);
+        } else {
+          // Solo esperar las imágenes críticas
+          await this.waitForCriticalImages();
+          this.hideLoadingOverlay();
+          this.startAutoSlide();
+          // Precargar el resto en segundo plano
+          this.preloadRemainingImages();
+        }
+      } catch (error) {
+        console.warn('Error cargando imágenes críticas:', error);
+        // Iniciar de todos modos después de 2 segundos
+        setTimeout(() => {
+          this.hideLoadingOverlay();
+          this.startAutoSlide();
+        }, 2000);
+      }
+    }
+
+    waitForCriticalImages() {
+       return new Promise((resolve, reject) => {
+         const criticalImages = this.carousel.querySelectorAll('img[data-carousel-index="0"], img[data-carousel-index="1"]');
+         let loadedCount = 0;
+         let errorCount = 0;
+         const totalImages = criticalImages.length;
+
+         if (totalImages === 0) {
+           resolve();
+           return;
+         }
+
+         const updateProgress = () => {
+           const progress = ((loadedCount + errorCount) / totalImages) * 100;
+           if (this.loadingProgress) {
+             this.loadingProgress.style.width = `${progress}%`;
+           }
+           if (this.progressPercentage) {
+             this.progressPercentage.textContent = `${Math.round(progress)}%`;
+           }
+           if (this.loadingText) {
+             if (progress < 50) {
+               this.loadingText.textContent = `Cargando imágenes principales... ${loadedCount}/${totalImages}`;
+             } else if (progress < 100) {
+               this.loadingText.textContent = `Casi listo... ${loadedCount}/${totalImages}`;
+             } else {
+               this.loadingText.textContent = 'Imágenes principales listas';
+             }
+           }
+         };
+
+         const checkComplete = () => {
+           updateProgress();
+           if (loadedCount + errorCount >= totalImages) {
+             if (this.loadingText) {
+               this.loadingText.textContent = errorCount > 0 ? 
+                 `Cargadas ${loadedCount}/${totalImages} imágenes principales` : 
+                 'Imágenes principales listas';
+             }
+             
+             setTimeout(() => {
+               // Registrar tiempo de carga de imágenes críticas
+               this.performanceMetrics.allCriticalImagesLoaded = performance.now();
+               
+               if (errorCount > 0 && loadedCount === 0) {
+                 reject(new Error(`No se pudieron cargar ${errorCount} imágenes críticas`));
+               } else {
+                 resolve();
+               }
+             }, 300);
+           }
+         };
+
+         // Inicializar progreso
+         updateProgress();
+
+         criticalImages.forEach((img) => {
+           if (img.complete && img.naturalHeight !== 0) {
+             loadedCount++;
+             checkComplete();
+           } else {
+             img.addEventListener('load', () => {
+               loadedCount++;
+               // Registrar primera imagen cargada
+               if (!this.performanceMetrics.firstImageLoaded) {
+                 this.performanceMetrics.firstImageLoaded = performance.now();
+               }
+               checkComplete();
+             });
+             
+             img.addEventListener('error', () => {
+               errorCount++;
+               console.warn('Error cargando imagen crítica:', img.src);
+               checkComplete();
+             });
+
+             // Timeout reducido para imágenes críticas (4 segundos)
+             setTimeout(() => {
+               if (!img.complete) {
+                 errorCount++;
+                 console.warn('Timeout cargando imagen crítica:', img.src);
+                 checkComplete();
+               }
+             }, 4000);
+           }
+         });
+       });
+     }
+
+    preloadRemainingImages() {
+      // Precargar imágenes no críticas en segundo plano
+      const remainingImages = this.carousel.querySelectorAll('img:not([data-carousel-index="0"]):not([data-carousel-index="1"])');
+      
+      remainingImages.forEach((img, index) => {
+        // Usar requestIdleCallback para no bloquear el hilo principal
+        if (window.requestIdleCallback) {
+          window.requestIdleCallback(() => {
+            this.preloadImage(img);
+          }, { timeout: 2000 });
+        } else {
+          // Fallback para navegadores sin soporte
+          setTimeout(() => {
+            this.preloadImage(img);
+          }, 100 * (index + 1));
+        }
+      });
+    }
+
+    preloadImage(img) {
+      if (!img.complete && img.src) {
+        const preloader = new Image();
+        preloader.onload = () => {
+          console.log('Imagen precargada:', img.src);
+        };
+        preloader.onerror = () => {
+           console.warn('Error precargando imagen:', img.src);
+         };
+        preloader.src = img.src;
+        if (img.srcset) {
+          preloader.srcset = img.srcset;
+        }
+      }
     }
 
     hideLoadingOverlay() {
       if (this.loadingOverlay) {
+        // Animación de salida más elegante
+        this.loadingOverlay.style.opacity = '0';
+        this.loadingOverlay.style.transform = 'scale(0.95)';
+        this.loadingOverlay.style.filter = 'blur(2px)';
+        
         setTimeout(() => {
-          this.loadingOverlay.style.opacity = '0';
-          setTimeout(() => {
-            this.loadingOverlay.style.display = 'none';
-          }, 500);
-        }, 1000);
+          this.loadingOverlay.style.display = 'none';
+          // Mostrar el carousel con una entrada suave
+          this.carousel.style.opacity = '0';
+          this.carousel.style.transform = 'translateY(20px)';
+          
+          requestAnimationFrame(() => {
+            this.carousel.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            this.carousel.style.opacity = '1';
+            this.carousel.style.transform = 'translateY(0)';
+            
+            // Registrar tiempo final y mostrar métricas
+            this.performanceMetrics.carouselReady = performance.now();
+            this.performanceMetrics.totalLoadTime = this.performanceMetrics.carouselReady - this.performanceMetrics.startTime;
+            this.logPerformanceMetrics();
+          });
+        }, 700);
       }
     }
 
@@ -207,20 +456,19 @@ const {
     }
 
     preloadNextImage() {
+      // Precargar las próximas 2 imágenes para navegación fluida
       const nextIndex = (this.current + 1) % this.totalImages;
-      const nextSlide = this.slides[nextIndex];
-      if (nextSlide) {
-        const img = nextSlide.querySelector('img');
-        if (img && !img.complete) {
-          // Create a new Image object to preload
-          const preloadImg = new Image();
-          preloadImg.src = img.src;
-          // Also preload srcset if available
-          if (img.srcset) {
-            preloadImg.srcset = img.srcset;
+      const nextNextIndex = (this.current + 2) % this.totalImages;
+      
+      [nextIndex, nextNextIndex].forEach(index => {
+        const slide = this.slides[index];
+        if (slide) {
+          const img = slide.querySelector('img');
+          if (img && !img.complete) {
+            this.preloadImage(img);
           }
         }
-      }
+      });
     }
 
     updateProgressBar() {
@@ -243,11 +491,19 @@ const {
     }
 
     startAutoSlide() {
+      // Solo iniciar auto-slide si el carousel es visible
+      if (!this.isCarouselVisible) {
+        return;
+      }
+      
       clearInterval(this.autoSlideInterval);
       this.updateProgressBar();
 
       this.autoSlideInterval = setInterval(() => {
-        this.next();
+        // Verificar visibilidad antes de cada transición
+        if (this.isCarouselVisible) {
+          this.next();
+        }
       }, 5000);
     }
 
@@ -298,6 +554,13 @@ const {
 
       this.carousel.addEventListener('mouseleave', () => this.startAutoSlide());
 
+      // Limpiar observer al destruir el componente
+      window.addEventListener('beforeunload', () => {
+        if (this.carouselObserver) {
+          this.carouselObserver.disconnect();
+        }
+      });
+
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
@@ -330,6 +593,19 @@ const {
           this.prev(); // Swipe right
         }
       }
+    }
+    
+    logPerformanceMetrics() {
+      const metrics = this.performanceMetrics;
+      const firstImageTime = metrics.firstImageLoaded ? (metrics.firstImageLoaded - metrics.startTime).toFixed(2) : 'N/A';
+      const criticalImagesTime = metrics.allCriticalImagesLoaded ? (metrics.allCriticalImagesLoaded - metrics.startTime).toFixed(2) : 'N/A';
+      const totalTime = metrics.totalLoadTime ? metrics.totalLoadTime.toFixed(2) : 'N/A';
+      
+      console.group('🎠 Métricas de Rendimiento del Carousel');
+      console.log(`⚡ Primera imagen cargada: ${firstImageTime}ms`);
+      console.log(`🖼️ Imágenes críticas cargadas: ${criticalImagesTime}ms`);
+      console.log(`✅ Carousel completamente listo: ${totalTime}ms`);
+      console.groupEnd();
     }
   }
 

@@ -3,6 +3,7 @@ import type { ItemGrid as Props } from '~/types';
 import { twMerge } from 'tailwind-merge';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
 
 const { items = [], columns, defaultIcon = '', classes = {} } = Astro.props;
 
@@ -32,7 +33,7 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }, index) => (
+      {items.map(({ title, description, icon, image, callToAction, classes: itemClasses = {} }, index) => (
         <div data-animate="animate-fade-in-up" data-animate-delay={index * 100}>
           <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
@@ -50,6 +51,25 @@ const {
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted animate-text-hover`, descriptionClass, itemClasses?.description)}
                   set:html={description}
                 />
+              )}
+              {image && (
+                <div class="mt-4">
+                  <Image
+                     src={image.src}
+                     alt={image.alt || ''}
+                     class="w-full h-64 object-cover rounded-lg shadow-md aspect-square"
+                     width={2000}
+                     height={2000}
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="high"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                     widths={[400, 600, 800, 1200, 1600, 2000, 2400, 3000]}
+                     layout="constrained"
+                     aspectRatio="1:1"
+                     style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: optimize-quality; transform: translateZ(0); backface-visibility: hidden; filter: contrast(1.1) saturate(1.1) sharpen(1px);"
+                   />
+                </div>
               )}
               {callToAction && (
                 <div class={twMerge(`${title || description ? 'mt-3' : ''}`, actionClass, itemClasses?.actionClass)}>

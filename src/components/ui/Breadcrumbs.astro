@@ -1,0 +1,64 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  current?: boolean;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+  separator?: string;
+  className?: string;
+}
+
+const { 
+  items, 
+  separator = '/', 
+  className = '' 
+} = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class={`flex items-center space-x-2 text-sm ${className}`}>
+  <ol class="flex items-center space-x-2">
+    {items.map((item, index) => (
+      <li class="flex items-center">
+        {index > 0 && (
+          <span class="mx-2 text-gray-400 dark:text-gray-500 select-none" aria-hidden="true">
+            {separator}
+          </span>
+        )}
+        {item.current ? (
+          <span 
+            class="text-gray-600 dark:text-gray-300 font-medium" 
+            aria-current="page"
+          >
+            {item.label}
+          </span>
+        ) : (
+          <a 
+            href={item.href} 
+            class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 hover:underline"
+          >
+            {item.label}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  /* Mejora la accesibilidad en dispositivos táctiles */
+  @media (hover: none) {
+    a {
+      text-decoration: underline;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    nav {
+      font-size: 0.875rem;
+    }
+  }
+</style>
