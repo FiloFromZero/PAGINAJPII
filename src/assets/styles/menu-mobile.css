@@ -1,0 +1,81 @@
+/* Estilos adicionales para mejorar la experiencia del menú en dispositivos móviles */
+
+/* Aumentar el área táctil en dispositivos móviles */
+@media (max-width: 767px) {
+  .dropdown button {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .dropdown-menu a {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.375rem;
+  }
+  
+  /* Añadir un indicador visual más claro para los menús desplegables */
+  .dropdown button {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 0.375rem;
+  }
+  
+  .dark .dropdown button {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Mejorar la visibilidad del menú desplegable */
+  .dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+    z-index: 50;
+  }
+  
+  .dark .dropdown-menu {
+    background-color: #1f2937;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Añadir efecto de feedback táctil */
+  .dropdown-menu a:active {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  .dark .dropdown-menu a:active {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+  
+  /* Mejorar la visibilidad del elemento activo */
+  .aw-link-active {
+    font-weight: 600;
+    color: #3b82f6 !important;
+  }
+  
+  .dark .aw-link-active {
+    color: #60a5fa !important;
+  }
+  
+  /* Añadir un indicador de scroll cuando el menú es largo */
+  .dropdown-menu::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+  
+  .dark .dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}

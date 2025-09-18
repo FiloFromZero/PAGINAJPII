@@ -101,14 +101,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 transition-transform duration-200 dropdown-arrow" />
                   </button>
                   <ul 
-                    class="dropdown-menu dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 hidden font-medium md:bg-white md:min-w-[200px] drop-shadow-xl"
+                    class="dropdown-menu dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 hidden font-medium md:bg-white md:min-w-[200px] drop-shadow-xl max-h-[70vh] overflow-y-auto"
                     id={`dropdown-${text?.replace(/\s+/g, '-').toLowerCase()}`}
                   >
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-3 md:py-2 px-5 block whitespace-no-wrap transition-colors duration-200',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
@@ -179,7 +179,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     
     dropdownButtons.forEach(button => {
       button.addEventListener('click', function(this: HTMLElement, e: Event) {
-        // Solo aplicar en móvil (pantallas menores a md)
+        // Aplicar en móvil (pantallas menores a md)
         if (window.innerWidth < 768) {
           e.preventDefault();
           e.stopPropagation();
@@ -209,6 +209,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             if (isHidden) {
               dropdown.classList.remove('hidden');
               arrow.classList.add('rotate-180');
+              
+              // Asegurar que el menú sea visible en la pantalla
+              setTimeout(() => {
+                const dropdownRect = dropdown.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                // Si el menú se sale de la pantalla, ajustar el scroll
+                if (dropdownRect.bottom > viewportHeight) {
+                  const scrollAmount = dropdownRect.bottom - viewportHeight + 20; // 20px de margen
+                  window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+                }
+              }, 50);
             } else {
               dropdown.classList.add('hidden');
               arrow.classList.remove('rotate-180');
@@ -234,6 +246,20 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           });
         }
       }
+    });
+    
+    // Mejorar la experiencia táctil en móviles
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('touchstart', function(this: HTMLElement) {
+        this.classList.add('bg-gray-100', 'dark:bg-gray-700');
+      });
+      
+      link.addEventListener('touchend', function(this: HTMLElement) {
+        setTimeout(() => {
+          this.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+        }, 100);
+      });
     });
     
     // Manejar cambios de tamaño de ventana
