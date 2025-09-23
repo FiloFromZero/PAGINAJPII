@@ -23,17 +23,7 @@ const rootMenu = [
   },
   {
     text: 'Documentos Oficiales',
-    href: '#',
-    links: [
-      {
-        text: 'Documentos Secretaría',
-        href: getPermalink('/documentos-oficiales/documentos-secretaria'),
-      },
-      {
-        text: 'Documentos Institucionales',
-        href: getPermalink('/documentos-oficiales/documentos-institucionales'),
-      },
-    ],
+    href: getPermalink('/documentos-oficiales'),
   },
   {
     text: 'Admisiones',

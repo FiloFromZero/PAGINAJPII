@@ -6,6 +6,7 @@ import WhatsAppButton from '~/components/WhatsAppButton.astro';
 
 const breadcrumbs = [
   { label: 'Inicio', href: '/' },
+  { label: 'Documentos Oficiales', href: '/documentos-oficiales' },
   { label: 'Documentos Institucionales', href: '/documentos-oficiales/documentos-institucionales', current: true }
 ];
 ---
@@ -49,7 +50,7 @@ const breadcrumbs = [
         </div>
         
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700">
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col">
             <div class="flex items-start mb-6">
               <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-4">
                 <Icon name="tabler:book-2" class="w-6 h-6 text-green-600" />
@@ -58,8 +59,8 @@ const breadcrumbs = [
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-tight">Manual de Convivencia 2025</h3>
               </div>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Manual de convivencia escolar actualizado para el año académico 2025</p>
-            <div class="text-center">
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">Manual de convivencia escolar actualizado para el año académico 2025</p>
+            <div class="text-center mt-auto">
               <a href="/files/MANUAL2025.pdf" target="_blank" 
                  class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium">
                 <Icon name="tabler:download" class="w-5 h-5 mr-2" />
@@ -68,7 +69,7 @@ const breadcrumbs = [
             </div>
           </div>
           
-          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700">
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col">
             <div class="flex items-start mb-6">
               <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
                 <Icon name="tabler:clock" class="w-6 h-6 text-blue-600" />
@@ -77,8 +78,8 @@ const breadcrumbs = [
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-tight">Horario Escolar</h3>
               </div>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Horario académico actualizado para el año 2025</p>
-            <div class="text-center">
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">Horario académico actualizado para el año 2025</p>
+            <div class="text-center mt-auto">
               <a href="/files/horario2025.pdf" target="_blank" 
                  class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
                 <Icon name="tabler:download" class="w-5 h-5 mr-2" />
@@ -87,7 +88,7 @@ const breadcrumbs = [
             </div>
           </div>
           
-          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700">
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col">
             <div class="flex items-start mb-6">
               <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4">
                 <Icon name="tabler:calendar-event" class="w-6 h-6 text-purple-600" />
@@ -96,9 +97,9 @@ const breadcrumbs = [
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-tight">Cronograma de Actividades 2025</h3>
               </div>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Cronograma oficial de actividades académicas y eventos institucionales para el año 2025</p>
-            <div class="text-center">
-              <a href="/files/CRONOGRAMA2025.pdf" target="_blank" 
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">Cronograma oficial de actividades académicas y eventos institucionales para el año 2025</p>
+            <div class="text-center mt-auto">
+              <a href="/files/cronograma2025.pdf" target="_blank" 
                  class="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 font-medium">
                 <Icon name="tabler:download" class="w-5 h-5 mr-2" />
                 Descargar PDF
