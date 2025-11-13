@@ -1,253 +1,295 @@
-# 🏫 Colegio Juan Pablo II - Sitio Web Oficial
+# 🚀 AstroWind
 
-Un sitio web moderno y completo para el Colegio Juan Pablo II, desarrollado con Astro y tecnologías web de vanguardia.
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
+     alt="AstroWind Lighthouse Score" width="100" height="358">
 
-## 📸 Vista Previa
+🌟 _Most *starred* & *forked* Astro theme in 2022 & 2023_. 🌟
 
-### Página Principal
-![Escudo del Colegio](src/assets/images/escudo.png)
+**AstroWind** is a free and open-source template to make your website using **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
 
-### Secciones Destacadas
+- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
+- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
+- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
+- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
+- ✅ Generation of **project sitemap** based on your routes.
+- ✅ **Open Graph tags** for social media sharing.
+- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
 
-#### 🌱 Granja Escolar
-![Granja Escolar](src/assets/images/Granja1.jpg)
-*Actividades de cultivo orgánico y cuidado de animales*
+<br>
 
-#### 📚 Biblioteca
-![Biblioteca](src/assets/images/BIBLIOTECA.webp)
-*Espacios de estudio y recursos educativos*
+<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astrowind-1.png" alt="AstroWind Theme Screenshot">
 
-#### 🔬 Laboratorio
-![Laboratorio](src/assets/images/LABORATORIO.webp)
-*Instalaciones científicas modernas*
+[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
+[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
+[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
+[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
+[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
 
-#### 💻 Sistemas
-![Sistemas](src/assets/images/SISTEMAS.webp)
-*Aulas de informática y tecnología*
+<br>
 
-#### 🎮 Ludoteca
-![Ludoteca](src/assets/images/LUDOTECA.webp)
-*Espacios recreativos y de aprendizaje lúdico*
+<details open>
+<summary>Table of Contents</summary>
 
-## 📋 Descripción
+- [Demo](#demo)
+- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
+- [Getting started](#getting-started)
+  - [Project structure](#project-structure)
+  - [Commands](#commands)
+  - [Configuration](#configuration)
+  - [Deploy](#deploy)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Related Projects](#related-projects)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
-Sitio web oficial del **Colegio Juan Pablo II** de Soacha, desarrollado con **[Astro 4.0](https://astro.build/)** y **[Tailwind CSS](https://tailwindcss.com/)**. Una plataforma moderna y responsive que proporciona información institucional, servicios educativos y recursos para la comunidad educativa.
+</details>
 
-## ✨ Características
+<br>
 
-- ✅ **Diseño Responsive** - Optimizado para dispositivos móviles y desktop
-- ✅ **Navegación Intuitiva** - Menú principal con submenús desplegables
-- ✅ **Modo Oscuro** - Soporte completo para tema claro y oscuro
-- ✅ **SEO Optimizado** - Meta tags y estructura optimizada para buscadores
-- ✅ **Rendimiento Alto** - Puntuaciones excelentes en PageSpeed Insights
-- ✅ **Accesibilidad** - Cumple con estándares de accesibilidad web
-- ✅ **Blog Integrado** - Sistema de noticias y publicaciones
-- ✅ **Formularios de Contacto** - Integración con servicios de email
+## Demo
 
-## 🌐 Estructura del Sitio Web
+📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
 
-### 📍 Páginas Principales
+<br>
 
-#### 🏠 **Inicio** (`/`)
-- Página principal con información destacada del colegio
-- Carousel de imágenes institucionales
-- Accesos rápidos a secciones importantes
-- Noticias y eventos recientes
+## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
 
-#### 🎓 **Admisiones** (`/admisiones`)
-Sección completa de procesos de admisión:
-- **Estudiantes Nuevos** (`/admisiones/estudiantes-nuevos`)
-  - Requisitos de ingreso
-  - Proceso de inscripción
-  - Documentación necesaria
-- **Estudiantes Antiguos** (`/admisiones/estudiantes-antiguos`)
-  - Renovación de matrícula
-  - Documentos para antiguos estudiantes
-- **Entrevista** (`/admisiones/entrevista`)
-  - Información sobre el proceso de entrevista
-  - Preparación y requisitos
-- **Prospecto Institucional** (`/admisiones/prospecto`)
-  - Información detallada de la institución
-  - Programas académicos y servicios
+We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
 
-#### 📋 **Servicios** (`/servicios`)
-- Servicios educativos ofrecidos
-- Programas extracurriculares
-- Servicios de apoyo estudiantil
-- Recursos tecnológicos
+[Share Your Feedback in Our Discussion!](https://github.com/onwidget/astrowind/discussions/392)
 
-#### 🌱 **Granja** (`/Granja`)
-- Proyecto educativo de la granja escolar
-- Actividades agropecuarias
-- Aprendizaje práctico y sostenible
+<br>
 
-#### 👥 **Nosotros** (`/nosotros`)
-- Historia institucional
-- Misión, visión y valores
-- Equipo directivo y docente
-- Infraestructura y instalaciones
+## Getting started
 
-#### 📞 **Contacto** (`/contacto`)
-- Información de contacto
-- Formulario de contacto
-- Ubicación y mapa
-- Horarios de atención
+**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
 
-#### 📄 **Documentos Oficiales**
-Sección con documentación institucional importante:
-- **Documentos de Secretaría** (`/documentos-oficiales/documentos-secretaria`)
-  - Formularios de matrícula
-  - Certificados y constancias
-  - Documentos administrativos
-- **Documentos Institucionales** (`/documentos-oficiales/documentos-institucionales`)
-  - Manual de convivencia
-  - PEI (Proyecto Educativo Institucional)
-  - Resoluciones y normativas
+Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
 
-### 📰 **Blog** (`/blog`)
-- Noticias institucionales
-- Eventos y actividades
-- Logros estudiantiles
-- Comunicados importantes
+In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
 
-## 🗂️ Estructura del Proyecto
+### Project structure
+
+Inside **AstroWind** template, you'll see the following folders and files:
 
 ```
 /
 ├── public/
-│   ├── files/                    # Documentos PDF oficiales
-│   │   ├── MANUAL2025.pdf
-│   │   ├── CRONOGRAMA2025.pdf
-│   │   ├── PROSPECTO_INSTITUCIONAL_2026.pdf
-│   │   └── ...
-│   ├── Carousel.js              # Script del carousel
+│   ├── _headers
 │   └── robots.txt
 ├── src/
 │   ├── assets/
-│   │   ├── images/              # Imágenes del sitio
-│   │   ├── styles/              # Estilos CSS
-│   │   └── favicons/            # Iconos del sitio
+│   │   ├── favicons/
+│   │   ├── images/
+│   │   └── styles/
+│   │       └── tailwind.css
 │   ├── components/
+│   │   ├── blog/
+│   │   ├── common/
+│   │   ├── ui/
 │   │   ├── widgets/
-│   │   │   ├── Header.astro     # Navegación principal
-│   │   │   └── Footer.astro     # Pie de página
-│   │   ├── ui/                  # Componentes de interfaz
-│   │   ├── blog/                # Componentes del blog
-│   │   ├── Carousel.astro       # Carousel de imágenes
-│   │   ├── Chatbot.astro        # Bot de chat
-│   │   └── WhatsAppButton.astro # Botón de WhatsApp
+│   │   │   ├── Header.astro
+│   │   │   └── ...
+│   │   ├── CustomStyles.astro
+│   │   ├── Favicons.astro
+│   │   └── Logo.astro
+│   ├── content/
+│   │   ├── post/
+│   │   │   ├── post-slug-1.md
+│   │   │   ├── post-slug-2.mdx
+│   │   │   └── ...
+│   │   └-- config.ts
 │   ├── layouts/
-│   │   ├── Layout.astro         # Layout principal
-│   │   ├── PageLayout.astro     # Layout de páginas
-│   │   └── MarkdownLayout.astro # Layout para markdown
+│   │   ├── Layout.astro
+│   │   ├── MarkdownLayout.astro
+│   │   └── PageLayout.astro
 │   ├── pages/
-│   │   ├── index.astro          # Página de inicio
-│   │   ├── admisiones/          # Sección de admisiones
-│   │   ├── documentos-oficiales/ # Documentos institucionales
-│   │   ├── [...blog]/           # Sistema de blog
+│   │   ├── [...blog]/
+│   │   │   ├── [category]/
+│   │   │   ├── [tag]/
+│   │   │   ├── [...page].astro
+│   │   │   └── index.astro
+│   │   ├── index.astro
+│   │   ├── 404.astro
+│   │   ├-- rss.xml.ts
 │   │   └── ...
-│   ├── utils/                   # Utilidades y helpers
-│   ├── config.yaml              # Configuración del sitio
-│   └── navigation.js            # Configuración de navegación
+│   ├── utils/
+│   ├── config.yaml
+│   └── navigation.js
 ├── package.json
-├── astro.config.mjs             # Configuración de Astro
-└── tailwind.config.cjs          # Configuración de Tailwind
+├── astro.config.mjs
+└── ...
 ```
 
-## 🚀 Instalación y Desarrollo
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-### Prerrequisitos
-- Node.js 18.17.1 o superior
-- npm o yarn
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-### Comandos
+Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
 
-| Comando               | Acción                                             |
+[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
+
+<br>
+
+### Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command               | Action                                             |
 | :-------------------- | :------------------------------------------------- |
-| `npm install`         | Instala las dependencias                           |
-| `npm run dev`         | Inicia servidor de desarrollo en `localhost:3000`  |
-| `npm run build`       | Construye el sitio para producción en `./dist/`   |
-| `npm run preview`     | Previsualiza la construcción localmente           |
-| `npm run format`      | Formatea el código con Prettier                   |
-| `npm run lint:eslint` | Ejecuta ESLint                                     |
+| `npm install`         | Installs dependencies                              |
+| `npm run dev`         | Starts local dev server at `localhost:3000`        |
+| `npm run build`       | Build your production site to `./dist/`            |
+| `npm run preview`     | Preview your build locally, before deploying       |
+| `npm run format`      | Format codes with Prettier                         |
+| `npm run lint:eslint` | Run Eslint                                         |
+| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
 
-### Instalación
+<br>
 
-1. **Clonar el repositorio**
-   ```bash
-   git clone [URL_DEL_REPOSITORIO]
-   cd Colegio_JPII
-   ```
+### Configuration
 
-2. **Instalar dependencias**
-   ```bash
-   npm install
-   ```
+Basic configuration file: `./src/config.yaml`
 
-3. **Iniciar servidor de desarrollo**
-   ```bash
-   npm run dev
-   ```
+```yaml
+site:
+  name: 'Example'
+  site: 'https://example.com'
+  base: '/' # Change this if you need to deploy to Github Pages, for example
+  trailingSlash: false # Generate permalinks with or without "/" at the end
 
-4. **Abrir en el navegador**
-   ```
-   http://localhost:3000
-   ```
+  googleSiteVerificationId: false # Or some value,
 
-## 🛠️ Tecnologías Utilizadas
+# Default SEO metadata
+metadata:
+  title:
+    default: 'Example'
+    template: '%s — Example'
+  description: 'This is the default meta description of Example website'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 'Example'
+    images:
+      - url: '~/assets/images/default.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@twitter_user'
+    site: '@twitter_user'
+    cardType: summary_large_image
 
-- **[Astro 4.0](https://astro.build/)** - Framework web moderno
-- **[Tailwind CSS](https://tailwindcss.com/)** - Framework de CSS utilitario
-- **[React](https://reactjs.org/)** - Componentes interactivos
-- **[TypeScript](https://www.typescriptlang.org/)** - Tipado estático
-- **[MDX](https://mdxjs.com/)** - Markdown con componentes JSX
-- **[Swiper](https://swiperjs.com/)** - Carousel de imágenes
-- **[Astro Icon](https://github.com/natemoo-re/astro-icon)** - Sistema de iconos
+i18n:
+  language: en
+  textDirection: ltr
 
-## 📱 Características Responsive
+apps:
+  blog:
+    isEnabled: true # If the blog will be enabled
+    postsPerPage: 6 # Number of posts per page
 
-El sitio está completamente optimizado para dispositivos móviles:
+    post:
+      isEnabled: true
+      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
 
-- **Menú hamburguesa** en dispositivos móviles
-- **Submenús siempre visibles** en responsive para mejor UX
-- **Imágenes optimizadas** para diferentes tamaños de pantalla
-- **Tipografía escalable** que se adapta al dispositivo
-- **Botones de acción** optimizados para touch
+    list:
+      isEnabled: true
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
 
-## 🎨 Personalización
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
 
-### Colores y Tema
-Los colores principales se pueden modificar en `tailwind.config.cjs`:
-- Verde institucional: `#16a34a`
-- Azul secundario: `#2563eb`
-- Modo oscuro completamente soportado
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
 
-### Navegación
-La estructura de navegación se configura en `src/navigation.js`:
-```javascript
-const rootMenu = [
-  { text: 'Inicio', href: '/' },
-  { text: 'Servicios', href: '/servicios' },
-  // ... más elementos
-];
+    isRelatedPostsEnabled: true # If a widget with related posts is to be displayed below each post
+    relatedPostsCount: 4 # Number of related posts to display
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 ```
 
-### Contenido
-- **Páginas**: Editar archivos `.astro` en `src/pages/`
-- **Componentes**: Modificar en `src/components/`
-- **Estilos**: Personalizar en `src/assets/styles/`
+<br>
 
-## 📧 Contacto y Soporte
+#### Customize Design
 
-- **Sitio Web**: [https://iejuanpabloiisoacha.edu.co](https://iejuanpabloiisoacha.edu.co)
-- **Facebook**: [@institutopsicopedagogicojuanpabloii](https://www.facebook.com/institutopsicopedagogicojuanpabloii)
-- **Instagram**: [@ipjp2](https://www.instagram.com/ipjp2)
-- **TikTok**: [@ipjuanpabloii](https://tiktok.com/@ipjuanpabloii)
+To customize Font families, Colors or more Elements refer to the following files:
 
-## 📄 Licencia
+- `src/components/CustomStyles.astro`
+- `src/assets/styles/tailwind.css`
 
-Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE.md` para más detalles.
+### Deploy
 
----
+#### Deploy to production (manual)
 
-**Desarrollado con ❤️ para la comunidad educativa del Colegio Juan Pablo II**
+You can create an optimized production build with:
+
+```shell
+npm run build
+```
+
+Now, your website is ready to be deployed. All generated files are located at
+`dist` folder, which you can deploy the folder to any hosting service you
+prefer.
+
+#### Deploy to Netlify
+
+Clone this repository on your own GitHub account and deploy it to Netlify:
+
+[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/onwidget/astrowind)
+
+#### Deploy to Vercel
+
+Clone this repository on your own GitHub account and deploy to Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonwidget%2Fastrowind)
+
+<br>
+
+## Frequently Asked Questions
+
+- Why?
+-
+-
+
+<br>
+
+## Related projects
+
+- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
+- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+
+## Contributing
+
+If you have any ideas, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
+That would be very useful for all of us and we would be happy to listen and take action.
+
+## Acknowledgements
+
+Initially created by [onWidget](https://onwidget.com) and maintained by a community of [contributors](https://github.com/onwidget/astrowind/graphs/contributors).
+
+## License
+
+**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
