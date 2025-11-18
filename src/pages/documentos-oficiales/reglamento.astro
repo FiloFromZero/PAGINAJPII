@@ -1,0 +1,75 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import WhatsAppButton from '~/components/WhatsAppButton.astro';
+
+const metadata = {
+  title: 'Reglamento Interno de Trabajo',
+};
+---
+
+<PageLayout metadata={metadata}>
+  <main>
+    <section class="px-4 md:px-6 py-10 sm:py-14 lg:py-18 mx-auto max-w-6xl">
+      <div class="mb-6">
+        <nav class="text-sm text-gray-600 dark:text-gray-300" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+              <a href="/" class="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                <Icon name="tabler:home" class="w-4 h-4 mr-1" />
+                Inicio
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <Icon name="tabler:chevron-right" class="w-4 h-4 mx-1" />
+                <a href="/documentos-oficiales" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Documentos Oficiales</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <Icon name="tabler:chevron-right" class="w-4 h-4 mx-1" />
+                <span class="text-gray-900 dark:text-white font-medium">Reglamento Interno de Trabajo</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <header class="mb-8 relative overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-50 via-white to-white dark:from-slate-800 dark:via-slate-800 dark:to-slate-900"></div>
+        <div class="relative px-6 py-8 md:px-10 md:py-12">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
+              <Icon name="tabler:file-text" class="w-7 h-7 text-red-600" />
+            </div>
+            <div class="flex-1">
+              <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Reglamento Interno de Trabajo</h1>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-800">
+        <iframe
+          src="/files/REGLAMENTO_INTERNO_JUAN_PABLO_II.pdf#toolbar=0&navpanes=0&scrollbar=0"
+          class="w-full h-[80vh]"
+          loading="lazy"
+          referrerpolicy="same-origin"
+        ></iframe>
+      </div>
+
+      <div class="flex justify-between items-center mt-6">
+        <a href="/documentos-oficiales" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+          <Icon name="tabler:arrow-left" class="w-5 h-5 mr-2" />
+          Volver a Documentos Oficiales
+        </a>
+        <span class="text-sm text-gray-500 dark:text-gray-400"></span>
+      </div>
+    </section>
+  </main>
+
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
+</PageLayout>
+
+<!-- Controles eliminados: solo título y visor -->
