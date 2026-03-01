@@ -42,6 +42,26 @@ export const footerData = {
       title: 'Website',
       links: rootMenu,
     },
+    {
+      title: 'Notificaciones Judiciales',
+      links: [
+        {
+          text: '📋 Información y Buzones',
+          href: getPermalink('/notificaciones-judiciales'),
+          ariaLabel: 'Información sobre notificaciones judiciales',
+        },
+        {
+          text: '✉️ notificacionesjudiciales@iejuanpabloiisoacha.edu.co',
+          href: getPermalink('/notificaciones-judiciales'),
+          ariaLabel: 'Ver información de noticaciones judiciales',
+        },
+        {
+          text: '✉️ pqrs@iejuanpabloiisoacha.edu.co',
+          href: getPermalink('/notificaciones-judiciales'),
+          ariaLabel: 'Ver información de PQRS',
+        },
+      ],
+    },
   ],
   /* secondaryLinks: [
     { text: 'Terminos', href: getPermalink('/terms') },

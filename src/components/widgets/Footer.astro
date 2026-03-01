@@ -29,12 +29,12 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
   <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-2 md:py-4">
-      <div class="col-span-12 lg:col-span-4">
+      <div class="col-span-12 lg:col-span-3">
         <div class="flex flex-col items-center justify-center mb-2">
           <p class="inline-block font-bold text-lg">Instituto Psicopedagógico</p>
           <p class="inline-block font-bold text-lg">Juan Pablo II</p>
           <Image class="!w-24 h-auto mt-4" src="~/assets/images/escudo.png" alt="Escudo JPII" />
-          <p class="inline-block text-sm mt-2">Carrera 7 No. 13 - 34 Soacha, Colombia</p>
+          <p class="inline-block text-sm mt-2 text-center">Carrera 7 No. 13 - 34 Soacha, Colombia</p>
         </div>
       </div>
       {
@@ -46,7 +46,7 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
                 {links.map(({ text, href, ariaLabel }) => (
                   <li class="mb-2">
                     <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out animate-text-hover"
+                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out animate-text-hover break-all leading-snug block"
                       href={href}
                       aria-label={ariaLabel}
                     >
@@ -59,12 +59,12 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
           </div>
         ))
       }
-      <div class="col-span-6 md:col-span-6 lg:col-span-6">
+      <div class="col-span-12 md:col-span-6 lg:col-span-5">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.5841763805913!2d-74.23544426806374!3d4.5637367982907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f7544462db7cf%3A0x506e6a0b8f7f5a6e!2sCra.%207%20%2313-34%2C%20Soacha%2C%20Cundinamarca!5e0!3m2!1ses!2sco!4v1726751001799!5m2!1ses!2sco" 
           width="100%" 
-          height="100%" 
-          style="border:0;" 
+          height="100%"
+          style="border:0; min-height: 160px;"
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade" 
