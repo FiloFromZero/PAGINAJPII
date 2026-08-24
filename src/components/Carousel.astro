@@ -144,7 +144,9 @@ const {
   class ProfessionalCarousel {
     constructor() {
       this.carousel = document.getElementById('carousel');
+      if (!this.carousel) return;
       this.inner = document.getElementById('carousel-inner');
+      if (!this.inner) return;
       this.prevBtn = document.getElementById('prevBtn');
       this.nextBtn = document.getElementById('nextBtn');
       this.paginationDotsContainer = document.getElementById('pagination-dots');
