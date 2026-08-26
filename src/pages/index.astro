@@ -49,12 +49,44 @@ const heroImage = imgPagoEnLinea.src;
         { src: Memoria.src, alt: 'Docentes' },
         { src: Regional.src, alt: 'Virtualidad' },
       ]}
+      showIndicators={false}
+      showProgress={false}
+      showArrows={false}
     />
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <a href="/admisiones" class="text-white text-4xl md:text-6xl font-bold text-center drop-shadow-lg animate-pulse"
-        >¡Matrículas Abiertas 2026!</a
-      >
+    <!-- Overlay con glassmorphism -->
+    <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+      <div class="pointer-events-auto text-center px-4">
+        <!-- Badge del año -->
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-6">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          <span class="text-white/90 text-sm font-semibold tracking-widest uppercase">Inscripciones 2027</span>
+        </div>
+
+        <!-- Título principal -->
+        <h2 class="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 leading-tight" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);">
+          ¡Matrículas<br class="sm:hidden" /> Abiertas!
+        </h2>
+
+        <!-- Subtítulo -->
+        <p class="text-white/80 text-base sm:text-lg md:text-xl max-w-lg mx-auto mb-8 font-light leading-relaxed" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+          Prepara el futuro de tu hijo con educación de calidad desde 1992
+        </p>
+
+        <!-- CTA Button -->
+        <a
+          href="/admisiones"
+          class="group inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full shadow-2xl hover:shadow-green-500/30 transition-all duration-500 hover:scale-105 hover:-translate-y-1"
+        >
+          <span>Inscríbete Ahora</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
     </div>
+
+    <!-- Difuminado inferior para transición suave al contenido -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
   </div>
   <Hero2
     tagline="Nueva Web!!"
@@ -244,7 +276,7 @@ const heroImage = imgPagoEnLinea.src;
     subtitle="Datos históricos de la prestación del servicio Juanpablino:"
     stats={[
       { title: 'Graduados', amount: '+1200' },
-      { title: 'Años de experiencia', amount: '33' },
+      { title: 'Años de experiencia', amount: '34' },
     ]}
     data-animate="animate-bounce-in"
   />
