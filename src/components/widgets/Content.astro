@@ -44,7 +44,7 @@ const {
   <div class="mx-auto max-w-7xl p-4 md:px-8">
     <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
       <div class="md:basis-1/2 self-center">
-        {content && <div class="mb-12 text-lg dark:text-slate-400 animate-text-hover" set:html={content} />}
+        {content && <div class={`mb-12 text-lg ${isDark ? 'text-emerald-100' : 'text-default dark:text-slate-300'}`} set:html={content} />}
 
         {
           callToAction && (
@@ -61,9 +61,10 @@ const {
           classes={{
             container: `gap-y-4 md:gap-y-8`,
             panel: 'max-w-none',
-            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
-            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            title: isDark ? 'text-lg font-semibold leading-6 text-white ml-2 rtl:ml-0 rtl:mr-2' : 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            description: isDark ? 'text-emerald-100 ml-2 rtl:ml-0 rtl:mr-2' : 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+            icon: isDark ? 'text-amber-400 w-6 h-6 flex-shrink-0' : 'text-primary w-6 h-6 flex-shrink-0',
+            action: isDark ? 'text-lg font-medium leading-6 text-white ml-2 rtl:ml-0 rtl:mr-2' : 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
           }}
         />
       </div>
@@ -75,13 +76,14 @@ const {
                 <Fragment set:html={image} />
               ) : (
                 <Image
-                  class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                  class={`mx-auto w-full ${image.class || 'rounded-xl shadow-soft'}`}
                   width={500}
                   height={500}
                   widths={[400, 768]}
                   sizes="(max-width: 768px) 100vw, 432px"
                   layout="responsive"
                   {...image}
+                  class={image.class ? `mx-auto ${image.class}` : 'mx-auto w-full rounded-xl shadow-soft'}
                   data-animate="animate-fade-in-up"
                 />
               )}

@@ -46,7 +46,7 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
                 {links.map(({ text, href, ariaLabel }) => (
                   <li class="mb-2">
                     <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out animate-text-hover break-all leading-snug block"
+                      class="text-muted hover:text-primary hover:underline dark:text-gray-400 dark:hover:text-white transition duration-150 ease-in-out break-all leading-snug block"
                       href={href}
                       aria-label={ariaLabel}
                     >

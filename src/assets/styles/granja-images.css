@@ -2,22 +2,16 @@
 
 /* Estilos base para todas las imágenes */
 .granja-image {
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: optimize-quality;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  filter: contrast(1.15) saturate(1.1) brightness(1.05);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  image-rendering: auto;
 }
 
-/* Efecto hover para imágenes */
+/* Efecto hover suave para imágenes */
 .granja-image:hover {
-  transform: scale(1.03);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  filter: contrast(1.2) saturate(1.15) brightness(1.1);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px -4px rgba(0, 0, 0, 0.12);
 }
 
 /* Estilos para imágenes en la galería */
@@ -34,8 +28,8 @@
   height: 12rem;
   object-fit: cover;
   object-position: center;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
 }
 
 /* Estilos para imágenes de fondo */
@@ -48,25 +42,7 @@
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.8;
-}
-
-/* Optimizaciones para diferentes formatos de imagen */
-.granja-image[src$=".webp"] {
-  filter: contrast(1.2) saturate(1.15) brightness(1.05);
-}
-
-.granja-image[src$=".jpg"],
-.granja-image[src$=".jpeg"] {
-  filter: contrast(1.25) saturate(1.2) brightness(1.05);
-}
-
-/* Optimizaciones para pantallas de alta densidad */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .granja-image {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
+  opacity: 0.85;
 }
 
 /* Optimizaciones para dispositivos móviles */

@@ -1,5 +1,5 @@
 ---
-import { UI } from 'astrowind:config';
+import { UI } from 'app:config';
 ---
 
 <script is:inline define:vars={{ defaultTheme: UI.theme }}>
@@ -114,8 +114,101 @@ import { UI } from 'astrowind:config';
       document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
     });
 
-    // Scroll functionality removed to make navbar static
+    // Scroll reveal animation engine
+    initScrollAnimations();
   };
+
+  let scrollObserver = null;
+
+  const initScrollAnimations = function () {
+    if (scrollObserver) {
+      scrollObserver.disconnect();
+      scrollObserver = null;
+    }
+
+    const elements = document.querySelectorAll('[data-animate]');
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      elements.forEach((el) => el.classList.add('in-view'));
+      return;
+    }
+
+    scrollObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            const delay = el.getAttribute('data-animate-delay');
+            if (delay) {
+              el.style.transitionDelay = `${parseInt(delay, 10)}ms`;
+            }
+            el.classList.add('in-view');
+          } else {
+            // Permite que la animación se repita fluidamente al scrollear hacia arriba o hacia abajo
+            const rect = entry.boundingClientRect;
+            // Solo resetear si está fuera de la pantalla
+            if (rect.top >= window.innerHeight || rect.bottom <= 0) {
+              el.style.transitionDelay = '0ms';
+              el.classList.remove('in-view');
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.05,
+        rootMargin: '15px 0px -15px 0px',
+      }
+    );
+
+    elements.forEach((el) => {
+      scrollObserver.observe(el);
+    });
+  };
+
+  const updateScrollProgress = function () {
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollHeight > 0 ? Math.min(Math.max(scrollTop / scrollHeight, 0), 1) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+  };
+
+  const initTiltEffects = function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ('ontouchstart' in window) return;
+
+    const cards = document.querySelectorAll('[data-tilt]');
+    cards.forEach((card) => {
+      let bounds = null;
+      const onMouseEnter = () => {
+        bounds = card.getBoundingClientRect();
+        card.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease';
+        card.style.willChange = 'transform';
+      };
+      const onMouseMove = (e) => {
+        if (!bounds) bounds = card.getBoundingClientRect();
+        const mouseX = e.clientX - bounds.left;
+        const mouseY = e.clientY - bounds.top;
+        const xPct = (mouseX / bounds.width - 0.5) * 2;
+        const yPct = (mouseY / bounds.height - 0.5) * 2;
+        const tiltX = -yPct * 5;
+        const tiltY = xPct * 5;
+        card.style.transform = `perspective(800px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+      };
+      const onMouseLeave = () => {
+        bounds = null;
+        card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      };
+
+      card.addEventListener('mouseenter', onMouseEnter);
+      card.addEventListener('mousemove', onMouseMove);
+      card.addEventListener('mouseleave', onMouseLeave);
+    });
+  };
+
   const onPageShow = function () {
     document.documentElement.classList.add('motion-safe:scroll-smooth');
     const elem = document.querySelector('[data-aw-toggle-menu]');
@@ -126,14 +219,29 @@ import { UI } from 'astrowind:config';
     document.getElementById('header')?.classList.remove('h-screen');
     document.getElementById('header')?.classList.remove('expanded');
     document.querySelector('#header nav')?.classList.add('hidden');
+    initScrollAnimations();
+    initTiltEffects();
+    updateScrollProgress();
   };
 
-  window.onload = onLoad;
+  window.onload = () => {
+    onLoad();
+    initTiltEffects();
+  };
   window.onpageshow = onPageShow;
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
   document.addEventListener('astro:after-swap', () => {
     initTheme();
     onLoad();
     onPageShow();
+    initTiltEffects();
+    updateScrollProgress();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initScrollAnimations();
+    initTiltEffects();
+    updateScrollProgress();
   });
 </script>

@@ -33,7 +33,6 @@ const rootMenu = [
 
 export const headerData = {
   links: rootMenu,
-  // actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
 };
 
 export const footerData = {
@@ -76,8 +75,7 @@ export const footerData = {
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/ipjp2' },
     { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://tiktok.com/@ipjuanpabloii' },
   ],
-  /*footNote: `
-    <img class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm" alt="onWidget logo" loading="lazy"></img>
-    Made by <a class="text-blue-600 underline dark:text-muted" >Bindisoft</a> · All rights reserved.
-  `,*/
+  footNote: `
+    <span class="text-sm text-gray-500 dark:text-gray-400">© ${new Date().getFullYear()} Instituto Psicopedagógico Juan Pablo II. Todos los derechos reservados.</span>
+  `,
 };

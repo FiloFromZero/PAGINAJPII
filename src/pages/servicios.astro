@@ -3,199 +3,242 @@ import Classrooms from '~/components/widgets/Classrooms.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Headline from '~/components/ui/Headline.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import WhatsAppButton from '~/components/WhatsAppButton.astro';
 import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
 
 const metadata = {
-  title: 'Servicios',
+  title: 'Servicios Educativos | Instituto Psicopedagógico Juan Pablo II',
+  description: 'Conoce nuestra oferta académica: preescolar, primaria, bachillerato, aulas especializadas, laboratorios y modelo de formación integral en Soacha.',
 };
 
 // Configuración de breadcrumbs
 const breadcrumbItems = [
   { label: 'Inicio', href: '/' },
-  { label: 'Servicios', current: true }
+  { label: 'Servicios', current: true },
 ];
 ---
 
 <Layout metadata={metadata}>
   <!-- Breadcrumbs Section -->
-  <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+  <div class="relative z-20 bg-gray-50/80 dark:bg-slate-900/60 border-b border-gray-200/80 dark:border-gray-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
       <Breadcrumbs items={breadcrumbItems} />
     </div>
   </div>
 
   <!-- Hero Widget ******************* -->
-
   <Hero
-    tagline="Servicios"
+    tagline="Propuesta Educativa"
     title="Servicios para Crecer y Aprender"
-    subtitle="En el Instituto Psicopedagógico Juan Pablo II, contamos con aulas especiales que nos permiten brindar formación integral a nuestros educandos, a través de la lúdica, la interacción y el desarrollo de sus habilidades en diferentes campos."
+    subtitle="En el Instituto Psicopedagógico Juan Pablo II brindamos una formación integral centrada en el ser humano, complementada con espacios vivenciales, lúdicos y tecnológicos que potencian el desarrollo de habilidades en cada etapa del educando."
     image={{
       src: '~/assets/images/SERVICIOS.png',
-      alt: 'servicios',
-      layout: 'cover',
+      alt: 'Servicios Educativos Juan Pablo II',
+      class: 'mx-auto block rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 max-h-[500px] w-auto max-w-full object-contain bg-white/95 dark:bg-slate-900/60 p-3 sm:p-5',
     }}
   />
 
-  <!-- Classrooms Widget ******************* -->
-
+  <!-- Classrooms Widget (Aulas Especiales) ******************* -->
   <Classrooms
-    title="Más Allá del Aula"
-    information="En el Instituto Psicopedagógico Juan Pablo II, ofrecemos un entorno de aprendizaje enriquecedor con aulas especialmente diseñadas para fomentar el desarrollo integral de nuestros estudiantes. A través del juego, la interacción y la exploración, cultivamos sus habilidades en diversas áreas, brindándoles una educación completa y personalizada."
+    isDark={true}
+    title="Más Allá del Aula Tradicional"
+    information="Diseñamos entornos de aprendizaje activo que despiertan la curiosidad, el ingenio y el trabajo en equipo. A través de la interacción práctica y la exploración sensorial, cultivamos talentos individuales en un ambiente motivador y seguro."
     items={[
       {
         image: '~/assets/images/BIBLIOTECA.webp',
-        title: 'Biblioteca',
+        title: 'Biblioteca y Sala de Lectura',
         description:
-          'Nuestra biblioteca cuenta con una amplia variedad de libros y recursos educativos para fomentar la lectura y el aprendizaje en nuestros estudiantes.',
+          'Espacio acogedor con amplio catálogo bibliográfico y recursos didácticos para incentivar el hábito lector, la indagación y la comprensión crítica.',
       },
       {
         image: '~/assets/images/LABORATORIO.webp',
-        title: 'Laboratorio',
+        title: 'Laboratorio Científico',
         description:
-          'Nuestro laboratorio está equipado con herramientas y materiales especializados para que los estudiantes puedan realizar experimentos y explorar conceptos científicos de forma práctica.',
+          'Dotado con instrumentos y materiales prácticos para experimentar, observar hipótesis y descubrir la ciencia de forma tangible y segura.',
       },
       {
         image: '~/assets/images/LUDOTECA.webp',
-        title: 'Ludoteca',
+        title: 'Ludoteca y Expresión',
         description:
-          'En nuestra ludoteca, los estudiantes pueden disfrutar de juegos y actividades lúdicas que fomentan el aprendizaje, la creatividad y el desarrollo de habilidades sociales.',
+          'Ambiente lúdico-pedagógico pensado para desarrollar la psicomotricidad, las habilidades socioemocionales y la creatividad a través del juego.',
       },
       {
         image: '~/assets/images/SISTEMAS.webp',
-        title: 'Sala de sistemas',
+        title: 'Sala de Sistemas & TIC',
         description:
-          'Nuestra sala de sistemas está equipada con computadoras y software especializado para que los estudiantes puedan desarrollar habilidades digitales y explorar el mundo de la tecnología.',
+          'Equipada con equipos de cómputo y plataformas digitales para el fortalecimiento de competencias tecnológicas y pensamiento algorítmico.',
       },
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#074628] via-[#0A5C36] to-[#063920] dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"></div>
     </Fragment>
   </Classrooms>
 
-  <!-- Features2 Widget ************** -->
+  <!-- Features2 Widget (Niveles y Grados) ************** -->
+  <section class="py-12 md:py-16 bg-gradient-subtle">
+    <Features2
+      title="Niveles de Formación Académica"
+      subtitle="Acompañamos a nuestros educandos desde sus primeros pasos hasta su proyección profesional y ciudadana con un enfoque pedagógico personalizado y basado en valores."
+      columns={3}
+      items={[
+        {
+          title: 'PREESCOLAR (Educación Inicial)',
+          description:
+            'Sentamos las bases del aprendizaje a través del juego, la estimulación sensorial, el desarrollo del lenguaje y la socialización armónica.',
+          icon: 'tabler:baby-carriage',
+        },
+        {
+          title: 'BÁSICA PRIMARIA (1° - 5°)',
+          description:
+            'Consolidamos destrezas lógico-matemáticas, comprensión lectora, expresión oral y escrita, exploración del entorno y trabajo cooperativo.',
+          icon: 'tabler:book',
+        },
+        {
+          title: 'SECUNDARIA Y MEDIA (6° - 11°)',
+          description:
+            'Profundizamos en competencias analíticas, científicas y técnicas, preparando al joven para afrontar las pruebas de Estado y su ingreso a la educación superior.',
+          icon: 'tabler:school',
+        },
+      ]}
+    />
+  </section>
 
-  <Features2
-    title="Grados y Asignaturas"
-    subtitle="En el Instituto Psicopedagógico Juan Pablo II, ofrecemos una formación integral y personalizada para estudiantes con necesidades educativas especiales. Nuestros grados abarcan desde preescolar hasta bachillerato, con un enfoque en el desarrollo de habilidades académicas, socioemocionales y de autonomía."
-    columns={3}
-    items={[
-      {
-        title: 'PRE ESCOLAR',
-        description:
-          'En esta etapa inicial, sentamos las bases para el aprendizaje a través del juego, la exploración y la estimulación temprana. Trabajamos áreas como lenguaje, motricidad, socialización y desarrollo cognitivo, preparando a los niños para los desafíos futuros.',
-        icon: 'tabler:baby-carriage',
-      },
-      {
-        title: 'PRIMARIA (1° - 5°)',
-        description:
-          'Durante la primaria, consolidamos los conocimientos básicos en áreas clave como matemáticas, lectura, escritura, ciencias sociales y naturales. Fomentamos el pensamiento lógico, la creatividad y la curiosidad, preparando a los estudiantes para los siguientes niveles educativos.',
-        icon: 'tabler:book',
-      },
-      {
-        title: 'BACHILLERATO (6° - 11°)',
-        description:
-          'En el bachillerato, profundizamos en las áreas académicas, preparando a los estudiantes para la educación superior y el mundo laboral. Impulsamos el pensamiento crítico, la investigación y la resolución de problemas, brindando una formación integral en diversas disciplinas.',
-        icon: 'tabler:school',
-      },
-    ]}
-  />
+  <!-- Separador / Encabezado de Áreas de Aprendizaje -->
+  <div class="max-w-4xl mx-auto px-4 pt-16 pb-4 text-center" data-animate="animate-fade-in-up">
+    <span class="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary dark:bg-emerald-500/20 dark:text-emerald-300 mb-3">
+      Plan de Estudios Integral
+    </span>
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading tracking-tight mb-4">
+      Áreas de Aprendizaje y Desarrollo
+    </h2>
+    <p class="text-lg text-muted dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      Estructuramos nuestro plan curricular en dos grandes núcleos para asegurar el balance perfecto entre razonamiento cognitivo, rigor analítico y formación humana sensible.
+    </p>
+  </div>
 
-  <!-- Content Widget **************** -->
-
+  <!-- Content Widget 1: Eje Humanístico y Lógico **************** -->
   <Content
     classes={{
-      container: 'mt-0',
+      container: 'pt-8 md:pt-12',
     }}
     isReversed
+    title="Núcleo Humanístico y Pensamiento Lógico"
+    subtitle="Fortaleciendo la capacidad reflexiva, la precisión numérica y la apertura intercultural."
     items={[
       {
-        title: 'Matemáticas',
+        title: 'Matemáticas y Razonamiento',
         description:
-          'Desarrollamos habilidades de razonamiento lógico, resolución de problemas y pensamiento abstracto a través del estudio de números, operaciones, geometría y álgebra.',
+          'Cálculo, lógica cuantitativa y resolución de problemas cotidianos mediante el análisis espacial, geométrico y algebraico.',
         icon: 'tabler:calculator',
       },
       {
-        title: 'Lectura',
+        title: 'Lectura Crítica',
         description:
-          'Fomentamos el amor por la lectura y la comprensión de textos, ampliando el vocabulario y desarrollando habilidades de interpretación y análisis crítico.',
+          'Comprensión profunda de textos, interpretación de contextos y desarrollo del hábito lector transformador.',
         icon: 'tabler:book-2',
       },
       {
-        title: 'Escritura',
+        title: 'Producción Textual y Escritura',
         description:
-          'Cultivamos la expresión escrita, la creatividad y la comunicación efectiva a través de la producción de textos claros, coherentes y persuasivos.',
+          'Redacción coherente, ortografía aplicada y capacidad argumentativa para comunicar ideas con claridad.',
         icon: 'tabler:pencil',
       },
       {
-        title: 'Inglés',
+        title: 'Inglés como Segunda Lengua',
         description:
-          'Abrimos las puertas a la comunicación global y el acceso a nuevas culturas y oportunidades a través del aprendizaje del idioma inglés, tanto en su forma oral como escrita.',
+          'Inmersión progresiva en destrezas de habla, escucha y lectura para interactuar en un contexto global.',
         icon: 'tabler:language',
       },
       {
-        title: 'Historia',
+        title: 'Historia y Ciencias Sociales',
         description:
-          'Exploramos el pasado para comprender el presente y construir el futuro, analizando eventos, personajes y procesos históricos que han moldeado nuestra sociedad.',
+          'Comprensión del devenir histórico, identidad nacional, geografía y análisis de la sociedad contemporánea.',
         icon: 'tabler:history',
       },
     ]}
     image={{
       src: '~/assets/images/SERVICIOS1.webp',
-      alt: 'Asignaturas 1',
-      class: 'w-3/4 mx-auto',
+      alt: 'Estudiantes en actividades de aprendizaje',
+      class: 'rounded-2xl shadow-xl border-2 border-primary/20 hover:scale-[1.02] transition-transform duration-500 w-full max-w-md mx-auto',
     }}
   />
 
-  <!-- Content Widget **************** -->
-
+  <!-- Content Widget 2: Eje Científico y Artístico **************** -->
   <Content
     classes={{
-      container: 'mt-0',
+      container: 'pt-8 md:pt-16',
     }}
-    isAfterContent
+    title="Núcleo Científico, Creativo y Ciudadano"
+    subtitle="Despertando el espíritu investigativo, la sensibilidad artística y el compromiso con la comunidad."
     items={[
       {
-        title: 'Lenguaje',
+        title: 'Comunicación y Lenguaje',
         description:
-          'Dominamos las herramientas de la comunicación oral y escrita, desarrollando habilidades de expresión, comprensión y análisis crítico del lenguaje en todas sus formas.',
+          'Uso ético y elocuente de la palabra, oratoria y expresión asertiva en público.',
         icon: 'tabler:message-2',
       },
       {
-        title: 'Artes',
+        title: 'Artes Plásticas y Música',
         description:
-          'Despertamos la creatividad, la sensibilidad y la expresión artística a través de la exploración de diversas disciplinas como la música, la pintura, el teatro y la danza.',
+          'Exploración de la sensibilidad estética, pintura, ritmo y apreciación cultural de distintas épocas.',
         icon: 'tabler:palette',
       },
       {
-        title: 'Biología',
+        title: 'Biología y Educación Ambiental',
         description:
-          'Descubrimos los secretos de la vida y la naturaleza, estudiando los seres vivos, sus procesos y su interacción con el entorno.',
+          'Estudio de los seres vivos, cuidado de la biodiversidad y proyectos ecológicos de conservación.',
         icon: 'tabler:leaf',
       },
       {
-        title: 'Química',
+        title: 'Química Experimental',
         description:
-          'Analizamos la composición, estructura y propiedades de la materia, comprendiendo las reacciones químicas y su impacto en el mundo que nos rodea.',
+          'Comportamiento de la materia, leyes de la transformación y aplicaciones científicas en el entorno.',
         icon: 'tabler:flask',
       },
       {
-        title: 'Ética',
+        title: 'Ética y Convivencia Ciudadana',
         description:
-          'Reflexionamos sobre los valores, principios morales y dilemas éticos que guían nuestras acciones, fomentando la toma de decisiones responsables y el respeto hacia los demás.',
+          'Dilemas éticos, toma responsable de decisiones, respeto a la diversidad y convivencia en paz.',
         icon: 'tabler:mood-heart',
       },
     ]}
     image={{
       src: '~/assets/images/SERVICIOS2.webp',
-      alt: 'Asignaturas 2',
+      alt: 'Talleres formativos y científicos',
+      class: 'rounded-2xl shadow-xl border-2 border-primary/20 hover:scale-[1.02] transition-transform duration-500 w-full max-w-md mx-auto',
     }}
   />
 
-  <!-- Content Widget **************** -->
+  <!-- Call to Action Section **************** -->
+  <section class="py-12 md:py-16" data-animate="animate-fade-in-up">
+    <CallToAction
+      title="¿Listo para dar el siguiente paso en la educación de tus hijos?"
+      subtitle="Te invitamos a programar una visita guiada para conocer nuestras sedes, dialogar con los directivos y conocer nuestro proceso de admisión."
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Proceso de Admisiones',
+          href: '/admisiones',
+          icon: 'tabler:arrow-right',
+        },
+        {
+          text: 'Contactar por WhatsApp',
+          href: 'https://wa.me/573196721410?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20educativos',
+          icon: 'tabler:brand-whatsapp',
+          target: '_blank',
+        },
+      ]}
+    >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-emerald-50/70 dark:bg-slate-900/60 rounded-3xl border border-primary/10 dark:border-slate-800"></div>
+      </Fragment>
+    </CallToAction>
+  </section>
 
-  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />
+  <!-- WhatsApp Floating Button -->
+  <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios educativos." />
 </Layout>

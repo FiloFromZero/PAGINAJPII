@@ -94,22 +94,23 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button 
                     type="button" 
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center w-full justify-between md:justify-start"
+                    class="group relative px-3.5 py-2 mx-1 rounded-lg flex items-center font-medium transition-all duration-200 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-emerald-400 hover:bg-emerald-50/70 dark:hover:bg-slate-800/80 hover:-translate-y-0.5 w-full justify-between md:justify-start"
                     data-dropdown-toggle={`dropdown-${text?.replace(/\s+/g, '-').toLowerCase()}`}
                   >
-                    {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 transition-transform duration-200 dropdown-arrow" />
+                    <span>{text}</span>
+                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-1 rtl:ml-0 rtl:mr-1 transition-transform duration-200 group-hover:rotate-180 dropdown-arrow text-slate-400 group-hover:text-primary dark:group-hover:text-emerald-400" />
+                    <span class="absolute bottom-0.5 left-3 right-3 h-[2px] bg-primary dark:bg-emerald-400 rounded-full transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 origin-center"></span>
                   </button>
                   <ul 
-                    class="dropdown-menu dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white md:min-w-[200px] drop-shadow-xl max-h-[70vh] overflow-y-auto"
+                    class="dropdown-menu dark:md:bg-dark rounded-xl md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white md:min-w-[210px] drop-shadow-xl max-h-[70vh] overflow-y-auto border border-gray-100 dark:border-gray-800 p-1.5"
                     id={`dropdown-${text?.replace(/\s+/g, '-').toLowerCase()}`}
                   >
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-3 md:py-2 px-5 block whitespace-no-wrap transition-colors duration-200',
-                            { 'aw-link-active': href2 === currentPath },
+                            'rounded-lg md:hover:bg-emerald-50 hover:text-primary dark:hover:text-emerald-300 dark:hover:bg-slate-800/80 py-2.5 px-4 block whitespace-nowrap transition-all duration-200 hover:translate-x-1 font-medium',
+                            { 'text-primary dark:text-emerald-400 bg-emerald-50/60 dark:bg-slate-800/50 nav-link-active': href2 === currentPath },
                           ]}
                           href={href2}
                         >
@@ -122,12 +123,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center',
-                    { 'aw-link-active': href === currentPath },
+                    'group relative px-3.5 py-2 mx-1 rounded-lg flex items-center font-medium transition-all duration-200 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-emerald-400 hover:bg-emerald-50/70 dark:hover:bg-slate-800/80 hover:-translate-y-0.5',
+                    { 
+                      'text-primary dark:text-emerald-400 bg-emerald-50/80 dark:bg-emerald-950/40 nav-link-active': href === currentPath 
+                    },
                   ]}
                   href={href}
                 >
-                  {text}
+                  <span>{text}</span>
+                  <span class:list={[
+                    'absolute bottom-0.5 left-3 right-3 h-[2px] bg-primary dark:bg-emerald-400 rounded-full transition-transform duration-300 transform origin-center',
+                    href === currentPath ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  ]}></span>
                 </a>
               )}
             </li>

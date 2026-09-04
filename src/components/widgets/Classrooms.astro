@@ -23,17 +23,17 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
-  <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
+  <div class="flex flex-col lg:justify-between lg:flex-row mb-8" data-animate="animate-fade-in-up">
     {title && (
       <div class="md:max-w-sm">
         <h2
-          class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2"
+          class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2 text-white dark:text-white"
           set:html={title}
         />
       </div>
     )}
 
-    {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
+    {information && <p class="text-emerald-100 dark:text-slate-300 text-base lg:text-base lg:max-w-md leading-relaxed" set:html={information} />}
   </div>
   <Grid items={items} />
 </WidgetWrapper>

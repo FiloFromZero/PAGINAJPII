@@ -35,20 +35,20 @@ const {
     >
       {items.map(({ title, description, icon, image, callToAction, classes: itemClasses = {} }, index) => (
         <div data-animate="animate-fade-in-up" data-animate-delay={index * 100}>
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+          <div class={twMerge('flex flex-row max-w-md group cursor-pointer transition-all duration-200', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (
                 <Icon
                   name={icon || defaultIcon}
-                  class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2 animate-fade-in-up animate-jump-in animate-delay-300', defaultIconClass, itemClasses?.icon)}
+                  class={twMerge('w-7 h-7 mr-2 rtl:mr-0 rtl:ml-2 transition-transform duration-300 ease-out group-hover:scale-125 group-hover:rotate-6 hover:scale-135 hover:rotate-12', defaultIconClass, itemClasses?.icon)}
                 />
               )}
             </div>
             <div class="mt-0.5">
-              {title && <h3 class={twMerge('text-xl font-bold animate-text-hover', titleClass, itemClasses?.title)}>{title}</h3>}
+              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
               {description && (
                 <p
-                  class={twMerge(`${title ? 'mt-3' : ''} text-muted animate-text-hover`, descriptionClass, itemClasses?.description)}
+                  class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
                   set:html={description}
                 />
               )}
@@ -67,7 +67,6 @@ const {
                      widths={[400, 600, 800, 1200, 1600, 2000, 2400, 3000]}
                      layout="constrained"
                      aspectRatio="1:1"
-                     style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: optimize-quality; transform: translateZ(0); backface-visibility: hidden; filter: contrast(1.1) saturate(1.1) sharpen(1px);"
                    />
                 </div>
               )}

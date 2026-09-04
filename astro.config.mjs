@@ -9,7 +9,7 @@ import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 
-import astrowind from './vendor/integration';
+import jpiiIntegration from './vendor/integration';
 import netlify from '@astrojs/netlify/functions';
 
 // Importar la integración de React
@@ -81,7 +81,7 @@ export default defineConfig({
       SVG: false,
       Logger: 1,
     }),
-    astrowind({
+    jpiiIntegration({
       config: './src/config.yaml',
     }),
   ],

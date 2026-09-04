@@ -10,13 +10,13 @@ export interface Props {
 const { image, title, description } = Astro.props;
 ---
 
-<article class="mb-6 transition">
-  <div class="relative md:h-64 bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6">
+<article class="group relative flex flex-col h-full bg-white/10 dark:bg-slate-900/60 backdrop-blur-md rounded-2xl overflow-hidden border border-white/15 dark:border-slate-700/50 shadow-soft hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" data-animate="animate-fade-in-up" data-tilt>
+  <div class="relative h-52 sm:h-56 overflow-hidden">
     {
       image && (
         <Image
           src={image}
-          class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           widths={[400, 900]}
           width={400}
           sizes="(max-width: 900px) 400px, 900px"
@@ -28,11 +28,21 @@ const { image, title, description } = Astro.props;
         />
       )
     }
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/90 text-white backdrop-blur-sm shadow-sm">
+        Espacio Especializado
+      </span>
+    </div>
   </div>
 
-  <h3 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
-    {title}
-  </h3>
+  <div class="flex-1 p-5 sm:p-6 flex flex-col justify-between">
+    <div>
+      <h3 class="text-xl sm:text-2xl font-bold leading-tight mb-2.5 font-heading text-white group-hover:text-emerald-300 transition-colors">
+        {title}
+      </h3>
 
-  <p class="text-muted dark:text-slate-400 text-lg">{description}</p>
+      <p class="text-emerald-100/90 dark:text-slate-300 text-sm sm:text-base leading-relaxed">{description}</p>
+    </div>
+  </div>
 </article>

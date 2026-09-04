@@ -7,12 +7,14 @@ import WhatsAppButton from '~/components/WhatsAppButton.astro';
 const breadcrumbs = [
   { label: 'Inicio', href: '/' },
   { label: 'Admisiones', href: '/admisiones' },
-  { label: 'Estudiantes Nuevos', href: '/admisiones/estudiantes-nuevos', current: true }
+  { label: 'Estudiantes Nuevos', href: '/admisiones/estudiantes-nuevos', current: true },
 ];
 ---
 
-<PageLayout metadata={{ title: "Estudiantes Nuevos - Admisiones Colegio Juan Pablo II" }}>
-  <main class="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+<PageLayout metadata={{ title: 'Estudiantes Nuevos - Admisiones Colegio Juan Pablo II' }}>
+  <main
+    class="min-h-screen bg-gradient-to-br from-emerald-50/40 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+  >
     <!-- Breadcrumbs -->
     <div class="bg-gray-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -21,95 +23,127 @@ const breadcrumbs = [
     </div>
 
     <!-- Hero Section -->
-    <section class="relative py-20 overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-green-600/10 to-blue-600/10"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-          <Icon name="tabler:user-plus" class="w-20 h-20 mx-auto text-green-600 mb-6" />
+    <section class="relative py-16 sm:py-20 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-animate="animate-fade-in-up">
+        <div class="mb-6">
+          <div
+            class="w-20 h-20 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 flex items-center justify-center mb-6"
+          >
+            <Icon name="tabler:user-plus" class="w-10 h-10 text-primary dark:text-emerald-400" />
+          </div>
         </div>
-        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-          Estudiantes <span class="text-green-600">Nuevos</span>
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold font-heading text-gray-900 dark:text-white mb-6 leading-tight"
+        >
+          Estudiantes <span class="text-primary dark:text-emerald-400">Nuevos</span>
         </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
           Proceso de admisión y requisitos para estudiantes que ingresan por primera vez a nuestra institución
         </p>
       </div>
     </section>
 
     <!-- Estudiantes Nuevos Section -->
-    <section id="estudiantes-nuevos" class="py-20">
+    <section id="estudiantes-nuevos" class="py-12 sm:py-16 lg:py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-12 lg:mb-16">
-            <!-- Left Column: Document Card and Form -->
-            <div class="space-y-8">
-              <!-- Document Card -->
-              <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-6 sm:p-8 hover:shadow-2xl transition-all duration-300">
-                <div class="flex items-center mb-6">
-                  <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center mr-4">
-                    <Icon name="tabler:user-plus" class="w-8 h-8 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Guía Estudiantes Nuevos</h3>
-                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Proceso de admisión para nuevos estudiantes</p>
-                  </div>
+          <!-- Left Column: Document Card and Form -->
+          <div class="space-y-8">
+            <!-- Document Card -->
+            <div
+              class="bg-white dark:bg-slate-800 rounded-2xl shadow-soft hover:shadow-medium border border-gray-200 dark:border-slate-700 p-6 sm:p-8 transition-all duration-300"
+              data-animate="animate-fade-in-up"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-14 h-14 sm:w-16 sm:h-16 bg-emerald-100 dark:bg-emerald-950/40 rounded-xl flex items-center justify-center mr-4 border border-emerald-200 dark:border-emerald-800/40"
+                >
+                  <Icon name="tabler:user-plus" class="w-7 h-7 sm:w-8 sm:h-8 text-primary dark:text-emerald-400" />
                 </div>
-                
-                <div class="text-center">
-                  <a
-                    href="/files/Nuevos.pdf"
-                    target="_blank"
-                    class="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 font-medium text-sm sm:text-base"
-                  >
-                    <Icon name="tabler:download" class="w-4 h-4 sm:w-5 sm:h-5" />
-                    Descargar Guía
-                  </a>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 dark:text-white">
+                    Guía Estudiantes Nuevos
+                  </h3>
+                  <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+                    Proceso de admisión para nuevos estudiantes
+                  </p>
                 </div>
               </div>
 
-              <!-- Formulario ZIGMA -->
-              <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-6 sm:p-8 hover:shadow-2xl transition-all duration-300">
-                <div class="flex items-center mb-6">
-                  <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mr-4">
-                    <Icon name="tabler:forms" class="w-8 h-8 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Formulario de Inscripción</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Sistema ZIGMA para estudiantes nuevos</p>
-                  </div>
-                </div>
-                
-                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
-                  Complete el formulario de inscripción en línea a través de nuestro sistema ZIGMA para iniciar el proceso de admisión.
-                </p>
-                
-                <div class="text-center">
-                  <a
-                    href="https://www.iejuanpabloii.notas.zigmadatos.org/index.php/admisiones-2024"
-                    target="_blank"
-                    class="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium text-sm sm:text-base"
-                  >
-                    <Icon name="tabler:external-link" class="w-4 h-4 sm:w-5 sm:h-5" />
-                    Acceder al Formulario
-                  </a>
-                </div>
+              <div class="text-center">
+                <a
+                  href="/files/Nuevos.pdf"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-white rounded-xl hover:bg-secondary transition-colors duration-200 font-semibold text-base shadow-soft"
+                >
+                  <Icon name="tabler:download" class="w-5 h-5" />
+                  Descargar Guía
+                </a>
               </div>
             </div>
 
-            <!-- Right Column: PDF Viewer -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-3 sm:p-4 lg:p-6">
-              <div class="aspect-[4/5] w-full max-h-[600px]">
-                <iframe
-                  src="/files/Nuevos.pdf#toolbar=0&navpanes=0"
-                  class="w-full h-full rounded-lg border border-gray-200 dark:border-slate-600"
-                  loading="lazy"
-                  title="Guía para Estudiantes Nuevos"
-                ></iframe>
+            <!-- Formulario ZIGMA -->
+            <div
+              class="bg-white dark:bg-slate-800 rounded-2xl shadow-soft hover:shadow-medium border border-gray-200 dark:border-slate-700 p-6 sm:p-8 transition-all duration-300"
+              data-animate="animate-fade-in-up"
+              data-animate-delay="100"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-14 h-14 sm:w-16 sm:h-16 bg-amber-50 dark:bg-amber-950/40 rounded-xl flex items-center justify-center mr-4 border border-amber-200 dark:border-amber-800/40"
+                >
+                  <Icon name="tabler:forms" class="w-7 h-7 sm:w-8 sm:h-8 text-amber-600 dark:text-amber-400" />
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 dark:text-white">
+                    Formulario de Inscripción
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                    Sistema Q-10 para estudiantes nuevos
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
+                Complete el formulario de inscripción en línea a través de nuestro sistema Q-10 para iniciar el proceso
+                de admisión.
+              </p>
+
+              <div class="text-center">
+                <a
+                  href=""
+                  target="_blank"
+                  class="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:opacity-95 transition-all duration-200 font-semibold text-base shadow-soft"
+                >
+                  <Icon name="tabler:external-link" class="w-5 h-5" />
+                  Acceder al Formulario
+                </a>
               </div>
             </div>
           </div>
+
+          <!-- Right Column: PDF Viewer -->
+          <div
+            class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-3 sm:p-4 lg:p-6"
+            data-animate="animate-fade-in-up"
+            data-animate-delay="150"
+          >
+            <div class="aspect-[4/5] w-full max-h-[600px]">
+              <iframe
+                src="/files/Nuevos.pdf#toolbar=0&navpanes=0"
+                class="w-full h-full rounded-lg border border-gray-200 dark:border-slate-600"
+                loading="lazy"
+                title="Guía para Estudiantes Nuevos"></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-  
-  <WhatsAppButton phoneNumber="573196721410" message="Hola, necesito información sobre admisiones para estudiantes nuevos." />
+
+  <WhatsAppButton
+    phoneNumber="573196721410"
+    message="Hola, necesito información sobre admisiones para estudiantes nuevos."
+  />
 </PageLayout>

@@ -36,21 +36,21 @@ const metadata = {
         </nav>
       </div>
 
-      <header class="mb-8 relative overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700">
-        <div class="absolute inset-0 bg-gradient-to-br from-red-50 via-white to-white dark:from-slate-800 dark:via-slate-800 dark:to-slate-900"></div>
+      <header class="mb-8 relative overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 shadow-soft" data-animate="animate-fade-in-up">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-white dark:from-slate-800 dark:via-slate-800 dark:to-slate-900"></div>
         <div class="relative px-6 py-8 md:px-10 md:py-12">
           <div class="flex items-start">
-            <div class="flex-shrink-0 w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
-              <Icon name="tabler:file-text" class="w-7 h-7 text-red-600" />
+            <div class="flex-shrink-0 w-14 h-14 bg-emerald-100 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 rounded-xl flex items-center justify-center mr-4">
+              <Icon name="tabler:file-text" class="w-7 h-7 text-primary dark:text-emerald-400" />
             </div>
             <div class="flex-1">
-              <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Reglamento Interno de Trabajo</h1>
+              <h1 class="text-2xl md:text-3xl font-bold font-heading text-gray-900 dark:text-white">Reglamento Interno de Trabajo</h1>
             </div>
           </div>
         </div>
       </header>
 
-      <div class="rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-800">
+      <div class="rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-800" data-animate="animate-fade-in-up" data-animate-delay="100">
         <iframe
           src="/files/REGLAMENTO_INTERNO_JUAN_PABLO_II.pdf#toolbar=0&navpanes=0&scrollbar=0"
           class="w-full h-[80vh]"
@@ -59,7 +59,7 @@ const metadata = {
         ></iframe>
       </div>
 
-      <div class="flex justify-between items-center mt-6">
+      <div class="flex justify-between items-center mt-6" data-animate="animate-fade-in-up">
         <a href="/documentos-oficiales" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
           <Icon name="tabler:arrow-left" class="w-5 h-5 mr-2" />
           Volver a Documentos Oficiales

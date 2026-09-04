@@ -18,7 +18,7 @@ const breadcrumbItems = [
 
 <Layout metadata={metadata}>
   <!-- Breadcrumbs Section -->
-  <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+  <div class="relative z-20 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
       <Breadcrumbs items={breadcrumbItems} />
     </div>
@@ -28,78 +28,92 @@ const breadcrumbItems = [
   <HeroText tagline="Información Oficial" title="Documentos Oficiales" />
 
   <!-- Secciones de Documentos -->
-  <section class="py-20">
+  <section class="py-12 md:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         
         <!-- Documentos de Secretaría -->
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-8 hover:shadow-2xl transition-all duration-300 group flex flex-col">
-          <div class="flex items-center mb-6">
-            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4">
-              <Icon name="tabler:file-certificate" class="w-8 h-8 text-blue-600" />
+        <div
+          class="bg-white dark:bg-slate-800 rounded-2xl shadow-soft border border-gray-200/80 dark:border-slate-700/80 p-6 sm:p-8 hover:shadow-medium transition-all duration-300 flex flex-col justify-between"
+          data-animate="animate-fade-in-up"
+          data-tilt
+          data-animate-delay="100"
+        >
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/50 rounded-xl flex items-center justify-center mr-4 border border-emerald-100 dark:border-emerald-800/40">
+                <Icon name="tabler:file-certificate" class="w-7 h-7 text-primary dark:text-emerald-400" />
+              </div>
+              <h3 class="text-2xl font-bold font-heading text-heading dark:text-white">Documentos de Secretaría</h3>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Documentos de Secretaría</h3>
-          </div>
-          <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed flex-grow">
-            Accede a formularios, cronogramas, manuales y documentos administrativos necesarios para trámites académicos y procesos institucionales.
-          </p>
-          <div class="space-y-3 mb-8">
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Formularios de admisión y traslados</span>
-            </div>
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Cronogramas académicos</span>
-            </div>
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Manuales y reglamentos</span>
+            <p class="text-muted dark:text-slate-300 mb-6 text-base leading-relaxed">
+              Accede a formularios, cronogramas, manuales y documentos administrativos necesarios para trámites académicos y procesos institucionales.
+            </p>
+            <div class="space-y-3 mb-8">
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Formularios de admisión y traslados</span>
+              </div>
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Cronogramas académicos</span>
+              </div>
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Manuales y reglamentos</span>
+              </div>
             </div>
           </div>
           <div class="mt-auto">
             <a
               href="/documentos-oficiales/documentos-secretaria"
-              class="inline-flex items-center gap-3 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-lg font-medium w-full justify-center group-hover:scale-105"
+              class="inline-flex items-center gap-3 px-6 py-3.5 bg-primary text-white rounded-xl hover:bg-secondary transition-colors duration-200 text-base font-semibold w-full justify-center shadow-soft"
             >
+              <span>Acceder a Documentos</span>
               <Icon name="tabler:arrow-right" class="w-5 h-5" />
-              Acceder a Documentos
             </a>
           </div>
         </div>
 
         <!-- Documentos Institucionales -->
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 p-8 hover:shadow-2xl transition-all duration-300 group flex flex-col">
-          <div class="flex items-center mb-6">
-            <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mr-4">
-              <Icon name="tabler:building-bank" class="w-8 h-8 text-green-600" />
+        <div
+          class="bg-white dark:bg-slate-800 rounded-2xl shadow-soft border border-gray-200/80 dark:border-slate-700/80 p-6 sm:p-8 hover:shadow-medium transition-all duration-300 flex flex-col justify-between"
+          data-animate="animate-fade-in-up"
+          data-tilt
+          data-animate-delay="200"
+        >
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 bg-amber-50 dark:bg-amber-950/50 rounded-xl flex items-center justify-center mr-4 border border-amber-100 dark:border-amber-800/40">
+                <Icon name="tabler:building-bank" class="w-7 h-7 text-accent dark:text-amber-400" />
+              </div>
+              <h3 class="text-2xl font-bold font-heading text-heading dark:text-white">Documentos Institucionales</h3>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Documentos Institucionales</h3>
-          </div>
-          <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed flex-grow">
-            Consulta resoluciones, prospectos institucionales, documentos legales y normativas que rigen el funcionamiento del colegio.
-          </p>
-          <div class="space-y-3 mb-8">
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Resoluciones oficiales</span>
-            </div>
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Prospecto institucional</span>
-            </div>
-            <div class="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon name="tabler:check" class="w-5 h-5 text-green-500 mr-2" />
-              <span>Documentos legales</span>
+            <p class="text-muted dark:text-slate-300 mb-6 text-base leading-relaxed">
+              Consulta resoluciones, prospectos institucionales, documentos legales y normativas que rigen el funcionamiento del colegio.
+            </p>
+            <div class="space-y-3 mb-8">
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Resoluciones oficiales</span>
+              </div>
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Prospecto institucional</span>
+              </div>
+              <div class="flex items-center text-default dark:text-slate-200 text-sm sm:text-base">
+                <Icon name="tabler:check" class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
+                <span>Documentos legales</span>
+              </div>
             </div>
           </div>
           <div class="mt-auto">
             <a
               href="/documentos-oficiales/documentos-institucionales"
-              class="inline-flex items-center gap-3 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-lg font-medium w-full justify-center group-hover:scale-105"
+              class="inline-flex items-center gap-3 px-6 py-3.5 bg-primary text-white rounded-xl hover:bg-secondary transition-colors duration-200 text-base font-semibold w-full justify-center shadow-soft"
             >
+              <span>Acceder a Documentos</span>
               <Icon name="tabler:arrow-right" class="w-5 h-5" />
-              Acceder a Documentos
             </a>
           </div>
         </div>
@@ -109,12 +123,12 @@ const breadcrumbItems = [
   </section>
 
   <!-- Información adicional -->
-  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+  <section class="py-12 bg-gray-50 dark:bg-slate-900 border-t border-gray-200/80 dark:border-slate-800" data-animate="animate-fade-in-up">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8">
-        <Icon name="tabler:info-circle" class="w-12 h-12 text-blue-600 mx-auto mb-4" />
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Información Importante</h3>
-        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+      <div class="bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 rounded-2xl p-6 sm:p-8">
+        <Icon name="tabler:info-circle" class="w-10 h-10 text-primary dark:text-emerald-400 mx-auto mb-3" />
+        <h3 class="text-xl sm:text-2xl font-bold font-heading text-heading dark:text-white mb-3">Información Importante</h3>
+        <p class="text-muted dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
           Todos los documentos están disponibles en formato PDF. Si necesitas ayuda para acceder a algún documento específico o tienes preguntas sobre los trámites, no dudes en contactarnos.
         </p>
       </div>

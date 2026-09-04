@@ -85,25 +85,7 @@
     }
   }
 
-  /* Nueva animación de tarjeta */
-  @keyframes card-hover {
-    0% {
-      transform: translateY(0) scale(1);
-      box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-    50% {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow:
-        0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-    100% {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-  }
+
 
   .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out forwards;
@@ -227,45 +209,242 @@
   }
 
   /* Clase para la animación de tarjeta */
-  .animate-card-hover {
-    transition: all 0.3s ease-in-out;
+  /* Scroll Reveal Animation Engine */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .animate-card-hover:hover {
-    animation: card-hover 0.5s ease-in-out forwards;
-    transform-origin: center;
-    z-index: 10;
+  [data-animate="animate-slide-in-right"] {
+    transform: translateX(36px);
   }
 
-  /* Animación para el cursor sobre textos */
-  @keyframes text-hover {
-    0% {
-      transform: scale(1);
-      color: currentColor;
-    }
-    50% {
-      transform: scale(1.03);
-      color: var(--aw-color-primary, #006400);
-    }
-    100% {
-      transform: scale(1.02);
-      color: var(--aw-color-primary, #006400);
+  [data-animate="animate-slide-in-left"] {
+    transform: translateX(-36px);
+  }
+
+  [data-animate="animate-scale-in"],
+  [data-animate="animate-bounce-in"] {
+    transform: scale(0.93);
+  }
+
+  [data-animate].in-view {
+    opacity: 1 !important;
+    transform: translate(0, 0) scale(1) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
     }
   }
 
+  /* Desactivar cualquier efecto de click/hover artificial en texto */
   .animate-text-hover {
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
+    cursor: inherit !important;
+    transform: none !important;
+    animation: none !important;
   }
 
   .animate-text-hover:hover {
-    animation: text-hover 0.5s ease-in-out forwards;
+    animation: none !important;
+    transform: none !important;
+    cursor: inherit !important;
+  }
+
+  /* Reglas globales de cursor: solo enlaces y botones muestran pointer */
+  h1, h2, h3, h4, h5, h6, p, span, li, blockquote, dt, dd {
+    cursor: default;
+  }
+
+  a, button, [role="button"], input[type="submit"], input[type="button"], select, summary {
+    cursor: pointer;
   }
 
   .animation-delay-300 {
     animation-delay: 300ms;
   }
+
+  /* ============================================
+     PROFESSIONAL TEXT ANIMATIONS
+     ============================================ */
+
+  /* --- Hero Entrance Sequence --- */
+  @keyframes hero-badge-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hero-title-in {
+    from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  @keyframes hero-subtitle-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hero-cta-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .hero-badge {
+    animation: hero-badge-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  .hero-title {
+    animation: hero-title-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+  .hero-subtitle {
+    animation: hero-subtitle-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+  }
+  .hero-cta {
+    animation: hero-cta-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+  }
+
+  /* --- Texto con aparición limpia y 100% visible --- */
+  @keyframes text-appear-clean {
+    from {
+      opacity: 0.5;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .text-animate-gradient {
+    display: inline-block;
+    color: inherit;
+    opacity: 1 !important;
+    clip-path: none !important;
+    position: relative;
+    animation: text-appear-clean 0.6s ease-out both;
+  }
+  .dark .text-animate-gradient {
+    color: inherit;
+  }
+
+  /* --- Animación de Aparición Suave para Títulos Principales --- */
+  @keyframes main-title-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(3px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .main-title-appear {
+    animation: main-title-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    will-change: opacity, transform, filter;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .main-title-appear {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+  /* --- Underline Reveal (section headings) --- */
+  @keyframes underline-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .text-animate-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .text-animate-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0A5C36, #D97706);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  }
+  .in-view .text-animate-underline::after,
+  .text-animate-underline.in-view::after {
+    transform: scaleX(1);
+  }
+
+  /* Trigger directly when parent gets in-view */
+  [data-animate].in-view .text-animate-underline::after {
+    transform: scaleX(1);
+  }
+
+  /* --- Word-by-word fade-up (for highlighted text blocks) --- */
+  @keyframes word-float-in {
+    from { opacity: 0; transform: translateY(20px) rotateX(-15deg); }
+    to   { opacity: 1; transform: translateY(0) rotateX(0deg); }
+  }
+  .text-animate-words span {
+    display: inline-block;
+    animation: word-float-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .text-animate-words span:nth-child(1) { animation-delay: 0.05s; }
+  .text-animate-words span:nth-child(2) { animation-delay: 0.13s; }
+  .text-animate-words span:nth-child(3) { animation-delay: 0.21s; }
+  .text-animate-words span:nth-child(4) { animation-delay: 0.29s; }
+  .text-animate-words span:nth-child(5) { animation-delay: 0.37s; }
+  .text-animate-words span:nth-child(6) { animation-delay: 0.45s; }
+
+  /* --- Glowing text for special callouts --- */
+  @keyframes text-glow-pulse {
+    0%, 100% { text-shadow: 0 0 8px rgba(10, 92, 54, 0.3); }
+    50%       { text-shadow: 0 0 20px rgba(10, 92, 54, 0.6), 0 0 40px rgba(217, 119, 6, 0.2); }
+  }
+  .text-animate-glow {
+    animation: text-glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* --- Typing cursor effect for single-line stats/highlights --- */
+  @keyframes blink-caret {
+    from, to { border-right-color: transparent; }
+    50%       { border-right-color: #D97706; }
+  }
+  .text-animate-typed {
+    border-right: 2px solid #D97706;
+    animation: blink-caret 1s step-end infinite;
+  }
+
+  /* --- Number count-up shimmer --- */
+  @keyframes count-shimmer {
+    0%   { opacity: 0; transform: translateY(10px) scale(0.9); }
+    60%  { opacity: 1; transform: translateY(-3px) scale(1.05); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .text-animate-count {
+    display: inline-block;
+    animation: count-shimmer 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-badge, .hero-title, .hero-subtitle, .hero-cta,
+    .text-animate-gradient, .text-animate-underline::after,
+    .text-animate-words span, .text-animate-glow, .text-animate-count {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      -webkit-text-fill-color: unset !important;
+    }
+  }
 }
+
 
 @layer components {
   .btn {

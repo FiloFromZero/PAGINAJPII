@@ -18,7 +18,7 @@ const breadcrumbItems = [
 
 <Layout metadata={metadata}>
   <!-- Breadcrumbs Section -->
-  <div class="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+  <div class="relative z-20 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
       <Breadcrumbs items={breadcrumbItems} />
     </div>
@@ -29,7 +29,7 @@ const breadcrumbItems = [
   <Hero tagline="Nosotros">
     <Fragment slot="title">
       Instituto Psicopedagógico <br />
-      <span class="text-green-800 dark:text-white highlight"> Juan Pablo II</span>
+      <span class="text-primary dark:text-emerald-400 highlight"> Juan Pablo II</span>
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -39,7 +39,7 @@ const breadcrumbItems = [
     </Fragment>
 
     <Fragment slot="content">
-      <div class="mx-auto max-w-5xl px-6 mt-8 flex justify-center">
+      <div class="mx-auto max-w-5xl px-6 mt-8 flex justify-center" data-animate="animate-scale-in">
         <iframe
           width="800"
           height="450"
@@ -53,70 +53,51 @@ const breadcrumbItems = [
     </Fragment>
   </Hero>
 
-  <!-- Hero Widget ******************* -->
+  <!-- Misión y Visión Section -->
+  <section class="py-12 md:py-20 bg-secondary/5 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+        <!-- Misión -->
+        <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-soft hover:shadow-medium transition-shadow duration-300" data-animate data-animate-delay="0">
+          <h3 class="text-3xl font-bold font-heading text-primary dark:text-white mb-6 border-b-2 border-primary/20 pb-3"><span class="text-animate-underline">Misión Institucional</span></h3>
+          <div class="prose prose-md dark:prose-invert text-gray-700 dark:text-gray-300">
+            <p>
+              El <span class="font-bold text-primary dark:text-primary-light">Instituto Psicopedagógico Juan Pablo II</span>, es una institución de educación de
+              carácter privado, que tiene como objetivo principal la formación de seres humanos íntegros, capaces de
+              desarrollar su personalidad dentro de los principios de libertad, responsabilidad, prudencia y autonomía.
+            </p>
+            <p>
+              Para el cumplimiento de nuestra misión recurrimos al uso de pedagogías que facilitan los diferentes
+              aprendizajes y el desarrollo de las competencias necesarias para continuar con su formación profesional y laboral.
+            </p>
+            <p>
+              Desde hace 33 años, formamos estudiantes con sensibilidad social, emocional, intelectual y personal;
+              respetando la diferencia y partiendo de la práctica de los derechos humanos.
+            </p>
+          </div>
+        </div>
 
-  <Hero tagline="Nosotros">
-    <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Misión Institucional</span>
-    </Fragment>
-
-    <Fragment slot="content">
-      <div
-        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
-      >
-        <p>
-          El <span class="font-bold">Instituto Psicopedagógico Juan Pablo II</span>, es una institución de educación de
-          carácter privado, que tiene como objetivo principal la formación de seres humanos íntegros, capaces de
-          desarrollar su personalidad dentro de los principios de libertad, responsabilidad, prudencia y autonomía.
-        </p>
-        <p>
-          El Instituto para el cumplimiento de nuestra misión recurre al uso de pedagogías que facilitan los diferentes
-          aprendizajes y el desarrollo de las competencias necesarias de nuestros estudiantes para continuar con su
-          formación profesional y laboral con alto sentido de calidad y cumplimiento. Estas pedagogías facilitan los
-          procesos de formación en la buena lectura, la buena escritura y el entendimiento crítico situacional de los
-          hechos científicos, sociales, culturales y espirituales.
-        </p>
-        <p>
-          El Instituto desde hace 33 años, forma estudiantes con sensibilidad social, emocional, intelectual y personal;
-          respetando la diferencia: partiendo de la práctica de los derechos humanos, la identidad nacional, cultural y
-          el adecuado uso de las tecnologías actuales.
-        </p>
+        <!-- Visión -->
+        <div class="bg-primary text-white p-8 rounded-2xl shadow-soft hover:shadow-medium transition-shadow duration-300" data-animate data-animate-delay="150">
+          <h3 class="text-3xl font-bold font-heading mb-6 border-b-2 border-white/20 pb-3"><span class="text-animate-underline" style="--underline-color-end: #FBBF24;">Visión Institucional</span></h3>
+          <div class="prose prose-md prose-invert text-white/90">
+            <p>
+              Para la próxima década, la Institución Educativa continuará siendo líder en el municipio prestando servicios
+              educativos de calidad, con contenido social y humanístico, haciendo uso de todos los medios educativos actuales.
+            </p>
+            <p>
+              Nuestra formación hará énfasis en el respeto por lo humano, lo natural y lo espiritual, permitiendo el
+              desarrollo de principios axiológicos que permitan la construcción de una sociedad responsable, incluyente y tolerante.
+            </p>
+            <p>
+              Educaremos para que nuestros estudiantes obtengan resultados exitosos y
+              elaboren proyectos de vida que mejoren sus condiciones a nivel personal, familiar y social.
+            </p>
+          </div>
+        </div>
       </div>
-    </Fragment>
-  </Hero>
-
-  <!-- Hero Widget ******************* -->
-
-  <Hero tagline="Nosotros">
-    <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Visión Institucional</span>
-    </Fragment>
-
-    <Fragment slot="content">
-      <div
-        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
-      >
-        <p>
-          Para la próxima década, la Institución Educativa continuará siendo lider en el municipio prestando servicios
-          educativos de calidad, con contenido social y humanístico, en los niveles de preescolar, básica primaria,
-          básica secundaria y media academica; haciendo uso de todos los medios educativos actuales; recurriendo a la
-          tecnología como herramienta necesaria para la comprensión holística y responsable de los hechos naturales y
-          espirituales.
-        </p>
-        <p>
-          Nuestra formación hará énfasis en el respeto por lo humano, lo natural y lo espiritual, permitiendo el
-          desarrollo de principios axiológicos morales, teológicos, intelectuales, culturales y científicos; que
-          permitan la construcción de una sociedad local y nacional responsable, incluyente y tolerante.
-        </p>
-        <p>
-          Educaremos para que nuestros estudiantes obtengan resultados exitosos en las pruebas internas y externas y
-          elaboren proyectos de vida que mejoren sus condiciones de vida a nivel personal, familiar y social y ayuden a
-          la construcción de una Colombia en paz, justa y equitativa.
-        </p>
-      </div>
-    </Fragment>
-  </Hero>
-
+    </div>
+  </section>
   <!-- Hero Widget ******************* -->
 
   <Hero
@@ -124,12 +105,13 @@ const breadcrumbItems = [
     subtitle="Jóvenes vosotros sois la sal y la luz del mundo. Juan pablo II"
   >
     <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Metodología Implementada</span>
+      <span class="text-primary dark:text-emerald-400 highlight">Metodología Implementada</span>
     </Fragment>
 
     <Fragment slot="content">
       <div
-        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-emerald-400 dark:prose-headings:text-slate-200 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+        data-animate="animate-fade-in-up"
       >
         <p>
           En el <span class="font-bold">INSTITUTO PSICOPEDAGÓGICO JUAN PABLO II</span>, nuestra metodología está
@@ -158,20 +140,30 @@ const breadcrumbItems = [
 
   <Hero tagline="Nosotros">
     <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Filosofía Institucional</span>
+      <span class="text-primary dark:text-emerald-400 highlight">Filosofía Institucional</span>
     </Fragment>
 
     <Fragment slot="content">
       <div
-        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+        class="space-y-4 mx-auto sm:px-6 max-w-3xl px-6 mt-4 dark:prose-a:text-emerald-400 dark:prose-headings:text-slate-200 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-left"
+        data-animate="animate-fade-in-up"
       >
         <p>
-          Está concebida desde la perspectiva humanista de San Juan Pablo II, quien expresó: <span
-            class="font-bold italic"
-            >“la persona no solamente es el centro de la historia sino que constituye la meta de todas las actividades
-            para el bien del otro”.</span
-          >
+          Está concebida desde la perspectiva humanista de San Juan Pablo II:
         </p>
+        
+        <!-- Cita Editorial de San Juan Pablo II -->
+        <div class="my-8 relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-primary/5 via-amber-500/5 to-transparent border-l-4 border-amber-500 dark:border-amber-400 shadow-soft not-prose" data-animate>
+          <span class="absolute top-2 left-3 text-5xl font-serif text-amber-500/30 select-none leading-none">“</span>
+          <blockquote class="relative z-10 font-serif text-xl sm:text-2xl italic text-slate-800 dark:text-slate-100 leading-relaxed font-normal pl-4 text-animate-glow">
+            La persona no solamente es el centro de la historia sino que constituye la meta de todas las actividades para el bien del otro.
+          </blockquote>
+          <p class="mt-4 text-sm font-semibold uppercase tracking-wider text-primary dark:text-emerald-400 pl-4 flex items-center gap-2">
+            <span class="w-5 h-0.5 bg-amber-500 inline-block"></span>
+            San Juan Pablo II
+          </p>
+        </div>
+
         <p>
           Nuestra institución materializa esta perspectiva mediante la vivencia de valores como el respeto, la
           tolerancia, el compromiso y la solidaridad; al igual que en los principios de la espiritualidad antropotélica,
@@ -215,7 +207,7 @@ const breadcrumbItems = [
     ]}
   >
     <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Metas Institucionales</span>
+      <span class="text-primary dark:text-emerald-400 highlight">Metas Institucionales</span>
     </Fragment>
   </Features3>
 
@@ -295,7 +287,7 @@ const breadcrumbItems = [
     ]}
   >
     <Fragment slot="title">
-      <span class="text-green-800 dark:text-white highlight">Fundamentos axiológicos – Principios y valores</span>
+      <span class="text-primary dark:text-emerald-400 highlight">Fundamentos axiológicos – Principios y valores</span>
     </Fragment>
   </Features3>
   <WhatsAppButton phoneNumber="573196721410" message="Hola, estoy interesado en sus servicios." />

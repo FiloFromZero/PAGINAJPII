@@ -1,7 +1,13 @@
 ---
-import Image from '~/components/common/Image.astro';
+import logoImg from '~/assets/images/logo.png';
 ---
 
-<div>
-  <Image class="object-none h-20" src="~/assets/images/logo.png" alt="Logo" />
+<div class="flex items-center">
+  <img
+    src={logoImg.src}
+    alt="Instituto Psicopedagógico Juan Pablo II"
+    class="h-11 sm:h-14 md:h-16 w-auto max-w-[220px] sm:max-w-[280px] object-contain transition-opacity duration-200 hover:opacity-90"
+    loading="eager"
+    decoding="async"
+  />
 </div>

@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 
-import { APP_BLOG } from 'astrowind:config';
+import { APP_BLOG } from 'app:config';
 import type { Post } from '~/types';
 
 import { getPermalink } from '~/utils/permalinks';
@@ -92,7 +92,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         {
           link ? (
             <a
-              class="inline-block hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200 animate-text-hover"
+              class="inline-block hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200"
               href={link}
             >
               {post.title}

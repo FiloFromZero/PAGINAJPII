@@ -37,7 +37,7 @@ const {
     </div>
     {
       image && (
-        <div class="relative md:basis-1/2">
+        <div class="relative md:basis-1/2" data-animate="animate-slide-in-right">
           {typeof image === 'string' ? (
             <Fragment set:html={image} />
           ) : (
@@ -52,7 +52,6 @@ const {
               decoding="async"
               fetchpriority="high"
               aspectRatio="4:3"
-              style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: optimize-quality; transform: translateZ(0); backface-visibility: hidden;"
               src={image?.src}
               alt={image?.alt || ''}
             />

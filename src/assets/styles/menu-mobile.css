@@ -51,14 +51,14 @@
     background-color: rgba(59, 130, 246, 0.2);
   }
   
-  /* Mejorar la visibilidad del elemento activo */
-  .aw-link-active {
-    font-weight: 600;
-    color: #3b82f6 !important;
+  /* Estilo del elemento activo: color institucional sin negrita */
+  .nav-link-active {
+    font-weight: 500 !important;
+    color: #0A5C36 !important;
   }
   
-  .dark .aw-link-active {
-    color: #60a5fa !important;
+  .dark .nav-link-active {
+    color: #34D399 !important;
   }
   
   /* Añadir un indicador de scroll cuando el menú es largo */

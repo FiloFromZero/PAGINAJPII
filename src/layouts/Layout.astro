@@ -1,7 +1,7 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import { I18N } from 'astrowind:config';
+import { I18N } from 'app:config';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
@@ -46,6 +46,9 @@ const { language, textDirection } = I18N;
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    <!-- Indicador de scroll en tiempo real -->
+    <div id="scroll-progress-bar" class="fixed top-0 left-0 right-0 h-[3px] z-[100] pointer-events-none origin-left transform scale-x-0 transition-transform duration-75 bg-gradient-to-r from-primary via-emerald-400 to-amber-400 shadow-sm" aria-hidden="true"></div>
+
     <slot />
 
     <BasicScripts />

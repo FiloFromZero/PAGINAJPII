@@ -39,19 +39,19 @@ const {
           (image, index) =>
             image.src && (
               <div
-                class={`card flex items-center justify-center p-4 rounded-xl dark:card-dark cursor-pointer h-full hover-lift hover-glow micro-bounce stagger-${(index % 8) + 1} animate-bounce-in`}
+                class="flex items-center justify-center p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-800/80 border border-gray-200/80 dark:border-slate-700 hover:border-primary/60 dark:hover:border-primary/60 transition-colors duration-200 cursor-pointer h-full"
+                onclick={image.onclick}
               >
                 <Image
                   src={image.src}
                   alt={image.alt || ''}
-                  width={100}
+                  width={120}
                   height={56}
                   layout="constrained"
                   loading="lazy"
-                  sizes="(max-width: 768px) 50px, 100px"
-                  widths={[50, 100]}
-                  class="max-h-14 hover:brightness-110 hover:animate-pulse transition-all duration-300"
-                  onclick={image.onclick}
+                  sizes="(max-width: 768px) 60px, 120px"
+                  widths={[60, 120]}
+                  class="max-h-12 w-auto object-contain transition-opacity duration-200 hover:opacity-85"
                 />
               </div>
             )

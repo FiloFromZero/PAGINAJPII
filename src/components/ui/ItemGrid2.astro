@@ -32,12 +32,14 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
-        <div class={twMerge('relative flex flex-col', panelClass, itemClasses?.panel)}>
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }, index) => (
+        <div class={twMerge('group relative flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-medium', panelClass, itemClasses?.panel)} data-animate="animate-fade-in-up" data-animate-delay={index * 100}>
           {(icon || defaultIcon) && (
-            <Icon name={icon || defaultIcon} class={twMerge('mb-2 w-10 h-10', defaultIconClass, itemClasses?.icon)} />
+            <div class="mb-5 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-50 dark:bg-slate-800 text-primary dark:text-emerald-400 border border-emerald-100/80 dark:border-slate-700/80 transition-all duration-300 group-hover:scale-105 group-hover:bg-emerald-100/80 dark:group-hover:bg-slate-700/80 group-hover:border-primary/40">
+              <Icon name={icon || defaultIcon} class={twMerge('w-6 h-6 transition-transform duration-300 ease-out group-hover:scale-110', defaultIconClass, itemClasses?.icon)} />
+            </div>
           )}
-          <div class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</div>
+          <div class={twMerge('text-xl font-bold font-heading group-hover:text-primary dark:group-hover:text-emerald-400 transition-colors', titleClass, itemClasses?.title)}>{title}</div>
           {description && (
             <p class={twMerge('text-muted mt-2', descriptionClass, itemClasses?.description)} set:html={description} />
           )}

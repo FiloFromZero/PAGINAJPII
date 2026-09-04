@@ -1,0 +1,252 @@
+---
+export interface Props {
+  class?: string;
+  particleCount?: number;
+}
+
+const { class: className = '', particleCount = 45 } = Astro.props;
+---
+
+<div class={`interactive-mesh-container absolute inset-0 overflow-hidden pointer-events-none ${className}`} aria-hidden="true">
+  <canvas class="interactive-mesh-canvas w-full h-full opacity-60 dark:opacity-40"></canvas>
+</div>
+
+<script>
+  class ParticleMesh {
+    constructor(container) {
+      this.container = container;
+      this.canvas = container.querySelector('.interactive-mesh-canvas');
+      if (!this.canvas) return;
+      this.ctx = this.canvas.getContext('2d');
+      if (!this.ctx) return;
+
+      this.particles = [];
+      this.numParticles = 40;
+      this.maxDistance = 130;
+      this.mouse = { x: -1000, y: -1000, radius: 140, active: false };
+      this.animationFrameId = null;
+      this.isRunning = false;
+      this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      this.init();
+    }
+
+    init() {
+      this.resize();
+      this.createParticles();
+      this.bindEvents();
+      this.start();
+    }
+
+    resize() {
+      const rect = this.container.getBoundingClientRect();
+      this.width = rect.width || window.innerWidth;
+      this.height = rect.height || window.innerHeight;
+      this.canvas.width = this.width * this.dpr;
+      this.canvas.height = this.height * this.dpr;
+      this.ctx.scale(this.dpr, this.dpr);
+    }
+
+    createParticles() {
+      this.particles = [];
+      const isDark = document.documentElement.classList.contains('dark');
+      
+      // Institutional colors: Emerald and Gold
+      const colors = isDark 
+        ? ['rgba(52, 211, 153, 0.7)', 'rgba(251, 191, 36, 0.65)', 'rgba(16, 185, 129, 0.5)']
+        : ['rgba(10, 92, 54, 0.5)', 'rgba(217, 119, 6, 0.45)', 'rgba(7, 70, 40, 0.35)'];
+
+      for (let i = 0; i < this.numParticles; i++) {
+        this.particles.push({
+          x: Math.random() * this.width,
+          y: Math.random() * this.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: Math.random() * 2.2 + 1.2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          pulseSpeed: Math.random() * 0.02 + 0.01,
+          pulse: Math.random() * Math.PI,
+        });
+      }
+    }
+
+    bindEvents() {
+      this._onResize = () => {
+        this.resize();
+        this.createParticles();
+      };
+      window.addEventListener('resize', this._onResize, { passive: true });
+
+      // Track mouse in parent or window
+      this._onMouseMove = (e) => {
+        const rect = this.container.getBoundingClientRect();
+        this.mouse.x = e.clientX - rect.left;
+        this.mouse.y = e.clientY - rect.top;
+        this.mouse.active = true;
+      };
+      window.addEventListener('mousemove', this._onMouseMove, { passive: true });
+
+      this._onMouseLeave = () => {
+        this.mouse.active = false;
+        this.mouse.x = -1000;
+        this.mouse.y = -1000;
+      };
+      document.addEventListener('mouseleave', this._onMouseLeave);
+
+      // Re-create particles when theme changes
+      this._themeObserver = new MutationObserver(() => {
+        this.createParticles();
+      });
+      this._themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+      // Visibility API to save battery
+      this._onVisibilityChange = () => {
+        if (document.hidden) {
+          this.stop();
+        } else {
+          this.start();
+        }
+      };
+      document.addEventListener('visibilitychange', this._onVisibilityChange);
+    }
+
+    start() {
+      if (this.isRunning) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.renderStatic();
+        return;
+      }
+      this.isRunning = true;
+      this.loop();
+    }
+
+    stop() {
+      this.isRunning = false;
+      if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
+      }
+    }
+
+    loop() {
+      if (!this.isRunning) return;
+      this.update();
+      this.draw();
+      this.animationFrameId = requestAnimationFrame(() => this.loop());
+    }
+
+    update() {
+      for (let i = 0; i < this.particles.length; i++) {
+        const p = this.particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulse += p.pulseSpeed;
+
+        // Bounce on borders
+        if (p.x < 0 || p.x > this.width) p.vx *= -1;
+        if (p.y < 0 || p.y > this.height) p.vy *= -1;
+
+        // Mouse interaction: gentle repulsion / gravitation
+        if (this.mouse.active) {
+          const dx = this.mouse.x - p.x;
+          const dy = this.mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < this.mouse.radius && dist > 5) {
+            const force = (this.mouse.radius - dist) / this.mouse.radius;
+            p.x -= (dx / dist) * force * 1.2;
+            p.y -= (dy / dist) * force * 1.2;
+          }
+        }
+      }
+    }
+
+    draw() {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      const isDark = document.documentElement.classList.contains('dark');
+      const lineColor = isDark ? '52, 211, 153' : '10, 92, 54';
+
+      // Connect particles
+      for (let i = 0; i < this.particles.length; i++) {
+        const p1 = this.particles[i];
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const p2 = this.particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < this.maxDistance) {
+            const alpha = (1 - dist / this.maxDistance) * (isDark ? 0.25 : 0.15);
+            this.ctx.beginPath();
+            this.ctx.moveTo(p1.x, p1.y);
+            this.ctx.lineTo(p2.x, p2.y);
+            this.ctx.strokeStyle = `rgba(${lineColor}, ${alpha})`;
+            this.ctx.lineWidth = 0.8;
+            this.ctx.stroke();
+          }
+        }
+
+        // Draw particle node
+        const currentRadius = p1.radius + Math.sin(p1.pulse) * 0.5;
+        this.ctx.beginPath();
+        this.ctx.arc(p1.x, p1.y, Math.max(0.5, currentRadius), 0, Math.PI * 2);
+        this.ctx.fillStyle = p1.color;
+        this.ctx.fill();
+      }
+
+      // Draw subtle connective threads to mouse
+      if (this.mouse.active) {
+        for (let i = 0; i < this.particles.length; i++) {
+          const p = this.particles[i];
+          const dx = this.mouse.x - p.x;
+          const dy = this.mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < this.mouse.radius) {
+            const alpha = (1 - dist / this.mouse.radius) * 0.35;
+            this.ctx.beginPath();
+            this.ctx.moveTo(p.x, p.y);
+            this.ctx.lineTo(this.mouse.x, this.mouse.y);
+            this.ctx.strokeStyle = isDark ? `rgba(251, 191, 36, ${alpha})` : `rgba(217, 119, 6, ${alpha})`;
+            this.ctx.lineWidth = 1;
+            this.ctx.stroke();
+          }
+        }
+      }
+    }
+
+    renderStatic() {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      for (let i = 0; i < this.particles.length; i++) {
+        const p = this.particles[i];
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = p.color;
+        this.ctx.fill();
+      }
+    }
+
+    destroy() {
+      this.stop();
+      window.removeEventListener('resize', this._onResize);
+      window.removeEventListener('mousemove', this._onMouseMove);
+      document.removeEventListener('mouseleave', this._onMouseLeave);
+      document.removeEventListener('visibilitychange', this._onVisibilityChange);
+      if (this._themeObserver) this._themeObserver.disconnect();
+    }
+  }
+
+  let meshes = [];
+
+  function initMeshes() {
+    meshes.forEach((m) => m.destroy());
+    meshes = [];
+    document.querySelectorAll('.interactive-mesh-container').forEach((el) => {
+      meshes.push(new ParticleMesh(el));
+    });
+  }
+
+  document.addEventListener('astro:page-load', initMeshes);
+  document.addEventListener('astro:before-swap', () => {
+    meshes.forEach((m) => m.destroy());
+    meshes = [];
+  });
+</script>

@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb" class={`flex items-center space-x-2 text-sm ${className}`}>
+<nav aria-label="Breadcrumb" class={`relative z-30 flex items-center space-x-2 text-sm ${className}`}>
   <ol class="flex items-center space-x-2">
     {items.map((item, index) => (
       <li class="flex items-center">
@@ -29,7 +29,7 @@ const {
         )}
         {item.current ? (
           <span 
-            class="text-gray-600 dark:text-gray-300 font-medium" 
+            class="text-gray-600 dark:text-gray-300 font-medium py-1 px-1" 
             aria-current="page"
           >
             {item.label}
@@ -37,7 +37,7 @@ const {
         ) : (
           <a 
             href={item.href} 
-            class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 hover:underline"
+            class="relative z-30 pointer-events-auto cursor-pointer inline-flex items-center py-1 px-2 -mx-1 rounded-md text-primary dark:text-emerald-400 hover:text-secondary dark:hover:text-emerald-300 font-semibold hover:bg-emerald-50 dark:hover:bg-slate-800 transition-colors duration-200 hover:underline"
           >
             {item.label}
           </a>

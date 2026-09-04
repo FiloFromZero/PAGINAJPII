@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { UI } from 'astrowind:config';
+import { UI } from 'app:config';
 
 export interface Props {
   label?: string;
@@ -21,8 +21,8 @@ const {
 
 {
   !(UI.theme && UI.theme.endsWith(':only')) && (
-    <button type="button" class={className} aria-label={label} data-aw-toggle-color-scheme>
-      <Icon name={iconName} class={iconClass} />
+    <button type="button" class={`${className} group`} aria-label={label} data-aw-toggle-color-scheme>
+      <Icon name={iconName} class={`${iconClass} transition-transform duration-500 ease-out group-hover:rotate-90 group-hover:scale-110`} />
     </button>
   )
 }
