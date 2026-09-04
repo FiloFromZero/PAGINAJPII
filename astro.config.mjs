@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig, sharpImageService } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -10,7 +10,7 @@ import icon from 'astro-icon';
 import compress from 'astro-compress';
 
 import jpiiIntegration from './vendor/integration';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 
 // Importar la integración de React
 import react from '@astrojs/react';
@@ -30,6 +30,10 @@ const whenExternalScripts = (items = []) =>
 export default defineConfig({
   adapter: netlify(),
   output: 'server',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   server: {
     port: 3000, // Cambia este número por el puerto que desees
     host: true  // Permite conexiones desde cualquier IP
@@ -87,12 +91,12 @@ export default defineConfig({
   ],
 
   image: {
-    service: squooshImageService(),
+    service: sharpImageService(),
     domains: ['cdn.pixabay.com'],
     remotePatterns: [{ protocol: "https" }],
     formats: ['avif', 'webp', 'jpeg'],
-    quality: 100,
-    densities: [1, 1.5, 2, 2.5, 3, 4, 5],
+    quality: 80,
+    densities: [1, 2],
   },
 
   markdown: {
@@ -105,6 +109,11 @@ export default defineConfig({
       alias: {
         '~': path.resolve(__dirname, './src'),
       },
+    },
+    build: {
+      cssCodeSplit: true,
+      minify: 'esbuild',
+      assetsInlineLimit: 4096,
     },
   },
 });

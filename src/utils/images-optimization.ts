@@ -38,17 +38,11 @@ const config = {
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 640, 768],
 
   deviceSizes: [
-    320,  // small mobile
     480,  // mobile
-    640,  // large mobile
     768,  // tablet
-    1024, // small desktop
-    1280, // desktop
+    1024, // desktop
     1440, // large desktop
-    1600, // xl desktop
     1920, // full HD
-    2560, // 2K
-    3840, // 4K
   ],
 
   formats: ['image/avif', 'image/webp', 'image/jpeg'],

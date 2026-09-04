@@ -23,7 +23,7 @@ import FeriaU1 from '~/assets/images/FeriaUniversitaria.jpeg';
 import FeriaU2 from '~/assets/images/FeriaUniversitaria2.jpeg';
 import Regional from '~/assets/images/Regional.jpg';
 import Memoria from '~/assets/images/Memoria.jpeg';
-
+import { getImage } from 'astro:assets';
 
 // --- Metadata de la Página ---
 const metadata = {
@@ -31,23 +31,28 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-// --- 2. Define los datos para los slides del carrusel ---
-// Se utilizarán las imágenes importadas para el carrusel.
-
-// Preload critical images for better performance
-const firstImage = FeriaU1.src;
-const heroImage = imgPagoEnLinea.src;
+// Preload critical LCP image for high-speed first paint
+const lcpHeroImage = await getImage({
+  src: FeriaU1,
+  width: 1920,
+  format: 'webp',
+  quality: 80,
+});
 ---
 
 <Layout metadata={metadata}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={lcpHeroImage.src} type="image/webp" fetchpriority="high" />
+  </Fragment>
+
   <!-- Carrusel Integrado con Banner Hero -->
   <div class="relative w-full overflow-hidden">
     <Carousel
       images={[
-        { src: FeriaU1.src, alt: 'Feria Universitaria Juan Pablo II' },
-        { src: FeriaU2.src, alt: 'Estudiantes en actividades académicas' },
-        { src: Regional.src, alt: 'Encuentro regional estudiantil' },
-        { src: Memoria.src, alt: 'Comunidad educativa Juan Pablo II' },
+        { src: FeriaU1, alt: 'Feria Universitaria Juan Pablo II' },
+        { src: FeriaU2, alt: 'Estudiantes en actividades académicas' },
+        { src: Regional, alt: 'Encuentro regional estudiantil' },
+        { src: Memoria, alt: 'Comunidad educativa Juan Pablo II' },
       ]}
       autoPlay={true}
       autoPlayInterval={6000}
@@ -116,6 +121,11 @@ const heroImage = imgPagoEnLinea.src;
     image={{
       src: imgPagoEnLinea,
       alt: 'Pago en Línea Banco Caja Social',
+      width: 480,
+      height: 480,
+      widths: [320, 480],
+      sizes: '(max-width: 768px) 90vw, 480px',
+      aspectRatio: '1:1',
       class: 'mx-auto max-w-xs sm:max-w-md w-full object-contain rounded-xl border border-gray-200/80 dark:border-slate-700',
     }}
   >
@@ -195,8 +205,8 @@ const heroImage = imgPagoEnLinea.src;
       height: 500,
       layout: 'constrained',
       loading: 'lazy',
-      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
-      widths: [480, 640, 1000, 1400],
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px',
+      widths: [480, 700],
       aspectRatio: '7:5',
     }}
     data-animate="animate-slide-in-right"
@@ -236,8 +246,8 @@ const heroImage = imgPagoEnLinea.src;
       height: 500,
       layout: 'constrained',
       loading: 'lazy',
-      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
-      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px',
+      widths: [480, 700],
       aspectRatio: '7:5',
     }}
     data-animate="animate-fade-in-up"
@@ -272,8 +282,8 @@ const heroImage = imgPagoEnLinea.src;
       height: 500,
       layout: 'constrained',
       loading: 'lazy',
-      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1400px',
-      widths: [320, 480, 640, 700, 1000, 1400, 2000],
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px',
+      widths: [480, 700],
       aspectRatio: '7:5',
     }}
     data-animate="animate-fade-in-up"
@@ -310,12 +320,12 @@ const heroImage = imgPagoEnLinea.src;
       class: 'object-contain rounded-xl shadow-lg border border-white/10',
       src: imgVirtualidad,
       alt: 'Virtualidad',
-      width: 800,
-      height: 600,
+      width: 700,
+      height: 525,
       layout: 'constrained',
       loading: 'lazy',
-      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1600px',
-      widths: [480, 800, 1200, 1600],
+      sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px',
+      widths: [480, 700],
       aspectRatio: '4:3',
     }}
     data-animate="animate-fade-in-up"

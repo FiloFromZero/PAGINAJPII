@@ -18,12 +18,9 @@ import { UI } from 'app:config';
   }
 
   const initTheme = function () {
-    if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
+    if (defaultTheme && defaultTheme.endsWith(':only')) {
       applyTheme(defaultTheme.replace(':only', ''));
-    } else if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
+    } else if (localStorage.theme === 'dark') {
       applyTheme('dark');
     } else {
       applyTheme('light');
@@ -136,6 +133,7 @@ import { UI } from 'app:config';
 
     scrollObserver = new IntersectionObserver(
       (entries) => {
+        const vh = window.innerHeight;
         entries.forEach((entry) => {
           const el = entry.target;
           if (entry.isIntersecting) {
@@ -148,7 +146,7 @@ import { UI } from 'app:config';
             // Permite que la animación se repita fluidamente al scrollear hacia arriba o hacia abajo
             const rect = entry.boundingClientRect;
             // Solo resetear si está fuera de la pantalla
-            if (rect.top >= window.innerHeight || rect.bottom <= 0) {
+            if (rect.top >= vh || rect.bottom <= 0) {
               el.style.transitionDelay = '0ms';
               el.classList.remove('in-view');
             }
@@ -166,13 +164,21 @@ import { UI } from 'app:config';
     });
   };
 
+  let scrollTicking = false;
   const updateScrollProgress = function () {
-    const bar = document.getElementById('scroll-progress-bar');
-    if (!bar) return;
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = scrollHeight > 0 ? Math.min(Math.max(scrollTop / scrollHeight, 0), 1) : 0;
-    bar.style.transform = `scaleX(${progress})`;
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const bar = document.getElementById('scroll-progress-bar');
+        if (bar) {
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollHeight > 0 ? Math.min(Math.max(scrollTop / scrollHeight, 0), 1) : 0;
+          bar.style.transform = `scaleX(${progress})`;
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
   };
 
   const initTiltEffects = function () {
@@ -181,7 +187,12 @@ import { UI } from 'app:config';
 
     const cards = document.querySelectorAll('[data-tilt]');
     cards.forEach((card) => {
+      if (card.__tiltInit) return;
+      card.__tiltInit = true;
+
       let bounds = null;
+      let rafId = null;
+
       const onMouseEnter = () => {
         bounds = card.getBoundingClientRect();
         card.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease';
@@ -195,17 +206,22 @@ import { UI } from 'app:config';
         const yPct = (mouseY / bounds.height - 0.5) * 2;
         const tiltX = -yPct * 5;
         const tiltY = xPct * 5;
-        card.style.transform = `perspective(800px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          card.style.transform = `perspective(800px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-4px)`;
+        });
       };
       const onMouseLeave = () => {
         bounds = null;
+        if (rafId) cancelAnimationFrame(rafId);
         card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
         card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0)';
       };
 
-      card.addEventListener('mouseenter', onMouseEnter);
-      card.addEventListener('mousemove', onMouseMove);
-      card.addEventListener('mouseleave', onMouseLeave);
+      card.addEventListener('mouseenter', onMouseEnter, { passive: true });
+      card.addEventListener('mousemove', onMouseMove, { passive: true });
+      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
     });
   };
 

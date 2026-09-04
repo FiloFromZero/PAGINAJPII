@@ -4,7 +4,7 @@ import { UI } from 'app:config';
 // TODO: This code is temporary
 ---
 
-<script is:inline define:vars={{ defaultTheme: UI.theme || 'system' }}>
+<script is:inline define:vars={{ defaultTheme: UI.theme || 'light' }}>
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -20,12 +20,10 @@ import { UI } from 'app:config';
     }
   }
 
-  if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
+  // Modo claro por defecto para todos los visitantes. Solo se activa dark si el usuario lo configuró manualmente.
+  if (defaultTheme && defaultTheme.endsWith(':only')) {
     applyTheme(defaultTheme.replace(':only', ''));
-  } else if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
+  } else if (localStorage.theme === 'dark') {
     applyTheme('dark');
   } else {
     applyTheme('light');
