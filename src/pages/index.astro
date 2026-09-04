@@ -31,10 +31,16 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-// Preload critical LCP image for high-speed first paint
-const lcpHeroImage = await getImage({
+// Preload critical LCP image for high-speed first paint (Mobile & Desktop)
+const lcpHeroImageDesktop = await getImage({
   src: FeriaU1,
-  width: 1920,
+  width: 1440,
+  format: 'webp',
+  quality: 80,
+});
+const lcpHeroImageMobile = await getImage({
+  src: FeriaU1,
+  width: 768,
   format: 'webp',
   quality: 80,
 });
@@ -42,7 +48,8 @@ const lcpHeroImage = await getImage({
 
 <Layout metadata={metadata}>
   <Fragment slot="head">
-    <link rel="preload" as="image" href={lcpHeroImage.src} type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href={lcpHeroImageMobile.src} type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" href={lcpHeroImageDesktop.src} type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
   </Fragment>
 
   <!-- Carrusel Integrado con Banner Hero -->

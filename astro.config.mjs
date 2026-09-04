@@ -29,7 +29,7 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
   adapter: netlify(),
-  output: 'server',
+  output: 'hybrid',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover',

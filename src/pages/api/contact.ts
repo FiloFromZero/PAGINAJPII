@@ -2,6 +2,8 @@ import 'dotenv/config'; // Asegúrate de que las variables de entorno se carguen
 import type { APIRoute } from 'astro';
 import * as nodemailer from 'nodemailer';
 
+export const prerender = false;
+
 // Las variables de entorno en Astro se acceden de forma segura con import.meta.env
 const EMAIL_USER = import.meta.env.EMAIL_USER;
 const EMAIL_PASS = import.meta.env.EMAIL_PASS;
